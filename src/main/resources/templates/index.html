@@ -1,196 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-    <title>Le's BookStore</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
-    <link rel="icon" href="image/apple-touch-icon.png" />
-</head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
 <body>
-<div style="width: 100%; height: 20px; background-color: #f46b42;"></div>
-<nav class="navbar navbar-default navbar-inverse" role="navigation">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
-                class="icon-bar"></span><span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Le's Bookstore</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-            <li class="active">
-                <a href="#">Link</a>
-            </li>
-            <li>
-                <a href="#">Link</a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong
-                        class="caret"></strong></a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="#">Action</a>
-                    </li>
-                    <li>
-                        <a href="#">Another action</a>
-                    </li>
-                    <li>
-                        <a href="#">Something else here</a>
-                    </li>
-                    <li class="divider">
-                    </li>
-                    <li>
-                        <a href="#">Separated link</a>
-                    </li>
-                    <li class="divider">
-                    </li>
-                    <li>
-                        <a href="#">One more separated link</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control"/>
-            </div>
-            <button type="submit" class="btn btn-default">
-                Search
-            </button>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">WISH LIST</a></li>
-            <li><a href="#">SHOPPING CART</a></li>
-            <li><a href="#">MY ACCOUNT</a></li>
-        </ul>
-    </div>
-</nav>
-
+<div th:replace="common/header :: navbar"/>
 <div class="container">
-    <div class="row ">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="carousel slide" id="carousel-569339">
-                                <ol class="carousel-indicators">
-                                    <li class="active" data-slide-to="0" data-target="#carousel-569339">
-                                    </li>
-                                    <li data-slide-to="1" data-target="#carousel-569339">
-                                    </li>
-                                    <li data-slide-to="2" data-target="#carousel-569339">
-                                    </li>
-                                </ol>
-                                <div class="carousel-inner">
-                                    <div class="item next left">
-                                        <img alt="Carousel Bootstrap First"
-                                             src="http://lorempixel.com/output/sports-q-c-1600-500-1.jpg"/>
-                                        <div class="carousel-caption">
-                                            <h4>
-                                                First Thumbnail label
-                                            </h4>
-                                            <p>
-                                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id
-                                                elit non
-                                                mi
-                                                porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula
-                                                ut id
-                                                elit.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <img alt="Carousel Bootstrap Second"
-                                             src="http://lorempixel.com/output/sports-q-c-1600-500-2.jpg"/>
-                                        <div class="carousel-caption">
-                                            <h4>
-                                                Second Thumbnail label
-                                            </h4>
-                                            <p>
-                                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id
-                                                elit non
-                                                mi
-                                                porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula
-                                                ut id
-                                                elit.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="item active left">
-                                        <img alt="Carousel Bootstrap Third"
-                                             src="http://lorempixel.com/output/sports-q-c-1600-500-3.jpg"/>
-                                        <div class="carousel-caption">
-                                            <h4>
-                                                Third Thumbnail label
-                                            </h4>
-                                            <p>
-                                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id
-                                                elit non
-                                                mi
-                                                porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula
-                                                ut id
-                                                elit.
-                                            </p>
-                                        </div>
-                                    </div>
+    <div class="row">
+        <div class="col-xs-8">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="carousel slide" id="carousel-569339">
+                        <ol class="carousel-indicators">
+                            <li class="active" data-slide-to="0" data-target="#carousel-569339">
+                            </li>
+                            <li data-slide-to="1" data-target="#carousel-569339">
+                            </li>
+                            <li data-slide-to="2" data-target="#carousel-569339">
+                            </li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="item next left">
+                                <img alt="Carousel Bootstrap First"
+                                     src="http://lorempixel.com/output/sports-q-c-1600-500-1.jpg"/>
+                                <div class="carousel-caption">
+                                    <h4>
+                                        First Thumbnail label
+                                    </h4>
+                                    <p>
+                                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id
+                                        elit non
+                                        mi
+                                        porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula
+                                        ut id
+                                        elit.
+                                    </p>
                                 </div>
-                                <a class="left carousel-control" href="#carousel-569339" data-slide="prev"><span
-                                        class="glyphicon glyphicon-chevron-left"></span></a> <a
-                                    class="right carousel-control"
-                                    href="#carousel-569339"
-                                    data-slide="next"><span
-                                    class="glyphicon glyphicon-chevron-right"></span></a>
+                            </div>
+                            <div class="item">
+                                <img alt="Carousel Bootstrap Second"
+                                     src="http://lorempixel.com/output/sports-q-c-1600-500-2.jpg"/>
+                                <div class="carousel-caption">
+                                    <h4>
+                                        Second Thumbnail label
+                                    </h4>
+                                    <p>
+                                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id
+                                        elit non
+                                        mi
+                                        porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula
+                                        ut id
+                                        elit.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="item active left">
+                                <img alt="Carousel Bootstrap Third"
+                                     src="http://lorempixel.com/output/sports-q-c-1600-500-3.jpg"/>
+                                <div class="carousel-caption">
+                                    <h4>
+                                        Third Thumbnail label
+                                    </h4>
+                                    <p>
+                                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id
+                                        elit non
+                                        mi
+                                        porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula
+                                        ut id
+                                        elit.
+                                    </p>
+                                </div>
                             </div>
                         </div>
+                        <a class="left carousel-control" href="#carousel-569339" data-slide="prev"><span
+                                class="glyphicon glyphicon-chevron-left"></span></a> <a
+                            class="right carousel-control"
+                            href="#carousel-569339"
+                            data-slide="next"><span
+                            class="glyphicon glyphicon-chevron-right"></span></a>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <img src="image/logo.png" class="img-responsive" />
-                </div>
             </div>
+        </div>
+        <div class="col-xs-4">
+            <img src="image/logo.png" class="img-responsive"/>
         </div>
     </div>
 
-    <hr  />
+    <hr/>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-xs-4">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <img src="image/goods.png" class="img-responsive" />
+                    <img src="image/goods.png" class="img-responsive"/>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-xs-4">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <img src="image/hours.png" class="img-responsive" />
+                    <img src="image/hours.png" class="img-responsive"/>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-xs-4">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <img src="image/faq.png" class="img-responsive" />
+                    <img src="image/faq.png" class="img-responsive"/>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div>
-        <div class="home-headline"><span>Featured Books</span></div>
-        <hr style="margin-top: -15px;" />
-    </div>
 
-    <div class="row" id="feature-book">
-        <div class="col-md-12">
+        <div>
+            <div class="home-headline"><span>Featured Books</span></div>
+            <hr style="margin-top: -15px;"/>
+        </div>
+
+        <div class="row" id="feature-book">
             <div class="carousel slide" id="carousel-635973">
                 <ol class="carousel-indicators">
                     <li data-slide-to="0" data-target="#carousel-635973">
@@ -202,26 +128,26 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img alt="Carousel Bootstrap First" src="image/shelf.png" class="img-responsive" />
+                        <img alt="Carousel Bootstrap First" src="image/shelf.png" class="img-responsive"/>
                         <div class="carousel-caption">
                             <div class="row">
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
                             </div>
                         </div>
@@ -230,23 +156,23 @@
                         <img alt="Carousel Bootstrap First" src="image/shelf.png"/>
                         <div class="carousel-caption">
                             <div class="row">
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
                             </div>
                         </div>
@@ -255,23 +181,23 @@
                         <img alt="Carousel Bootstrap First" src="image/shelf.png"/>
                         <div class="carousel-caption">
                             <div class="row">
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png" /></a>
+                                <div class="col-xs-2">
+                                    <a href="#"><img class="img-responsive shelf-book" src="image/book1.png"/></a>
                                 </div>
                             </div>
                         </div>
@@ -286,8 +212,6 @@
     </div>
 </div>
 
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/scripts.js"></script>
+<div th:replace="common/header :: body-bottom-scripts"/>
 </body>
 </html>

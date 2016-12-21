@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<body>
+<div th:replace="common/header :: navbar"/>
+
+<div class="container">
+    <h3>An validation email has been sent to <span th:text="${email}"></span></h3>
+</div>
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+</body>
+</html>

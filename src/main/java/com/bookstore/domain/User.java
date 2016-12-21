@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,8 +19,8 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "userId", nullable = false, updatable = false)
-    private Long userId;
+    @Column(name = "Id", nullable = false, updatable = false)
+    private Long Id;
     private String username;
     private String password;
     private String firstName;
@@ -45,12 +44,12 @@ public class User implements UserDetails {
         this.userRoles = userRoles;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getId() {
+        return Id;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.Id = id;
     }
 
     public String getUsername() {
@@ -140,7 +139,7 @@ public class User implements UserDetails {
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
+                "Id=" + Id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +

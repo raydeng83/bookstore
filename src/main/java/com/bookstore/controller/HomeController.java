@@ -128,7 +128,8 @@ public class HomeController {
 
     @RequestMapping(value = "/user/addNewUser", method = RequestMethod.GET)
     public String addNewUser(
-            Locale locale, Model model, @RequestParam("token") String token) {
+            Locale locale, Model model,
+            @RequestParam("token") String token) {
 
         PasswordResetToken passToken = userService.getPasswordResetToken(token);
         User user = passToken.getUser();
@@ -149,6 +150,8 @@ public class HomeController {
 //        SecurityContextHolder.getContext().setAuthentication(auth);
 
         String username = user.getUsername();
+        String email = user.getEmail();
+        Long id = user.getId();
 
         UserDetails userDetails = userSecurityService.loadUserByUsername(username);
 
@@ -156,18 +159,35 @@ public class HomeController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        model.addAttribute("id", id);
+        model.addAttribute("username", username);
+        model.addAttribute("email", email);
+
         return "myProfile";
     }
 
     private SimpleMailMessage constructResetTokenEmail(
             String contextPath, Locale locale, String token, User user) {
-        String url = contextPath + "/user/addNewUser?"+"token=" + token;
+        String url = contextPath + "/user/addNewUser?token=" + token;
         String message = "Please click on this link to verify your email and edit your personal info. ";
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(user.getEmail());
         email.setSubject("Le's Bookstore - New User");
-        email.setText(message + ": " + url);
+        email.setText(message + url);
         email.setFrom(env.getProperty("support.email"));
         return email;
+    }
+
+    @RequestMapping(value = "/user/profileInfo", method = RequestMethod.POST)
+    public String profileInfo(@RequestBody Map<String, Object> userMap) {
+        if (userMap.get("newPassword") != null && userMap.get("newPassword") != "") {
+            User user = userService.findById((Long) userMap.get("id"));
+
+            if(user != null && user.getPassword().equals(userMap.get("currentPassword"))) {
+                user.setPassword((String) userMap.get("newPassword"));
+            }
+        }
+
+        return "myProfile";
     }
 }

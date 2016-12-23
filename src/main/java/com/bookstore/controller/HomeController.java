@@ -103,7 +103,21 @@ public class HomeController {
     @RequestMapping(value = "/newUser", method = RequestMethod.POST)
     public String newUser(HttpServletRequest request,
                                    @ModelAttribute("email") String userEmail,
-                                   @ModelAttribute("username") String username) throws Exception {
+                                   @ModelAttribute("username") String username,
+                                    Model model
+                          ) throws Exception {
+//        check username exists
+        if (userService.findByUsername(username)!= null) {
+            model.addAttribute("usernameExists", true);
+            return "myAccount";
+        }
+
+//        check email address exists
+        if (userService.findByEmail(userEmail) != null) {
+            model.addAttribute("emailExists", true);
+            return "myAccount";
+        }
+
         User user = new User();
         user.setUsername(username);
         user.setEmail(userEmail);

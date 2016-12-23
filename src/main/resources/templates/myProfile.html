@@ -48,8 +48,10 @@
                         <div class="panel panel-default panel-faq" style="border: none;">
 
                             <div class="panel-body" style="background-color: #ededed; margin-top: 20px;">
-                                <form>
-                                    <input type="hidden" name="id" th:value="${user.userId}"/>
+                                <form th:action="@{/updateUserInfo}" method="post">
+                                    <input type="hidden" name="id" th:value="${id}"/>
+
+                                    <div class="bg-info" th:if="${updateUserInfo}">User info updated.</div>
 
                                     <div class="form-group">
                                         <div class="row">
@@ -82,17 +84,17 @@
                                             certain news or notifications by e-mail.</p>
                                     </div>
                                     <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password"/>
+                                        <label for="txtNewPassword">Password</label>&nbsp;<span id="checkPasswordMatch" style="color:red;"></span>
+                                        <input type="password" class="form-control" id="txtNewPassword" name="newPassword"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="confirmPassword">Confirm Password</label>
-                                        <input type="password" class="form-control" id="confirmPassword"/>
+                                        <label for="txtConfirmPassword">Confirm Password</label>
+                                        <input type="password" class="form-control" id="txtConfirmPassword"/>
                                         <p style="color: #828282;"> To change the current user password, enter the new
                                             password in both fields.</p>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type="submit" class="btn btn-primary" id="updateUserInfoButton">Save</button>
                                 </form>
                             </div>
                         </div>

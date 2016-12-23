@@ -60,6 +60,10 @@ public class UserServiceImpl implements UserService{
         return localUser;
     }
 
+    public User save(User user){
+        return userRepository.save(user);
+    }
+
     @Override
     public User findById(Long id) {
         return userRepository.findOne(id);

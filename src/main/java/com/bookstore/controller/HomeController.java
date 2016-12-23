@@ -61,6 +61,11 @@ public class HomeController {
         return "myProfile";
     }
 
+    @RequestMapping("/badRequest")
+    public String badRequest() {
+        return "badRequestPage";
+    }
+
 //    @RequestMapping(value = "/resetEmail", method = RequestMethod.POST)
 //    public String resetEmail(@ModelAttribute("email") String email, Model model) {
 //        model.addAttribute("email", email);
@@ -132,22 +137,22 @@ public class HomeController {
             @RequestParam("token") String token) {
 
         PasswordResetToken passToken = userService.getPasswordResetToken(token);
-        User user = passToken.getUser();
         if (passToken == null ) {
             String message = "Invalid Token.";
             model.addAttribute("message", message);
-            return "redirect:/myAccount";
+            return "redirect:/badRequest";
         }
 
         Calendar cal = Calendar.getInstance();
         if ((passToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
             model.addAttribute("message", "Token has expired.");
-            return "redirect:/myAccount";
+            return "redirect:/badRequest";
         }
 
 //        Authentication auth = new UsernamePasswordAuthenticationToken(
 //                user, "test", userDetailsService.loadUserByUsername(user.getEmail()).getAuthorities());
 //        SecurityContextHolder.getContext().setAuthentication(auth);
+        User user = passToken.getUser();
 
         String username = user.getUsername();
         String email = user.getEmail();
@@ -178,15 +183,25 @@ public class HomeController {
         return email;
     }
 
-    @RequestMapping(value = "/user/profileInfo", method = RequestMethod.POST)
-    public String profileInfo(@RequestBody Map<String, Object> userMap) {
-        if (userMap.get("newPassword") != null && userMap.get("newPassword") != "") {
-            User user = userService.findById((Long) userMap.get("id"));
+    @RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
+    public String profileInfo(@RequestBody Map<String, Object> userMap) throws Exception {
+        User user = userService.findById((Long) userMap.get("id"));
 
-            if(user != null && user.getPassword().equals(userMap.get("currentPassword"))) {
+        if (user == null) {
+            throw new Exception("User not found");
+        }
+
+        if (userMap.get("newPassword") != null && userMap.get("newPassword") != "") {
+            if(user.getPassword().equals(userMap.get("currentPassword"))) {
                 user.setPassword((String) userMap.get("newPassword"));
             }
         }
+
+        user.setFirstName((String) userMap.get("firstName"));
+        user.setLastName((String) userMap.get("lastName"));
+        user.setUsername((String) userMap.get("username"));
+        user.setEmail((String) userMap.get("email"));
+
 
         return "myProfile";
     }

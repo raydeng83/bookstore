@@ -50,7 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/signup",
             "/myAccount/**",
             "/newUser",
-            "/user/addNewUser"
+            "/user/addNewUser",
+            "/badRequest"
     };
 
     @Override

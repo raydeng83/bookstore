@@ -155,8 +155,6 @@ public class HomeController {
         User user = passToken.getUser();
 
         String username = user.getUsername();
-        String email = user.getEmail();
-        Long id = user.getId();
 
         UserDetails userDetails = userSecurityService.loadUserByUsername(username);
 
@@ -164,9 +162,7 @@ public class HomeController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        model.addAttribute("id", id);
-        model.addAttribute("username", username);
-        model.addAttribute("email", email);
+        model.addAttribute("user", user);
 
         return "myProfile";
     }
@@ -184,24 +180,31 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
-    public String profileInfo(@RequestBody Map<String, Object> userMap) throws Exception {
-        User user = userService.findById((Long) userMap.get("id"));
+    public String profileInfo(
+            @ModelAttribute("user") User user,
+            @ModelAttribute("newPassword") String newPassword
+    ) throws Exception {
 
-        if (user == null) {
+        User currentUser = userService.findById(user.getId());
+
+        if (currentUser == null) {
             throw new Exception("User not found");
         }
 
-        if (userMap.get("newPassword") != null && userMap.get("newPassword") != "") {
-            if(user.getPassword().equals(userMap.get("currentPassword"))) {
-                user.setPassword((String) userMap.get("newPassword"));
+        if (newPassword != null && newPassword != "") {
+            if(user.getPassword().equals(currentUser.getPassword())) {
+                currentUser.setPassword(newPassword);
+            } else {
+                return "myProfile";
             }
         }
 
-        user.setFirstName((String) userMap.get("firstName"));
-        user.setLastName((String) userMap.get("lastName"));
-        user.setUsername((String) userMap.get("username"));
-        user.setEmail((String) userMap.get("email"));
+        currentUser.setFirstName(user.getFirstName());
+        currentUser.setLastName(user.getLastName());
+        currentUser.setUsername(user.getUsername());
+        currentUser.setEmail(user.getEmail());
 
+        userService.save(currentUser);
 
         return "myProfile";
     }

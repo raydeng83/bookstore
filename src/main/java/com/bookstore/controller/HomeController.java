@@ -182,7 +182,8 @@ public class HomeController {
     @RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
     public String profileInfo(
             @ModelAttribute("user") User user,
-            @ModelAttribute("newPassword") String newPassword
+            @ModelAttribute("newPassword") String newPassword,
+            Model model
     ) throws Exception {
 
         User currentUser = userService.findById(user.getId());
@@ -191,10 +192,25 @@ public class HomeController {
             throw new Exception("User not found");
         }
 
-        if (newPassword != null && newPassword != "") {
+//      check email address exists
+        if (userService.findByEmail(user.getEmail()).getId()!=currentUser.getId()) {
+            model.addAttribute("emailExists", "true");
+            return "myProfile";
+        }
+
+//        check username exists
+        if (userService.findByUsername(user.getUsername()).getId()!=currentUser.getId()) {
+            model.addAttribute("usernameExists", "true");
+            return "myProfile";
+        }
+
+//      update password
+        if (newPassword != null && !newPassword.isEmpty() && !newPassword.equals("")) {
             if(user.getPassword().equals(currentUser.getPassword())) {
                 currentUser.setPassword(newPassword);
             } else {
+                model.addAttribute("incorrectPassword", true);
+
                 return "myProfile";
             }
         }
@@ -205,6 +221,8 @@ public class HomeController {
         currentUser.setEmail(user.getEmail());
 
         userService.save(currentUser);
+
+        model.addAttribute("updateSuccess", "true");
 
         return "myProfile";
     }

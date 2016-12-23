@@ -16,6 +16,8 @@ public interface UserService {
 
     User findById (Long id);
 
+    User findByUsername (String username);
+
     User findByEmail(String email);
 
     PasswordResetToken getPasswordResetToken(final String token);

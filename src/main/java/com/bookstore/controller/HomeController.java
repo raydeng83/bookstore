@@ -51,8 +51,15 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping("/myAccount")
-    public String myAccount() {
+    @RequestMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("classActiveLogin", "true");
+        return "myAccount";
+    }
+
+    @RequestMapping("/forgetPassword")
+    public String forgetPassword(Model model) {
+        model.addAttribute("classActiveForgetPassword", "true");
         return "myAccount";
     }
 
@@ -106,15 +113,22 @@ public class HomeController {
                                    @ModelAttribute("username") String username,
                                     Model model
                           ) throws Exception {
+        model.addAttribute("classActiveNewAccount", "true");
+        model.addAttribute("email", userEmail);
+        model.addAttribute("username", username);
+
+
 //        check username exists
         if (userService.findByUsername(username)!= null) {
             model.addAttribute("usernameExists", true);
+
             return "myAccount";
         }
 
 //        check email address exists
         if (userService.findByEmail(userEmail) != null) {
             model.addAttribute("emailExists", true);
+
             return "myAccount";
         }
 

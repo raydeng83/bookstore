@@ -26,6 +26,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.*;
 
 /**
@@ -69,7 +70,11 @@ public class HomeController {
     }
 
     @RequestMapping("/myProfile")
-    public String myProfile() {
+    public String myProfile(Model model, Principal principal) {
+        String username = principal.getName();
+        User user = userService.findByUsername(username);
+        model.addAttribute("user", user);
+
         return "myProfile";
     }
 

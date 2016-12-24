@@ -2,7 +2,6 @@ package com.bookstore.config;
 
 import com.bookstore.service.impl.UserSecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,8 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import java.security.SecureRandom;
 
 /**
  * Created by z00382545 on 10/20/16.
@@ -30,11 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserSecurityService userSecurityService;
 
-    private static final String SALT = "salt"; // Salt should be protected carefully
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(12, new SecureRandom(SALT.getBytes()));
+    private BCryptPasswordEncoder passwordEncoder(){
+        return SecurityUtility.passwordEncoder();
     }
 
     private static final String[] PUBLIC_MATCHERS = {

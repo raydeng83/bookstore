@@ -1,5 +1,7 @@
 package com.bookstore.controller;
 
+import com.bookstore.config.SecurityConfig;
+import com.bookstore.config.SecurityUtility;
 import com.bookstore.domain.GenericResponse;
 import com.bookstore.domain.User;
 import com.bookstore.domain.security.PasswordResetToken;
@@ -7,6 +9,7 @@ import com.bookstore.domain.security.Role;
 import com.bookstore.domain.security.UserRole;
 import com.bookstore.service.UserService;
 import com.bookstore.service.impl.UserSecurityService;
+import com.sun.org.apache.bcel.internal.classfile.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.core.env.Environment;
@@ -17,6 +20,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -57,6 +61,7 @@ public class HomeController {
         return "myAccount";
     }
 
+
     @RequestMapping("/forgetPassword")
     public String forgetPassword(Model model) {
         model.addAttribute("classActiveForgetPassword", "true");
@@ -72,40 +77,6 @@ public class HomeController {
     public String badRequest() {
         return "badRequestPage";
     }
-
-//    @RequestMapping(value = "/resetEmail", method = RequestMethod.POST)
-//    public String resetEmail(@ModelAttribute("email") String email, Model model) {
-//        model.addAttribute("email", email);
-//
-//        return "emailSentPage";
-//    }
-
-//    @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
-//    @ResponseBody
-//    public GenericResponse resetPassword(HttpServletRequest request, @ModelAttribute("email") String userEmail) throws Exception {
-//        User user = userService.findByEmail(userEmail);
-//
-//        if (user == null) {
-//            throw new Exception("User not found");
-//        }
-//
-//        String token = UUID.randomUUID().toString();
-//        userService.createPasswordResetTokenForUser(user, token);
-//
-//        String appUrl =
-//                "http://" + request.getServerName() +
-//                        ":" + request.getServerPort() +
-//                        request.getContextPath();
-//
-//        SimpleMailMessage email =
-//                constructResetTokenEmail(appUrl, request.getLocale(), token, user);
-//
-//        mailSender.send(email);
-//
-//        return new GenericResponse(
-//                messages.getMessage("message.resetPasswordEmail", null, request.getLocale()));
-//    }
-//
 
     @RequestMapping(value = "/newUser", method = RequestMethod.POST)
     public String newUser(HttpServletRequest request,
@@ -154,6 +125,8 @@ public class HomeController {
                 constructResetTokenEmail(appUrl, request.getLocale(), token, user);
 
         mailSender.send(email);
+
+        model.addAttribute("emailSent", "true");
 
         return "myAccount";
 
@@ -232,10 +205,14 @@ public class HomeController {
             return "myProfile";
         }
 
+        SecurityConfig securityConfig = new SecurityConfig();
+
 //      update password
         if (newPassword != null && !newPassword.isEmpty() && !newPassword.equals("")) {
-            if(user.getPassword().equals(currentUser.getPassword())) {
-                currentUser.setPassword(newPassword);
+            BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
+            String dbPassword = currentUser.getPassword();
+            if(passwordEncoder.matches(user.getPassword(), dbPassword)) {
+                currentUser.setPassword(passwordEncoder.encode(newPassword));
             } else {
                 model.addAttribute("incorrectPassword", true);
 

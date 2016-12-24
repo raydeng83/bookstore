@@ -35,6 +35,7 @@
                         <div class="panel panel-default panel-faq" style="border: none;">
 
                             <div class="panel-body" style="background-color: #ededed; margin-top: 20px;">
+                                <div class="alert alert-info" th:if="${emailSent}">An email has been sent to email address you just registered. Please validate your email address and update your password info.</div>
                                 <form th:action="@{/newUser}" method="post">
                                     <div class="form-group">
                                         <label for="newUsername">Username *</label>&nbsp;<span th:if="${usernameExists}" style="color:red;">Username already exists. Choose a different one.</span>
@@ -62,15 +63,15 @@
                         <div class="panel panel-default panel-faq" style="border: none;">
 
                             <div class="panel-body" style="background-color: #ededed; margin-top: 20px;">
-                                <form>
+                                <form th:action="@{/login}" method="post">
                                     <div class="form-group">
                                         <label for="username">Username *</label>
-                                        <input type="text" class="form-control" id="username"/>
+                                        <input type="text" class="form-control" id="username" name="username" th:value="${username}"/>
                                         <p style="color: #828282;"> Enter your username</p>
                                     </div>
                                     <div class="form-group">
                                         <label for="password">Password *</label>
-                                        <input type="password" class="form-control" id="password"/>
+                                        <input type="password" class="form-control" id="password" name="password" th:value="${password}"/>
                                         <p style="color: #828282;"> Enter the password that accompanies your
                                             username</p>
                                     </div>

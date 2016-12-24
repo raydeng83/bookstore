@@ -1,5 +1,6 @@
 package com.bookstore.service.impl;
 
+import com.bookstore.config.SecurityUtility;
 import com.bookstore.domain.User;
 import com.bookstore.domain.security.PasswordResetToken;
 import com.bookstore.domain.security.UserRole;
@@ -33,9 +34,6 @@ public class UserServiceImpl implements UserService{
     private PasswordResetTokenRepository passwordResetTokenRepository;
 
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-
-    @Autowired
     private RoleRepository roleRepository;
 
     @Transactional
@@ -45,8 +43,7 @@ public class UserServiceImpl implements UserService{
         if (localUser != null) {
             LOG.info("User with username {} already exist. Nothing will be done. ", user.getUsername());
         } else {
-            String encryptedPassword = passwordEncoder.encode("test");
-            user.setPassword(encryptedPassword);
+
 
             for (UserRole ur : userRoles) {
                 roleRepository.save(ur.getRole());

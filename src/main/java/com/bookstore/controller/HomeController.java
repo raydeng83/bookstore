@@ -64,8 +64,40 @@ public class HomeController {
 
 
     @RequestMapping("/forgetPassword")
-    public String forgetPassword(Model model) {
+    public String forgetPassword(@ModelAttribute("email") String email,
+                                 HttpServletRequest request,
+                                 Model model) {
         model.addAttribute("classActiveForgetPassword", "true");
+
+        User user = userService.findByEmail(email);
+
+        if (user == null) {
+            model.addAttribute("emailNotExists", true);
+            return "myAccount";
+        }
+
+        String password = SecurityUtility.randomPassword();
+
+        String encryptedPassword = SecurityUtility.passwordEncoder().encode(password);
+        user.setPassword(encryptedPassword);
+
+        userService.save(user);
+
+        String token = UUID.randomUUID().toString();
+        userService.createPasswordResetTokenForUser(user, token);
+
+        String appUrl =
+                "http://" + request.getServerName() +
+                        ":" + request.getServerPort() +
+                        request.getContextPath();
+
+        SimpleMailMessage newEmail =
+                constructResetTokenEmail(appUrl, request.getLocale(), token, user, password);
+
+        mailSender.send(newEmail);
+
+        model.addAttribute("emailSent", true);
+
         return "myAccount";
     }
 
@@ -111,6 +143,12 @@ public class HomeController {
         User user = new User();
         user.setUsername(username);
         user.setEmail(userEmail);
+
+        String password = SecurityUtility.randomPassword();
+
+        String encryptedPassword = SecurityUtility.passwordEncoder().encode(password);
+        user.setPassword(encryptedPassword);
+
         Role role = new Role();
         role.setRoleId(1);
         role.setName("ROLE_USER");
@@ -127,7 +165,7 @@ public class HomeController {
                         request.getContextPath();
 
         SimpleMailMessage email =
-                constructResetTokenEmail(appUrl, request.getLocale(), token, user);
+                constructResetTokenEmail(appUrl, request.getLocale(), token, user, password);
 
         mailSender.send(email);
 
@@ -174,13 +212,13 @@ public class HomeController {
     }
 
     private SimpleMailMessage constructResetTokenEmail(
-            String contextPath, Locale locale, String token, User user) {
+            String contextPath, Locale locale, String token, User user, String password) {
         String url = contextPath + "/user/addNewUser?token=" + token;
-        String message = "Please click on this link to verify your email and edit your personal info. ";
+        String message = "\nPlease click on this link to verify your email and edit your personal info. Your password is:\n "+password;
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(user.getEmail());
         email.setSubject("Le's Bookstore - New User");
-        email.setText(message + url);
+        email.setText(url+message);
         email.setFrom(env.getProperty("support.email"));
         return email;
     }

@@ -56,6 +56,11 @@ public class HomeController {
         return "index";
     }
 
+    @RequestMapping("/bookshelf")
+    public String bookshelf() {
+        return "bookshelf";
+    }
+
     @RequestMapping("/login")
     public String login(Model model) {
         model.addAttribute("classActiveLogin", "true");

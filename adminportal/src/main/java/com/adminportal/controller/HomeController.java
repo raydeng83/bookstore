@@ -13,6 +13,16 @@ public class HomeController {
 
     @RequestMapping("/")
     public String index() {
-        return "index";
+        return "redirect:/login";
+    }
+
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+    @RequestMapping("/home")
+    public String home() {
+        return "home";
     }
 }

@@ -32,23 +32,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private static final String[] PUBLIC_MATCHERS = {
-            "/webjars/**",
             "/css/**",
             "/js/**",
             "/image/**",
             "/",
-            "/about/**",
-            "/contact/**",
-            "/error/**/*",
             "/fonts/**",
-            "/signup",
-            "/myAccount/**",
-            "/newUser",
-            "/user/addNewUser",
-            "/badRequest",
-            "/login",
-            "/newAccount",
-            "/forgetPassword"
+            "/login"
     };
 
     @Override
@@ -61,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .csrf().disable().cors().disable()
-                .formLogin().failureUrl("/login?error").defaultSuccessUrl("/").loginPage("/login").permitAll()
+                .formLogin().failureUrl("/login?error").defaultSuccessUrl("/home").loginPage("/login").permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/?logout").deleteCookies("remember-me").permitAll()
                 .and()

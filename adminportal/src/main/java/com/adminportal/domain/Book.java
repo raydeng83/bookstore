@@ -1,4 +1,4 @@
-package com.bookstore.domain;
+package com.adminportal.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -154,4 +154,5 @@ public class Book {
     public void setInStockNumber(int inStockNumber) {
         this.inStockNumber = inStockNumber;
     }
+
 }

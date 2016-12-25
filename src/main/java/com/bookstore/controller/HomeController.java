@@ -237,15 +237,19 @@ public class HomeController {
         }
 
 //      check email address exists
-        if (userService.findByEmail(user.getEmail()).getId()!=currentUser.getId()) {
-            model.addAttribute("emailExists", "true");
-            return "myProfile";
+        if(userService.findByEmail(user.getEmail())!=null) {
+            if (userService.findByEmail(user.getEmail()).getId() != currentUser.getId()) {
+                model.addAttribute("emailExists", "true");
+                return "myProfile";
+            }
         }
 
 //        check username exists
-        if (userService.findByUsername(user.getUsername()).getId()!=currentUser.getId()) {
-            model.addAttribute("usernameExists", "true");
-            return "myProfile";
+        if (userService.findByUsername(user.getUsername())!= null) {
+            if (userService.findByUsername(user.getUsername()).getId() != currentUser.getId()) {
+                model.addAttribute("usernameExists", "true");
+                return "myProfile";
+            }
         }
 
         SecurityConfig securityConfig = new SecurityConfig();
@@ -271,6 +275,13 @@ public class HomeController {
         userService.save(currentUser);
 
         model.addAttribute("updateSuccess", "true");
+        model.addAttribute("user", currentUser);
+
+        UserDetails userDetails = userSecurityService.loadUserByUsername(currentUser.getUsername());
+
+        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         return "myProfile";
     }

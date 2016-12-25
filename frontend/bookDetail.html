@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <title>My BookStore</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/non-responsive.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet"/>
+    <link rel="icon" href="image/apple-touch-icon.png">   
+</head>
+<body>
+    <div class="page-top " style="width: 100%; height: 20px; background-color: #f46b42;"></div>
+    <nav class="navbar navbar-default navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <!-- The mobile navbar-toggle button can be safely removed since you do not need it in a non-responsive implementation -->
+          <a class="navbar-brand" href="index.html">Le's Bookstore</a>
+      </div>
+      <!-- Note that the .navbar-collapse and .collapse classes have been removed from the #navbar -->
+      <div id="navbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+            </ul>
+        </li>
+    </ul>
+    <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-default">Search</button>
+  </form>
+  <ul class="nav navbar-nav navbar-right">
+    <li><a href="#">SHOPPING CART</a></li>
+    <li><a href="myAccount.html">MY ACCOUNT</a></li>
+</ul>
+</div><!--/.nav-collapse -->
+</div>
+</nav>
+
+<div class="container">
+    <div class="row" style="margin-bottom: -100px;">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-xs-8">
+                    <h2 class="section-headline"><span>BOOKSHELF</span></h2>
+                </div>
+                <div class="col-xs-4">
+                    <img src="image/logo.png" class="img-responsive" />
+                </div>
+            </div>
+            <hr style="position: absolute; width:100%; height:6px; background-color: #333; z-index: -1; margin-top: -80px;" />
+            <img class="img-responsive" src="image/wood.png" style="margin-top: -75px;" />
+        </div>
+    </div>
+    <div class="row" style="margin-top: 120px;">
+        <div class="col-xs-3">
+            <img class="img-responsive shelf-book" src="image/book1.png" />
+        </div>
+        <div class="col-xs-9">
+            <h3>How to Improve Your Leadership and Management Skills - Effective Strategies for Business Managers</h3>
+            <div class="row">
+                <div class="col-xs-5">
+                    <h5><strong>Author:</strong> James R. Valcourt</h5>
+                    <p><strong>Publisher:</strong> Bloomsbury Sigma</p>
+                    <p><strong>Publication Date:</strong> 2017-02-07</p>
+                    <p><strong>Language:</strong> English</p>
+                    <p><strong>Category:</strong> Management</p>
+                    <p><strong>Paperback:</strong> 242 pages</p>
+                    <p><strong>ISBN:</strong> 9781632860293</p>
+                    <p><strong>Shipping Weight:</strong> 12.6 ounces</p>
+                </div>
+                <div class="col-xs-7">
+                    <div class="panel panel-default" style="border-width: 5px; margin-top: 20px;">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h4>Our Price: <span style="color: #db3208;">$10.96</span></h4>
+                                    <p>List Price: <span style="text-decoration: line-through;">$19.00</span></p>
+                                    <p>You Save: $8.04</p>
+                                </div>
+                                <div class="col-xs-6">
+                                    <h4 style="color: green;">In Stock</h4>
+                                    <button type="button" class="btn btn-warning" style="color: black;border:1px solid black; padding: 10px 40px 10px 40px;">Add to Cart</button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <p>
+                This book features effective strategies and clever techniques to help you improve your leadership and management skills. It points out that you must be a leader that people follow, keep informed, make timely decisions and take effective action. In effect you must control the activities of your organization rather than being controlled by them.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 /**
  * Created by z00382545 on 12/25/16.
  */
@@ -21,6 +23,15 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+
+    @RequestMapping("/bookList")
+    public String bookList(Model model) {
+        List<Book> bookList = bookService.findAll();
+
+        model.addAttribute("bookList", bookList);
+
+        return "bookList";
+    }
 
     @RequestMapping("/add")
     public String addBook(Model model) {

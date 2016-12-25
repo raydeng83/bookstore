@@ -19,10 +19,10 @@ public class Book {
     private String title;
     private String author;
     private String publisher;
-    private Date publicationDate;
+    private String publicationDate;
     private String language;
     private String category;
-    private int pages;
+    private int numberOfPages;
     private String format;
     private int isbn;
     private double shippingWeight;
@@ -67,11 +67,11 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public Date getPublicationDate() {
+    public String getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(Date publicationDate) {
+    public void setPublicationDate(String publicationDate) {
         this.publicationDate = publicationDate;
     }
 
@@ -91,12 +91,12 @@ public class Book {
         this.category = category;
     }
 
-    public int getPages() {
-        return pages;
+    public int getNumberOfPages() {
+        return numberOfPages;
     }
 
-    public void setPages(int pages) {
-        this.pages = pages;
+    public void setNumberOfPages(int numberOfPages) {
+        this.numberOfPages = numberOfPages;
     }
 
     public String getFormat() {

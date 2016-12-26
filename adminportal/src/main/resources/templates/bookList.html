@@ -19,15 +19,17 @@
             </tr>
             </thead>
             <tbody>
-            <tr data-th-each="book : ${bookList}">
+            <tr class="box" data-th-each="book : ${bookList}">
                 <!--<td><img th:src="@{/image/book/}+${book.id}+'.png'" class="img-responsive" style="width:100px;margin:auto;"/></td>-->
-                <td data-th-text="${book.title}">...</td>
+                <td><a th:href="@{/book/bookInfo?id=}+${book.id}"><span th:text="${book.title}"></span></a></td>
                 <td data-th-text="${book.author}">...</td>
                 <td data-th-text="${book.category}">...</td>
                 <td data-th-text="${book.description}">...</td>
                 <td data-th-text="${book.listPrice}">...</td>
                 <td data-th-text="${book.ourPrice}">...</td>
+
             </tr>
+
             </tbody>
         </table>
     </div>

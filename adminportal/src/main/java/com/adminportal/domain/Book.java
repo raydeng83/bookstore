@@ -26,6 +26,8 @@ public class Book {
     private double shippingWeight;
     private double listPrice;
     private double ourPrice;
+
+    @Column(columnDefinition="text")
     private String description;
     private int inStockNumber;
 

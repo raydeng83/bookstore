@@ -144,7 +144,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="description">Description</label>
                     <div class="col-md-8">
-                        <textarea th:value="${book.description}" class="form-control" rows="5" id="description" name="description" placeholder="Book description"></textarea>
+                        <textarea th:value="${book.description}" th:text="${book.description}" class="form-control" rows="5" id="description" name="description" placeholder="Book description"></textarea>
                         <span class="help-block">The description of the book</span>
                     </div>
                 </div>

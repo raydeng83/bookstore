@@ -1,9 +1,6 @@
 package com.bookstore.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -28,6 +25,8 @@ public class Book {
     private double shippingWeight;
     private double listPrice;
     private double ourPrice;
+
+    @Column(columnDefinition="text")
     private String description;
     private int inStockNumber;
 

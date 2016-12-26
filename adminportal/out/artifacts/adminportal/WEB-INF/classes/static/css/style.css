@@ -10,6 +10,22 @@ body {
     margin-bottom: 50px;
 }
 
+table {
+    table-layout: fixed;
+}
+
+td {
+    white-space: nowrap;
+    overflow: hidden;         /* <- this does seem to be required */
+    text-overflow: ellipsis;
+}
+
+/*td:hover {*/
+    /*text-overflow: clip;*/
+    /*white-space: normal;*/
+    /*word-break: break-all;*/
+/*}*/
+
 .home-headline{
     font-family: 'Times New Roman',Times,serif;
     font-size:24px;

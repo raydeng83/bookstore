@@ -26,6 +26,8 @@ public class Book {
     private double listPrice;
     private double ourPrice;
 
+    private boolean active;
+
     @Column(columnDefinition="text")
     private String description;
     private int inStockNumber;
@@ -152,5 +154,13 @@ public class Book {
 
     public void setInStockNumber(int inStockNumber) {
         this.inStockNumber = inStockNumber;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

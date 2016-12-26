@@ -26,6 +26,7 @@ public class Book {
     private double shippingWeight;
     private double listPrice;
     private double ourPrice;
+    private boolean active=true;
 
     @Column(columnDefinition="text")
     private String description;
@@ -164,5 +165,13 @@ public class Book {
 
     public void setBookImage(MultipartFile bookImage) {
         this.bookImage = bookImage;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

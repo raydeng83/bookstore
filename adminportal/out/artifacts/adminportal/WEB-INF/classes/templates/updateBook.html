@@ -140,6 +140,25 @@
                     </div>
                 </div>
 
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="inStockNumber">Number In Stock</label>
+                    <div class="col-md-8">
+                        <input th:value="${book.inStockNumber}" id="inStockNumber" name="inStockNumber" type="number" class="form-control input-md"/>
+                        <span class="help-block">Number of in-stock copies</span>
+                    </div>
+                </div>
+
+                <!-- Radio input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Status</label>
+                    <div class="col-md-8">
+                        <label><input   name="active" type="radio" value="1" th:checked="${book.active}"/> Active </label>&nbsp;
+                        <label><input   name="active" type="radio" value="0" th:checked="${!book.active}"/> Inactive </label>
+                        <span class="help-block">Whether the book is active or inactive to sell</span>
+                    </div>
+                </div>
+
                 <!-- Textarea -->
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="description">Description</label>

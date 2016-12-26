@@ -113,6 +113,7 @@
                             <p class="help-block">The shipping weight of the book</p>
                         </div>
                     </div>
+
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-2 control-label" for="listPrice">List Price *</label>
@@ -136,6 +137,25 @@
                                    class="form-control input-md" required="required"/>
                             </div>
                             <p class="help-block">The current price of the book</p>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="inStockNumber">Number In Stock</label>
+                        <div class="col-md-8">
+                            <input th:value="${book.inStockNumber}" id="inStockNumber" name="inStockNumber" type="number" class="form-control input-md"/>
+                            <span class="help-block">Number of in-stock copies</span>
+                        </div>
+                    </div>
+
+                    <!-- Radio input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="pageNumber">Status</label>
+                        <div class="col-md-8">
+                            <label><input th:value="${book.active}"  name="active" type="radio" value="true" checked="checked"/> Active </label>&nbsp;
+                            <label><input th:value="${book.active}"  name="active" type="radio" value="false"/> Inactive </label>
+                            <span class="help-block">Whether the book is active or inactive to sell</span>
                         </div>
                     </div>
 

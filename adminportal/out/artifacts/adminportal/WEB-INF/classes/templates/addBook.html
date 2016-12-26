@@ -4,11 +4,6 @@
 <body>
 <div th:replace="common/header :: navbar"/>
 <div class="container">
-    <div>
-        <ol class="breadcrumb">
-            <li><a th:href="@{/book/bookList}"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Go back</a></li>
-        </ol>
-    </div>
     <div class="row">
             <form class="form-horizontal" th:action="@{/book/add}" method="post" enctype="multipart/form-data">
                 <fieldset>

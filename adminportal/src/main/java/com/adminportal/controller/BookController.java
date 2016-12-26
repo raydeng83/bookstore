@@ -56,31 +56,31 @@ public class BookController {
         bookService.save(book);
 
         MultipartFile bookImage = book.getBookImage();
-        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        path = Paths.get(rootDirectory + "WEB-INF/classes/static/image/book/" + book.getId() + ".png");
+//        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+//        path = Paths.get(rootDirectory + "WEB-INF/classes/static/image/book/" + book.getId() + ".png");
 
-        System.out.println(path);
-
-        if (bookImage != null && !bookImage.isEmpty()) {
-            try {
-                bookImage.transferTo(new File(path.toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-                throw new RuntimeException("Book image saving failed", e);
-            }
-        }
-
-//        try {
-//            byte[] bytes = bookImage.getBytes();
-//            String name = book.getId() + ".png";
-//            BufferedOutputStream stream =
-//                    new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/image/book/"+name)));
-//            stream.write(bytes);
-//            stream.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
+//        System.out.println(path);
+//
+//        if (bookImage != null && !bookImage.isEmpty()) {
+//            try {
+//                bookImage.transferTo(new File(path.toString()));
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                throw new RuntimeException("Book image saving failed", e);
+//            }
 //        }
 
-        return "bookList";
+        try {
+            byte[] bytes = bookImage.getBytes();
+            String name = book.getId() + ".png";
+            BufferedOutputStream stream =
+                    new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/image/book/"+name)));
+            stream.write(bytes);
+            stream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:bookList";
     }
 }

@@ -9,7 +9,7 @@
         <table id="example" class="table table-bordered table-hover table-striped">
             <thead>
             <tr>
-                <th>Cover</th>
+                <!--<th>Cover</th>-->
                 <th>Title</th>
                 <th>Author</th>
                 <th>Category</th>
@@ -20,7 +20,7 @@
             </thead>
             <tbody>
             <tr data-th-each="book : ${bookList}">
-                <td>...</td>
+                <!--<td><img th:src="@{/image/book/}+${book.id}+'.png'" class="img-responsive" style="width:100px;margin:auto;"/></td>-->
                 <td data-th-text="${book.title}">...</td>
                 <td data-th-text="${book.author}">...</td>
                 <td data-th-text="${book.category}">...</td>

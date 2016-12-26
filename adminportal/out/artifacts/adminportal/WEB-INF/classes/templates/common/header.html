@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:fragment="common-header">
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Admin Portal</title>
-        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
-        <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Admin Portal</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
 <body>
 <!-- Navigation -->
@@ -15,52 +16,65 @@
         background-color: #a32222;
         border-color: #293872;
     }
+
     .navbar-default .navbar-brand {
         color: #ecf0f1;
     }
+
     .navbar-default .navbar-brand:hover,
     .navbar-default .navbar-brand:focus {
         color: #f8f9f8;
     }
+
     .navbar-default .navbar-text {
         color: #ecf0f1;
     }
+
     .navbar-default .navbar-nav > li > a {
         color: #ecf0f1;
     }
+
     .navbar-default .navbar-nav > li > a:hover,
     .navbar-default .navbar-nav > li > a:focus {
         color: #f8f9f8;
     }
+
     .navbar-default .navbar-nav > .active > a,
     .navbar-default .navbar-nav > .active > a:hover,
     .navbar-default .navbar-nav > .active > a:focus {
         color: #f8f9f8;
         background-color: #293872;
     }
+
     .navbar-default .navbar-nav > .open > a,
     .navbar-default .navbar-nav > .open > a:hover,
     .navbar-default .navbar-nav > .open > a:focus {
         color: #f8f9f8;
         background-color: #293872;
     }
+
     .navbar-default .navbar-toggle {
         border-color: #293872;
     }
+
     .navbar-default .navbar-toggle:hover,
     .navbar-default .navbar-toggle:focus {
         background-color: #293872;
     }
+
     .navbar-default .navbar-toggle .icon-bar {
         background-color: #ecf0f1;
     }
+
     .navbar-default .navbar-collapse,
     .navbar-default .navbar-form {
         border-color: #ecf0f1;
     }
+
     .navbar-default .navbar-link {
         color: #ecf0f1;
     }
+
     .navbar-default .navbar-link:hover {
         color: #f8f9f8;
     }
@@ -69,10 +83,12 @@
         .navbar-default .navbar-nav .open .dropdown-menu > li > a {
             color: #ecf0f1;
         }
+
         .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
         .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
             color: #f8f9f8;
         }
+
         .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
         .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
         .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
@@ -83,7 +99,8 @@
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -94,7 +111,8 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Book <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Book <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a th:href="@{/book/add}">Add a new book</a></li>
                             <li><a th:href="@{/book/bookList}">View book list</a></li>
@@ -108,7 +126,8 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Dropdown <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Action</a></li>
                             <li><a href="#">Another action</a></li>

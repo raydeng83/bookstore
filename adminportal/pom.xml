@@ -6,7 +6,7 @@
 	<groupId>com.adminportal</groupId>
 	<artifactId>adminportal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>adminportal</name>
 	<description>Admin Portal for Bookstore</description>
@@ -50,22 +50,16 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
-		<!--<dependency>-->
-			<!--<groupId>org.thymeleaf.extras</groupId>-->
-			<!--<artifactId>thymeleaf-extras-springsecurity4</artifactId>-->
-		<!--</dependency>-->
-
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
+			<!--<scope>provided</scope>-->
+		<!--</dependency>-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

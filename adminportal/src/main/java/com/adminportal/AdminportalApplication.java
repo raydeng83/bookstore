@@ -9,18 +9,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @SpringBootApplication
-public class AdminportalApplication implements CommandLineRunner {
+public class AdminportalApplication extends SpringBootServletInitializer implements CommandLineRunner {
 
 	@Autowired
 	private UserService userService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(AdminportalApplication.class, args);
+	}
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(AdminportalApplication.class);
 	}
 
 	@Override

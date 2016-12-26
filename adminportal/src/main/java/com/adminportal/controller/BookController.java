@@ -57,7 +57,7 @@ public class BookController {
 
         MultipartFile bookImage = book.getBookImage();
         String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        path = Paths.get(rootDirectory + "WEB-INF/resources/images/book" + book.getId() + ".png");
+        path = Paths.get(rootDirectory + "WEB-INF/classes/static/image/book/" + book.getId() + ".png");
 
         System.out.println(path);
 

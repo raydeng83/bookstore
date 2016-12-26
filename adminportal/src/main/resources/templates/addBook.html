@@ -5,7 +5,7 @@
 <div th:replace="common/header :: navbar"/>
 <div class="container">
     <div class="row">
-            <form class="form-horizontal" th:action="@{/book/add}" method="post">
+            <form class="form-horizontal" th:action="@{/book/add}" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <!-- Form Name -->
                     <legend class="center-block">New Book Information <br/><span style="font-size: small"> * is a required field</span></legend>
@@ -145,6 +145,16 @@
                         <div class="col-md-8">
                             <textarea th:value="${book.description}" class="form-control" rows="5" id="description" name="description" placeholder="Book description"></textarea>
                             <span class="help-block">The description of the book</span>
+                        </div>
+                    </div>
+
+                    <!--upload image-->
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            <label for="bookImage">Upload Book Image</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input id="bookImage" type="file" name="bookImage" th:value="${book.bookImage}"/>
                         </div>
                     </div>
 

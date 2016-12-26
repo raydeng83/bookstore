@@ -1,9 +1,8 @@
 package com.adminportal.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.persistence.*;
 
 /**
  * Created by z00382545 on 12/24/16.
@@ -29,6 +28,9 @@ public class Book {
     private double ourPrice;
     private String description;
     private int inStockNumber;
+
+    @Transient
+    private MultipartFile bookImage;
 
     public Book() {
         super();
@@ -154,4 +156,11 @@ public class Book {
         this.inStockNumber = inStockNumber;
     }
 
+    public MultipartFile getBookImage() {
+        return bookImage;
+    }
+
+    public void setBookImage(MultipartFile bookImage) {
+        this.bookImage = bookImage;
+    }
 }

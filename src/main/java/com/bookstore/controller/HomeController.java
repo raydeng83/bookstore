@@ -2,10 +2,12 @@ package com.bookstore.controller;
 
 import com.bookstore.config.SecurityConfig;
 import com.bookstore.config.SecurityUtility;
+import com.bookstore.domain.Book;
 import com.bookstore.domain.User;
 import com.bookstore.domain.security.PasswordResetToken;
 import com.bookstore.domain.security.Role;
 import com.bookstore.domain.security.UserRole;
+import com.bookstore.service.BookService;
 import com.bookstore.service.UserService;
 import com.bookstore.service.impl.UserSecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 import java.security.Principal;
 import java.util.*;
 
@@ -48,14 +51,36 @@ public class HomeController {
     @Autowired
     private UserSecurityService userSecurityService;
 
+    @Autowired
+    private BookService bookService;
+
     @RequestMapping("/")
     public String index() {
         return "index";
     }
 
     @RequestMapping("/bookshelf")
-    public String bookshelf() {
+    public String bookshelf(Model model, Principal principal) {
+        String username = principal.getName();
+        User user = userService.findByUsername(username);
+
+        List<Book> bookList = bookService.findAll();
+
+        model.addAttribute("user", user);
+        model.addAttribute("bookList", bookList);
+
         return "bookshelf";
+    }
+
+    @RequestMapping("/bookDetail")
+    public String bookDetail(@PathParam("id") Long id, Model model, Principal principal) {
+        String username = principal.getName();
+        User user = userService.findByUsername(username);
+        Book book = bookService.findOne(id);
+
+        model.addAttribute("user", user);
+        model.addAttribute("book", book);
+        return "bookDetail";
     }
 
     @RequestMapping("/login")

@@ -7,6 +7,11 @@
     <title>Le's BookStore</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/css/non-responsive.css" rel="stylesheet"/>
+
+    <!-- Bootstrap Dropdown Hover CSS -->
+    <link href="css/animate.min.css" rel="stylesheet"/>
+    <link href="css/bootstrap-dropdownhover.min.css" rel="stylesheet"/>
+
     <link href="/css/style.css" rel="stylesheet"/>
     <link rel="icon" href="image/apple-touch-icon.png"/>
 </head>
@@ -19,11 +24,24 @@
         <div class="container">
             <div class="navbar-header">
                 <!-- The mobile navbar-toggle button can be safely removed since you do not need it in a non-responsive implementation -->
-                <a class="navbar-brand" th:href="@{/}">Le's Bookstore</a>
+                <a class="navbar-brand" th:href="@{/}">LE'S BOOKSTORE</a>
             </div>
             <!-- Note that the .navbar-collapse and .collapse classes have been removed from the #navbar -->
             <div id="navbar">
                 <ul class="nav navbar-nav navbar-left">
+                    <li class="dropdown">
+                        <a th:href="@{/bookshelf}" class="dropdown-toggle" data-hover="dropdown"
+                           role="button"> <span style="font-size: large">BOOKS</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/bookshelf}">Browse the bookshelf</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
                     <form class="navbar-form">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Search"/>
@@ -43,9 +61,34 @@
     </nav>
 </div>
 
+<!--<div th:fragment="tabbar">-->
+    <!--<div class="container">-->
+        <!--<div class="btn-group" role="group" aria-label="...">-->
+            <!--<button type="button" class="btn btn-default">1</button>-->
+            <!--<button type="button" class="btn btn-default">2</button>-->
+
+            <!--<div class="btn-group" role="group">-->
+                <!--<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"-->
+                        <!--aria-haspopup="true" aria-expanded="false">-->
+                    <!--BOOKS-->
+                    <!--<span class="caret"></span>-->
+                <!--</button>-->
+                <!--<ul class="dropdown-menu">-->
+                    <!--<li><a href="#">Dropdown link</a></li>-->
+                    <!--<li><a href="#">Dropdown link</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+
 <div th:fragment="body-bottom-scripts">
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap Dropdown Hover JS -->
+    <script src="js/bootstrap-dropdownhover.min.js"></script>
     <script src="/js/scripts.js"></script>
 </div>
 </body>

@@ -61,12 +61,13 @@ public class HomeController {
 
     @RequestMapping("/bookshelf")
     public String bookshelf(Model model, Principal principal) {
-        String username = principal.getName();
-        User user = userService.findByUsername(username);
+        if (principal != null) {
+            String username = principal.getName();
+            User user = userService.findByUsername(username);
+            model.addAttribute("user", user);
+        }
 
         List<Book> bookList = bookService.findAll();
-
-        model.addAttribute("user", user);
         model.addAttribute("bookList", bookList);
 
         return "bookshelf";
@@ -74,11 +75,13 @@ public class HomeController {
 
     @RequestMapping("/bookDetail")
     public String bookDetail(@PathParam("id") Long id, Model model, Principal principal) {
-        String username = principal.getName();
-        User user = userService.findByUsername(username);
+        if (principal != null) {
+            String username = principal.getName();
+            User user = userService.findByUsername(username);
+            model.addAttribute("user", user);
+        }
         Book book = bookService.findOne(id);
 
-        model.addAttribute("user", user);
         model.addAttribute("book", book);
         return "bookDetail";
     }
@@ -144,17 +147,17 @@ public class HomeController {
 
     @RequestMapping(value = "/newUser", method = RequestMethod.POST)
     public String newUser(HttpServletRequest request,
-                                   @ModelAttribute("email") String userEmail,
-                                   @ModelAttribute("username") String username,
-                                    Model model
-                          ) throws Exception {
+                          @ModelAttribute("email") String userEmail,
+                          @ModelAttribute("username") String username,
+                          Model model
+    ) throws Exception {
         model.addAttribute("classActiveNewAccount", "true");
         model.addAttribute("email", userEmail);
         model.addAttribute("username", username);
 
 
 //        check username exists
-        if (userService.findByUsername(username)!= null) {
+        if (userService.findByUsername(username) != null) {
             model.addAttribute("usernameExists", true);
 
             return "myAccount";
@@ -208,7 +211,7 @@ public class HomeController {
             @RequestParam("token") String token) {
 
         PasswordResetToken passToken = userService.getPasswordResetToken(token);
-        if (passToken == null ) {
+        if (passToken == null) {
             String message = "Invalid Token.";
             model.addAttribute("message", message);
             return "redirect:/badRequest";
@@ -241,11 +244,11 @@ public class HomeController {
     private SimpleMailMessage constructResetTokenEmail(
             String contextPath, Locale locale, String token, User user, String password) {
         String url = contextPath + "/user/addNewUser?token=" + token;
-        String message = "\nPlease click on this link to verify your email and edit your personal info. Your password is:\n "+password;
+        String message = "\nPlease click on this link to verify your email and edit your personal info. Your password is:\n " + password;
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(user.getEmail());
         email.setSubject("Le's Bookstore - New User");
-        email.setText(url+message);
+        email.setText(url + message);
         email.setFrom(env.getProperty("support.email"));
         return email;
     }
@@ -264,7 +267,7 @@ public class HomeController {
         }
 
 //      check email address exists
-        if(userService.findByEmail(user.getEmail())!=null) {
+        if (userService.findByEmail(user.getEmail()) != null) {
             if (userService.findByEmail(user.getEmail()).getId() != currentUser.getId()) {
                 model.addAttribute("emailExists", "true");
                 return "myProfile";
@@ -272,7 +275,7 @@ public class HomeController {
         }
 
 //        check username exists
-        if (userService.findByUsername(user.getUsername())!= null) {
+        if (userService.findByUsername(user.getUsername()) != null) {
             if (userService.findByUsername(user.getUsername()).getId() != currentUser.getId()) {
                 model.addAttribute("usernameExists", "true");
                 return "myProfile";
@@ -285,7 +288,7 @@ public class HomeController {
         if (newPassword != null && !newPassword.isEmpty() && !newPassword.equals("")) {
             BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
             String dbPassword = currentUser.getPassword();
-            if(passwordEncoder.matches(user.getPassword(), dbPassword)) {
+            if (passwordEncoder.matches(user.getPassword(), dbPassword)) {
                 currentUser.setPassword(passwordEncoder.encode(newPassword));
             } else {
                 model.addAttribute("incorrectPassword", true);

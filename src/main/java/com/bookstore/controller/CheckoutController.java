@@ -14,4 +14,9 @@ public class CheckoutController {
     public String shoppingCart() {
         return "shoppingCart";
     }
+
+    @RequestMapping("/checkout")
+    public String checkout() {
+        return "checkout";
+    }
 }

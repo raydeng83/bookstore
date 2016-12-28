@@ -19,8 +19,17 @@ function checkPasswordMatch() {
     }
 }
 
+function checkBillingAddress() {
+    if($("#theSameAsShippingAddress").is(":checked")) {
+        $(".billingAddress").prop('disabled', true);
+    } else {
+        $(".billingAddress").prop('disabled', false);
+    }
+}
+
 $(document).ready(function () {
     $("#txtConfirmPassword").keyup(checkPasswordMatch);
     $("#txtNewPassword").keyup(checkPasswordMatch);
+    $("#theSameAsShippingAddress").on('click', checkBillingAddress);
 });
 

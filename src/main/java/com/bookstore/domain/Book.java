@@ -1,7 +1,10 @@
 package com.bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by z00382545 on 12/24/16.
@@ -31,6 +34,14 @@ public class Book {
     @Column(columnDefinition="text")
     private String description;
     private int inStockNumber;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<BookToShoppingCart> bookToShoppingCartList;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<BookToOrder> bookToOrderList;
 
     public Book() {
         super();

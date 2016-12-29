@@ -36,6 +36,9 @@ public class User implements UserDetails {
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
 
+    @OneToOne
+    private ShoppingCart shoppingCart;
+
     public Set<UserRole> getUserRoles() {
         return userRoles;
     }
@@ -90,6 +93,14 @@ public class User implements UserDetails {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 
     @Override

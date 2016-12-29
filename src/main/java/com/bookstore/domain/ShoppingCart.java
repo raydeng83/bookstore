@@ -19,12 +19,12 @@ public class ShoppingCart {
     private BigDecimal subtotal;
     private BigDecimal GrandTotal;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
-    private List<BookToShoppingCart> bookToShoppingCartList;
+    private List<CartItem> cartItemList;
 
     @OneToOne
-    private BookOrder bookOrder;
+    private Order order;
 
     @OneToOne
     private User user;
@@ -61,20 +61,12 @@ public class ShoppingCart {
         GrandTotal = grandTotal;
     }
 
-    public List<BookToShoppingCart> getBookToShoppingCartList() {
-        return bookToShoppingCartList;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setBookToShoppingCartList(List<BookToShoppingCart> bookToShoppingCartList) {
-        this.bookToShoppingCartList = bookToShoppingCartList;
-    }
-
-    public BookOrder getBookOrder() {
-        return bookOrder;
-    }
-
-    public void setBookOrder(BookOrder bookOrder) {
-        this.bookOrder = bookOrder;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public User getUser() {
@@ -84,4 +76,14 @@ public class ShoppingCart {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public List<CartItem> getCartItemList() {
+        return cartItemList;
+    }
+
+    public void setCartItemList(List<CartItem> cartItemList) {
+        this.cartItemList = cartItemList;
+    }
+
+
 }

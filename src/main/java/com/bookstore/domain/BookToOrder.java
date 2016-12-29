@@ -19,7 +19,7 @@ public class BookToOrder {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private BookOrder bookOrder;
+    private Order order;
 
     public Long getId() {
         return id;
@@ -37,11 +37,13 @@ public class BookToOrder {
         this.book = book;
     }
 
-    public BookOrder getBookOrder() {
-        return bookOrder;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setBookOrder(BookOrder bookOrder) {
-        this.bookOrder = bookOrder;
+    public void setOrder(Order order) {
+        this.order = order;
     }
+
+
 }

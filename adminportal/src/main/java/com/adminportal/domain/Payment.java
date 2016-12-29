@@ -18,7 +18,7 @@ public class Payment {
     private String holderName;
 
     @OneToOne
-    private BookOrder bookOrder;
+    private Order order;
 
     public Long getId() {
         return id;
@@ -60,11 +60,13 @@ public class Payment {
         this.holderName = holderName;
     }
 
-    public BookOrder getBookOrder() {
-        return bookOrder;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setBookOrder(BookOrder bookOrder) {
-        this.bookOrder = bookOrder;
+    public void setOrder(Order order) {
+        this.order = order;
     }
+
+
 }

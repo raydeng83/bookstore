@@ -40,7 +40,7 @@ public class Book {
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
-    private List<BookToShoppingCart> bookToShoppingCartList;
+    private List<BookToCartItem> bookToCartItemList;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
@@ -184,14 +184,6 @@ public class Book {
 
     public void setBookImage(MultipartFile bookImage) {
         this.bookImage = bookImage;
-    }
-
-    public List<BookToShoppingCart> getBookToShoppingCartList() {
-        return bookToShoppingCartList;
-    }
-
-    public void setBookToShoppingCartList(List<BookToShoppingCart> bookToShoppingCartList) {
-        this.bookToShoppingCartList = bookToShoppingCartList;
     }
 
     public List<BookToOrder> getBookToOrderList() {

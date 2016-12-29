@@ -19,7 +19,7 @@ public class ShippingAddress {
     private String zipcode;
 
     @OneToOne
-    private BookOrder bookOrder;
+    private Order order;
 
     public Long getId() {
         return id;
@@ -69,11 +69,13 @@ public class ShippingAddress {
         this.zipcode = zipcode;
     }
 
-    public BookOrder getBookOrder() {
-        return bookOrder;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setBookOrder(BookOrder bookOrder) {
-        this.bookOrder = bookOrder;
+    public void setOrder(Order order) {
+        this.order = order;
     }
+
+
 }

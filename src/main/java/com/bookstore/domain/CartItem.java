@@ -1,20 +1,24 @@
 package com.bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 
 /**
- * Created by z00382545 on 12/28/16.
+ * Created by z00382545 on 12/29/16.
  */
 
 @Entity
-public class BookToShoppingCart {
+public class CartItem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "book_id")
-    private Book book;
+    @OneToMany(mappedBy = "cartItem", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<BookToCartItem> bookToCartItemList;
 
     @ManyToOne
     @JoinColumn(name = "shopping_cart_id")
@@ -28,12 +32,12 @@ public class BookToShoppingCart {
         this.id = id;
     }
 
-    public Book getBook() {
-        return book;
+    public List<BookToCartItem> getBookToCartItemList() {
+        return bookToCartItemList;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setBookToCartItemList(List<BookToCartItem> bookToCartItemList) {
+        this.bookToCartItemList = bookToCartItemList;
     }
 
     public ShoppingCart getShoppingCart() {
@@ -43,4 +47,6 @@ public class BookToShoppingCart {
     public void setShoppingCart(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
     }
+
+
 }

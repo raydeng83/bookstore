@@ -1,13 +1,14 @@
-package com.adminportal.domain;
+package com.bookstore.domain;
 
 import javax.persistence.*;
 
 /**
- * Created by z00382545 on 12/28/16.
+ * Created by z00382545 on 12/29/16.
  */
 
 @Entity
-public class BookToShoppingCart {
+public class BookToCartItem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -17,8 +18,8 @@ public class BookToShoppingCart {
     private Book book;
 
     @ManyToOne
-    @JoinColumn(name = "shopping_cart_id")
-    private ShoppingCart shoppingCart;
+    @JoinColumn(name = "cart_item_id")
+    private CartItem cartItem;
 
     public Long getId() {
         return id;
@@ -36,11 +37,13 @@ public class BookToShoppingCart {
         this.book = book;
     }
 
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
+    public CartItem getCartItem() {
+        return cartItem;
     }
 
-    public void setShoppingCart(ShoppingCart shoppingCart) {
-        this.shoppingCart = shoppingCart;
+    public void setCartItem(CartItem cartItem) {
+        this.cartItem = cartItem;
     }
+
+
 }

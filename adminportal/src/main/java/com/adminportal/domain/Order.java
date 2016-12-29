@@ -12,7 +12,8 @@ import java.util.List;
  */
 
 @Entity
-public class BookOrder {
+@Table(name = "user_order")
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,7 +24,7 @@ public class BookOrder {
     private BigDecimal orderTotal;
     private int qty;
 
-    @OneToMany(mappedBy = "bookOrder", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<BookToOrder> bookToOrderList;
 

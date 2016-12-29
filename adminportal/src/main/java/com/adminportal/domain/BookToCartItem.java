@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 
 @Entity
-public class BookToOrder {
+public class BookToCartItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,8 +18,8 @@ public class BookToOrder {
     private Book book;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @JoinColumn(name = "cart_item_id")
+    private CartItem cartItem;
 
     public Long getId() {
         return id;
@@ -37,12 +37,12 @@ public class BookToOrder {
         this.book = book;
     }
 
-    public Order getOrder() {
-        return order;
+    public CartItem getCartItem() {
+        return cartItem;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setCartItem(CartItem cartItem) {
+        this.cartItem = cartItem;
     }
 
 

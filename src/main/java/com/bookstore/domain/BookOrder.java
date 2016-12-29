@@ -12,7 +12,7 @@ import java.util.List;
  */
 
 @Entity
-public class Order {
+public class BookOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,9 +21,9 @@ public class Order {
     private Date shippingDate;
     private String orderStatus;
     private BigDecimal orderTotal;
-    private int quantity;
+    private int qty;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "bookOrder", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<BookToOrder> bookToOrderList;
 
@@ -76,12 +76,12 @@ public class Order {
         this.orderTotal = orderTotal;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getQty() {
+        return qty;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 
     public List<BookToOrder> getBookToOrderList() {
@@ -115,4 +115,6 @@ public class Order {
     public void setPayment(Payment payment) {
         this.payment = payment;
     }
+
+
 }

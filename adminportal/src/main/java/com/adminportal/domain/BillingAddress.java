@@ -1,4 +1,4 @@
-package com.bookstore.domain;
+package com.adminportal.domain;
 
 import javax.persistence.*;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 
 @Entity
-public class ShippingAddress {
+public class BillingAddress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

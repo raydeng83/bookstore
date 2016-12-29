@@ -1,5 +1,6 @@
 package com.bookstore;
 
+import com.bookstore.config.SecurityUtility;
 import com.bookstore.domain.User;
 import com.bookstore.domain.security.Role;
 import com.bookstore.domain.security.UserRole;
@@ -28,7 +29,7 @@ public class BookstoreApplication implements CommandLineRunner {
 		user1.setFirstName("John");
 		user1.setLastName("Adams");
 		user1.setUsername("JAdams");
-		user1.setPassword("password");
+		user1.setPassword(SecurityUtility.passwordEncoder().encode("password"));
 		user1.setEmail("JAdams@gmail.com");
 		Set<UserRole> userRoles = new HashSet<>();
 		Role role1 = new Role();

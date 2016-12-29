@@ -1,8 +1,10 @@
 package com.adminportal.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by z00382545 on 12/24/16.
@@ -34,6 +36,14 @@ public class Book {
 
     @Transient
     private MultipartFile bookImage;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<BookToShoppingCart> bookToShoppingCartList;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<BookToOrder> bookToOrderList;
 
     public Book() {
         super();
@@ -159,6 +169,14 @@ public class Book {
         this.inStockNumber = inStockNumber;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     public MultipartFile getBookImage() {
         return bookImage;
     }
@@ -167,11 +185,19 @@ public class Book {
         this.bookImage = bookImage;
     }
 
-    public boolean isActive() {
-        return active;
+    public List<BookToShoppingCart> getBookToShoppingCartList() {
+        return bookToShoppingCartList;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setBookToShoppingCartList(List<BookToShoppingCart> bookToShoppingCartList) {
+        this.bookToShoppingCartList = bookToShoppingCartList;
+    }
+
+    public List<BookToOrder> getBookToOrderList() {
+        return bookToOrderList;
+    }
+
+    public void setBookToOrderList(List<BookToOrder> bookToOrderList) {
+        this.bookToOrderList = bookToOrderList;
     }
 }

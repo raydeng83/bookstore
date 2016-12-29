@@ -1,6 +1,7 @@
 package com.bookstore.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -28,12 +29,14 @@ public class Book {
     private double shippingWeight;
     private double listPrice;
     private double ourPrice;
-
-    private boolean active;
+    private boolean active=true;
 
     @Column(columnDefinition="text")
     private String description;
     private int inStockNumber;
+
+    @Transient
+    private MultipartFile bookImage;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
@@ -173,5 +176,29 @@ public class Book {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public MultipartFile getBookImage() {
+        return bookImage;
+    }
+
+    public void setBookImage(MultipartFile bookImage) {
+        this.bookImage = bookImage;
+    }
+
+    public List<BookToShoppingCart> getBookToShoppingCartList() {
+        return bookToShoppingCartList;
+    }
+
+    public void setBookToShoppingCartList(List<BookToShoppingCart> bookToShoppingCartList) {
+        this.bookToShoppingCartList = bookToShoppingCartList;
+    }
+
+    public List<BookToOrder> getBookToOrderList() {
+        return bookToOrderList;
+    }
+
+    public void setBookToOrderList(List<BookToOrder> bookToOrderList) {
+        this.bookToOrderList = bookToOrderList;
     }
 }

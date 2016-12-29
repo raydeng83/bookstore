@@ -1,4 +1,4 @@
-package com.bookstore.domain;
+package com.adminportal.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

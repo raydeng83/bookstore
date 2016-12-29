@@ -12,12 +12,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by z00382545 on 12/25/16.
+ * Created by z00382545 on 12/20/16.
  */
 @Entity
 public class User implements UserDetails {
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id", nullable = false, updatable = false)
     private Long Id;
@@ -35,6 +35,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
+
+    @OneToOne
+    private ShoppingCart shoppingCart;
 
     public Set<UserRole> getUserRoles() {
         return userRoles;
@@ -90,6 +93,14 @@ public class User implements UserDetails {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 
     @Override

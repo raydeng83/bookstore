@@ -189,6 +189,50 @@
                                             <input type="text" class="form-control billingAddress" id="billingZipcode" placeholder="Zipcode"/>
                                         </div>
                                     </div>
+                                    <a data-toggle="collapse" data-parent="#accordion" class="btn btn-warning pull-right" href="#reviewItems">Next</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#reviewItems">
+                                    Review Items and Shipping</a>
+                            </h4>
+                        </div>
+                        <div id="reviewItems" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <hr />
+                                    <div class="col-xs-2"><img class="img-responsive shelf-book" th:src="@{/image/book1.png/}" style="width:70px;"/></div>
+                                    <div class="col-xs-6">
+                                        <h4>Meow Mix Original Choice Dry Cat Food, 16-Pound</h4>
+                                        <p style="color: green;">In Stock</p>
+                                        <a href="#">delete</a>
+                                    </div>
+                                    <div class="col-xs-2"><h5 style="color: #db3208; font-size: large;">$10.39</h5></div>
+                                    <div class="col-xs-2"><input class="form-control" value="1"/></div>
+                                </div>
+                                <div class="row">
+                                    <hr />
+                                    <div class="col-xs-2"><img class="img-responsive shelf-book" th:src="@{/image/book1.png/}" style="width:70px;"/></div>
+                                    <div class="col-xs-6">
+                                        <h4>Meow Mix Original Choice Dry Cat Food, 16-Pound</h4>
+                                        <p style="color: green;">In Stock</p>
+                                        <a href="#">delete</a>
+                                    </div>
+                                    <div class="col-xs-2"><h5 style="color: #db3208; font-size: large;">$10.39</h5></div>
+                                    <div class="col-xs-2"><input class="form-control" value="1"/></div>
+                                </div>
+                                <div class="row">
+                                    <hr />
+                                    <div class="col-xs-12 text-right">
+                                        <Strong style="font-size: large">Order Totals: </Strong>
+                                        <span style="color: #db3208; font-size: large;">$290.34</span>
+                                        <a href="#" class="btn btn-primary">Place your order</a><br/>
+                                        <p>By placing your order, you agree to Le's Bookstore privacy notice and conditions of use.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

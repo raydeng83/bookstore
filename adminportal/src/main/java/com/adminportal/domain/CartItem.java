@@ -3,6 +3,7 @@ package com.adminportal.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -16,7 +17,14 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "cartItem", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private int qty;
+    private BigDecimal subtotal;
+
+    @OneToOne
+    private Book book;
+
+
+    @OneToMany(mappedBy = "cartItem")
     @JsonIgnore
     private List<BookToCartItem> bookToCartItemList;
 
@@ -48,5 +56,27 @@ public class CartItem {
         this.shoppingCart = shoppingCart;
     }
 
+    public int getQty() {
+        return qty;
+    }
 
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public BigDecimal getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(BigDecimal subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
 }

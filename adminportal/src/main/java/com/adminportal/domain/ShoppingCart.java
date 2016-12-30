@@ -24,7 +24,7 @@ public class ShoppingCart {
     @OneToOne
     private Order order;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
     public Long getId() {

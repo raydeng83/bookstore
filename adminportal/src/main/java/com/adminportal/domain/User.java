@@ -36,7 +36,7 @@ public class User implements UserDetails {
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private ShoppingCart shoppingCart;
 
     public Set<UserRole> getUserRoles() {

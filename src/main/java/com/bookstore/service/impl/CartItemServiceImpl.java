@@ -69,6 +69,8 @@ public class CartItemServiceImpl implements CartItemService{
         bigDecimal=bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
         cartItem.setSubtotal(bigDecimal);
 
+        cartItemRepository.save(cartItem);
+
         return cartItem;
     }
 

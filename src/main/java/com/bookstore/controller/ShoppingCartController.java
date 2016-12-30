@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -77,6 +78,16 @@ public class ShoppingCartController {
     @RequestMapping("/removeItem")
     public String removeItem(@RequestParam("id") Long id) {
         cartItemService.removeCartItem(cartItemService.findById(id));
+
+        return "forward:/shoppingCart/cart";
+    }
+
+    @RequestMapping("/updateShoppingCart")
+    public String updateShoppingCart(@ModelAttribute("cartItemList") ArrayList<CartItem> cartItemList) {
+        System.out.println("");
+        for (CartItem cartItem : cartItemList) {
+            cartItemService.updateCartItem(cartItem);
+        }
 
         return "forward:/shoppingCart/cart";
     }

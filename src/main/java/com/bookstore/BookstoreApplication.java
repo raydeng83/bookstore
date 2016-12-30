@@ -1,6 +1,7 @@
 package com.bookstore;
 
 import com.bookstore.config.SecurityUtility;
+import com.bookstore.domain.ShoppingCart;
 import com.bookstore.domain.User;
 import com.bookstore.domain.security.Role;
 import com.bookstore.domain.security.UserRole;
@@ -36,6 +37,9 @@ public class BookstoreApplication implements CommandLineRunner {
 		role1.setRoleId(1);
 		role1.setName("ROLE_USER");
 		userRoles.add(new UserRole(user1, role1));
+		ShoppingCart shoppingCart = new ShoppingCart();
+		shoppingCart.setUser(user1);
+		user1.setShoppingCart(shoppingCart);
 		userService.createUser(user1, userRoles);
 	}
 }

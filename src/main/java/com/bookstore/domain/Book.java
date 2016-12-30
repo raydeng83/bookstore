@@ -38,11 +38,11 @@ public class Book {
     @Transient
     private MultipartFile bookImage;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "book")
     @JsonIgnore
     private List<BookToCartItem> bookToCartItemList;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "book")
     @JsonIgnore
     private List<BookToOrder> bookToOrderList;
 

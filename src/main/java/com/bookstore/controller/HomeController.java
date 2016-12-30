@@ -83,6 +83,7 @@ public class HomeController {
         Book book = bookService.findOne(id);
 
         model.addAttribute("book", book);
+        model.addAttribute("qty", 1);
         return "bookDetail";
     }
 

@@ -24,7 +24,7 @@ public class Order {
     private BigDecimal orderTotal;
     private int qty;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order")
     @JsonIgnore
     private List<BookToOrder> bookToOrderList;
 

@@ -1,9 +1,11 @@
 package com.adminportal.service.impl;
 
+import com.adminportal.domain.ShoppingCart;
 import com.adminportal.domain.User;
 import com.adminportal.domain.security.UserRole;
 import com.adminportal.repository.RoleRepository;
 import com.adminportal.repository.UserRepository;
+import com.adminportal.service.ShoppingCartService;
 import com.adminportal.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,9 +29,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private ShoppingCartService shoppingCartService;
 
     @Transactional
     public User createUser(User user, Set<UserRole> userRoles) {
@@ -47,6 +51,10 @@ public class UserServiceImpl implements UserService {
             user.getUserRoles().addAll(userRoles);
 
             localUser = userRepository.save(user);
+//
+//            ShoppingCart shoppingCart = new ShoppingCart();
+//            shoppingCart.setUser(localUser);
+//            shoppingCartService.save(shoppingCart);
         }
 
         return localUser;

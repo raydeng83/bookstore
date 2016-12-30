@@ -31,5 +31,9 @@ $(document).ready(function () {
     $("#txtConfirmPassword").keyup(checkPasswordMatch);
     $("#txtNewPassword").keyup(checkPasswordMatch);
     $("#theSameAsShippingAddress").on('click', checkBillingAddress);
+    $(".cartItemQty").on('change', function(){
+        var id = this.id;
+        $('#update-item-'+id).css('display', 'inline-block');
+    });
 });
 

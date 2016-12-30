@@ -82,12 +82,15 @@ public class ShoppingCartController {
         return "forward:/shoppingCart/cart";
     }
 
-    @RequestMapping("/updateShoppingCart")
-    public String updateShoppingCart(@ModelAttribute("cartItemList") ArrayList<CartItem> cartItemList) {
-        System.out.println("");
-        for (CartItem cartItem : cartItemList) {
-            cartItemService.updateCartItem(cartItem);
-        }
+    @RequestMapping("/updateCartItem")
+    public String updateShoppingCart(
+            @ModelAttribute("id") Long cartItemId,
+            @ModelAttribute("qty") int qty
+            ) {
+        CartItem cartItem = cartItemService.findById(cartItemId);
+        cartItem.setQty(qty);
+
+        cartItemService.updateCartItem(cartItem);
 
         return "forward:/shoppingCart/cart";
     }

@@ -67,4 +67,9 @@ public class ShoppingCartController {
         return "forward:/bookDetail?id="+book.getId();
     }
 
+//    @RequestParam("/updateShoppingCart")
+//    public String updateShoppingCart() {
+//
+//    }
+
 }

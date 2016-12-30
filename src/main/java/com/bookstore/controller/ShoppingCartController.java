@@ -4,6 +4,7 @@ import com.bookstore.domain.Book;
 import com.bookstore.domain.CartItem;
 import com.bookstore.domain.ShoppingCart;
 import com.bookstore.domain.User;
+import com.bookstore.repository.BookToCartItemRepository;
 import com.bookstore.service.BookService;
 import com.bookstore.service.CartItemService;
 import com.bookstore.service.ShoppingCartService;
@@ -71,6 +72,13 @@ public class ShoppingCartController {
         model.addAttribute("addBookSuccess", true);
 
         return "forward:/bookDetail?id="+book.getId();
+    }
+
+    @RequestMapping("/removeItem")
+    public String removeItem(@RequestParam("id") Long id) {
+        cartItemService.removeCartItem(cartItemService.findById(id));
+
+        return "forward:/shoppingCart/cart";
     }
 
 //    @RequestParam("/updateShoppingCart")

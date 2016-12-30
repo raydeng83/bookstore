@@ -48,7 +48,7 @@
                         Stock</p>
                     <p style="color: darkred;" th:if="${cartItem.book.inStockNumber}==0">Product Unavailable</p>
 
-                    <a href="#">delete</a>
+                    <a th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}">delete</a>
                 </div>
                 <div class="col-xs-2">
                     <h5 style="color: #db3208; font-size: large;">$<span th:text="${cartItem.book.ourPrice}" th:style="${cartItem.book.inStockNumber}==0 ? 'text-decoration: line-through;' : ''"></span></h5>

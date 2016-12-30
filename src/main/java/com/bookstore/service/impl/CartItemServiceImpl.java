@@ -55,6 +55,11 @@ public class CartItemServiceImpl implements CartItemService{
         return cartItem;
     }
 
+    public void removeCartItem (CartItem cartItem) {
+        bookToCartItemRepository.deleteByCartItem(cartItem);
+        cartItemRepository.delete(cartItem);
+    }
+
     public List<CartItem> findByShoppingCart(ShoppingCart shoppingCart) {
         return cartItemRepository.findByShoppingCart(shoppingCart);
     }
@@ -66,4 +71,9 @@ public class CartItemServiceImpl implements CartItemService{
 
         return cartItem;
     }
+
+    public CartItem findById(Long id) {
+        return cartItemRepository.findOne(id);
+    }
+
 }

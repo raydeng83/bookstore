@@ -17,4 +17,8 @@ public interface CartItemService {
     List<CartItem> findByShoppingCart(ShoppingCart shoppingCart);
 
     CartItem updateCartItem(CartItem cartItem);
+
+    void removeCartItem (CartItem cartItem);
+
+    CartItem findById(Long id);
 }

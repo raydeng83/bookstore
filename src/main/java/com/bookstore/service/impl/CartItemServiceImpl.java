@@ -40,6 +40,12 @@ public class CartItemServiceImpl implements CartItemService{
         CartItem cartItem = new CartItem();
         cartItem.setShoppingCart(user.getShoppingCart());
         cartItem.setBook(book);
+        cartItem.setBookTitle(book.getTitle());
+        if(book.getInStockNumber()>0) {
+            cartItem.setBookAvailable(true);
+        } else {
+            cartItem.setBookAvailable(false);
+        }
         cartItem.setQty(qty);
         cartItem.setSubtotal(new BigDecimal(book.getOurPrice()).multiply(new BigDecimal(qty)));
 

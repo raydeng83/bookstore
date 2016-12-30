@@ -23,6 +23,10 @@ public class CartItem {
     @OneToOne
     private Book book;
 
+    private String bookTitle;
+    private boolean bookAvailable;
+    private BigDecimal bookPrice;
+
     @OneToMany(mappedBy = "cartItem")
     @JsonIgnore
     private List<BookToCartItem> bookToCartItemList;
@@ -30,10 +34,6 @@ public class CartItem {
     @ManyToOne
     @JoinColumn(name = "shopping_cart_id")
     private ShoppingCart shoppingCart;
-
-    public CartItem() {
-
-    }
 
     public Long getId() {
         return id;
@@ -81,5 +81,33 @@ public class CartItem {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public String getBookTitle() {
+        return bookTitle;
+    }
+
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
+    }
+
+    public boolean getBookAvailable() {
+        return bookAvailable;
+    }
+
+    public void setBookAvailable(boolean bookAvailable) {
+        this.bookAvailable = bookAvailable;
+    }
+
+    public boolean isBookAvailable() {
+        return bookAvailable;
+    }
+
+    public BigDecimal getBookPrice() {
+        return bookPrice;
+    }
+
+    public void setBookPrice(BigDecimal bookPrice) {
+        this.bookPrice = bookPrice;
     }
 }

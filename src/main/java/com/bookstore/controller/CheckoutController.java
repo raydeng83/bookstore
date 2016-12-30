@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class CheckoutController {
 
-    @RequestMapping("/shoppingCart")
-    public String shoppingCart() {
-        return "shoppingCart";
-    }
+
 
     @RequestMapping("/checkout")
     public String checkout() {

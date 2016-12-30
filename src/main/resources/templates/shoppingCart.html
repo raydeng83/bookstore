@@ -34,31 +34,26 @@
                 <div class="col-xs-2"><h4>Qty</h4></div>
             </div>
 
-            <div class="row">
+            <div class="row" th:each="cartItem : ${cartItemList}">
                 <hr />
-                <div class="col-xs-2"><img class="img-responsive shelf-book" th:src="@{/image/book1.png/}" style="width:70px;"/></div>
+                <div class="col-xs-2"><img class="img-responsive shelf-book" th:src="#{adminPath}+@{/image/book/}+${cartItem.book.id}+'.png'" style="width:70px;"/></div>
                 <div class="col-xs-6">
-                    <h4>Meow Mix Original Choice Dry Cat Food, 16-Pound</h4>
-                    <p style="color: green;">In Stock</p>
+                    <h4 th:text="${cartItem.bookTitle}">...</h4>
+                    <p style="color: green;" th:if="${cartItem.bookAvailable}">In Stock</p>
+                    <p style="color: darkred;" th:if="${!cartItem.bookAvailable}">Product Unavailable</p>
+
                     <a href="#">delete</a>
                 </div>
-                <div class="col-xs-2"><h5 style="color: #db3208; font-size: large;">$10.39</h5></div>
-                <div class="col-xs-2"><input class="form-control" value="1"/></div>
-            </div>
-            <div class="row">
-                <hr />
-                <div class="col-xs-2"><img class="img-responsive shelf-book" th:src="@{/image/book1.png/}" style="width:70px;"/></div>
-                <div class="col-xs-6">
-                    <h4>Meow Mix Original Choice Dry Cat Food, 16-Pound</h4>
-                    <p style="color: green;">In Stock</p>
-                    <a href="#">delete</a>
+                <div class="col-xs-2">
+                    <h5 style="color: #db3208; font-size: large;">$<span th:text="${cartItem.bookPrice}"></span></h5>
+
                 </div>
-                <div class="col-xs-2"><h5 style="color: #db3208; font-size: large;">$10.39</h5></div>
-                <div class="col-xs-2"><input class="form-control" value="1"/></div>
+                <div class="col-xs-2"><input class="form-control" th:value="${cartItem.qty}"/></div>
             </div>
+
             <div class="row">
                 <hr />
-                <div class="col-xs-12 text-right"><Strong style="font-size: large">Subtotal (2 items): </Strong><span style="color: #db3208; font-size: large;">$290.34</span></div>
+                <div class="col-xs-12 text-right"><Strong style="font-size: large">Total Price (<span th:text="${#lists.size(cartItemList)}"></span> items): </Strong><span style="color: #db3208; font-size: large;">$<span th:text="${shoppingCart.grandTotal}"></span></span></div>
             </div>
         </div>
     </div>

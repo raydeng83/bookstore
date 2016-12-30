@@ -51,7 +51,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/forgetPassword",
             "/bookshelf",
             "/bookDetail",
-            "/shoppingCart",
             "/checkout"
     };
 

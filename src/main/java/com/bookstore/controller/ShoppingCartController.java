@@ -61,6 +61,12 @@ public class ShoppingCartController {
             Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
         book = bookService.findOne(book.getId());
+
+        if(Integer.parseInt(qty)>book.getInStockNumber()) {
+            model.addAttribute("notEnoughStock", true);
+            return "forward:/bookDetail?id="+book.getId();
+        }
+
         CartItem cartItem = cartItemService.addBookToCartItem(book, user, Integer.parseInt(qty));
         model.addAttribute("addBookSuccess", true);
 

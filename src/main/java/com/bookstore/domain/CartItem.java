@@ -20,6 +20,9 @@ public class CartItem {
     private int qty;
     private BigDecimal subtotal;
 
+    @OneToOne
+    private Book book;
+
     @OneToMany(mappedBy = "cartItem")
     @JsonIgnore
     private List<BookToCartItem> bookToCartItemList;
@@ -70,5 +73,13 @@ public class CartItem {
 
     public void setSubtotal(BigDecimal subtotal) {
         this.subtotal = subtotal;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 }

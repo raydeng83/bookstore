@@ -1,6 +1,7 @@
 package com.bookstore.service.impl;
 
 import com.bookstore.config.SecurityUtility;
+import com.bookstore.domain.ShoppingCart;
 import com.bookstore.domain.User;
 import com.bookstore.domain.security.PasswordResetToken;
 import com.bookstore.domain.security.UserRole;
@@ -50,7 +51,9 @@ public class UserServiceImpl implements UserService{
             }
 
             user.getUserRoles().addAll(userRoles);
-
+            ShoppingCart shoppingCart = new ShoppingCart();
+            shoppingCart.setUser(user);
+            user.setShoppingCart(shoppingCart);
             localUser = userRepository.save(user);
         }
 

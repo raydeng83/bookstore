@@ -80,10 +80,13 @@ public class HomeController {
             User user = userService.findByUsername(username);
             model.addAttribute("user", user);
         }
+
         Book book = bookService.findOne(id);
 
         model.addAttribute("book", book);
-        model.addAttribute("qty", 1);
+        List<Integer> qtyList = Arrays.asList(1,2,3,4,5);
+        model.addAttribute("qtyList", qtyList);
+        model.addAttribute("qty","1");
         return "bookDetail";
     }
 

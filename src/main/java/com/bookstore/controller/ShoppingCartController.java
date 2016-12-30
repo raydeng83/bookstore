@@ -9,6 +9,7 @@ import com.bookstore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -33,17 +34,15 @@ public class ShoppingCartController {
 
     @RequestMapping("/addItem")
     public String addItem(
-            @RequestParam("id") Long id,
-            @RequestParam("qty") int qty,
+            @ModelAttribute("book") Book book,
+            @ModelAttribute("qty") String qty,
             Model model, Principal principal) {
-
-        Book book = bookService.findOne(id);
         User user = userService.findByUsername(principal.getName());
-
-        CartItem cartItem = cartItemService.addBookToCartItem(book, user, qty);
+        book = bookService.findOne(book.getId());
+        CartItem cartItem = cartItemService.addBookToCartItem(book, user, Integer.parseInt(qty));
         model.addAttribute("addBookSuccess", true);
 
-        return "redirect:/bookDetail?id="+book.getId();
+        return "forward:/bookDetail?id="+book.getId();
     }
 
 }

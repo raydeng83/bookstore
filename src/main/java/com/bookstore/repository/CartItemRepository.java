@@ -1,10 +1,15 @@
 package com.bookstore.repository;
 
 import com.bookstore.domain.CartItem;
+import com.bookstore.domain.ShoppingCart;
 import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
 
 /**
  * Created by z00382545 on 12/29/16.
  */
 public interface CartItemRepository extends CrudRepository<CartItem, Long> {
+
+    List<CartItem> findByShoppingCart(ShoppingCart shoppingCart);
 }

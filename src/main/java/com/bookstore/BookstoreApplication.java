@@ -37,9 +37,7 @@ public class BookstoreApplication implements CommandLineRunner {
 		role1.setRoleId(1);
 		role1.setName("ROLE_USER");
 		userRoles.add(new UserRole(user1, role1));
-		ShoppingCart shoppingCart = new ShoppingCart();
-		shoppingCart.setUser(user1);
-		user1.setShoppingCart(shoppingCart);
+
 		userService.createUser(user1, userRoles);
 	}
 }

@@ -15,4 +15,6 @@ public interface CartItemService {
     CartItem addBookToCartItem(Book book, User user, int qty );
 
     List<CartItem> findByShoppingCart(ShoppingCart shoppingCart);
+
+    CartItem updateCartItem(CartItem cartItem);
 }

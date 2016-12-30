@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 /**
@@ -40,12 +41,7 @@ public class CartItemServiceImpl implements CartItemService{
         CartItem cartItem = new CartItem();
         cartItem.setShoppingCart(user.getShoppingCart());
         cartItem.setBook(book);
-        cartItem.setBookTitle(book.getTitle());
-        if(book.getInStockNumber()>0) {
-            cartItem.setBookAvailable(true);
-        } else {
-            cartItem.setBookAvailable(false);
-        }
+
         cartItem.setQty(qty);
         cartItem.setSubtotal(new BigDecimal(book.getOurPrice()).multiply(new BigDecimal(qty)));
 
@@ -61,5 +57,13 @@ public class CartItemServiceImpl implements CartItemService{
 
     public List<CartItem> findByShoppingCart(ShoppingCart shoppingCart) {
         return cartItemRepository.findByShoppingCart(shoppingCart);
+    }
+
+    public CartItem updateCartItem(CartItem cartItem){
+        BigDecimal bigDecimal = new BigDecimal(cartItem.getBook().getOurPrice()).multiply(new BigDecimal(cartItem.getQty()));
+        bigDecimal=bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
+        cartItem.setSubtotal(bigDecimal);
+
+        return cartItem;
     }
 }

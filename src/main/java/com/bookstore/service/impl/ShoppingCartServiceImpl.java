@@ -28,10 +28,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
 
         for (CartItem cartItem : cartItemList) {
-            updateBookAvailability(cartItem);
-            updateBookPrice(cartItem);
-
-            if (cartItem.getBookAvailable()) {
+            if (cartItem.getBook().getInStockNumber()>0) {
+                cartItemService.updateCartItem(cartItem);
                 cartTotal = cartTotal.add(cartItem.getSubtotal());
             }
         }
@@ -39,24 +37,5 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
         shoppingCart.setGrandTotal(cartTotal);
 
         return shoppingCart;
-    }
-
-    private boolean updateBookAvailability(CartItem cartItem) {
-        if(cartItem.getBook().getInStockNumber()>0) {
-            cartItem.setBookAvailable(true);
-            return true;
-        } else {
-            cartItem.setBookAvailable(false);
-            return false;
-        }
-    }
-
-    private BigDecimal updateBookPrice(CartItem cartItem) {
-        Book book = cartItem.getBook();
-        BigDecimal bookPrice = new BigDecimal(book.getOurPrice());
-        bookPrice=bookPrice.setScale(2, BigDecimal.ROUND_HALF_UP);
-        cartItem.setBookPrice(bookPrice);
-
-        return bookPrice;
     }
 }

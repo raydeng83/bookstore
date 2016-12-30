@@ -38,14 +38,14 @@
                 <hr />
                 <div class="col-xs-2"><img class="img-responsive shelf-book" th:src="#{adminPath}+@{/image/book/}+${cartItem.book.id}+'.png'" style="width:70px;"/></div>
                 <div class="col-xs-6">
-                    <h4 th:text="${cartItem.bookTitle}">...</h4>
-                    <p style="color: green;" th:if="${cartItem.bookAvailable}">In Stock</p>
-                    <p style="color: darkred;" th:if="${!cartItem.bookAvailable}">Product Unavailable</p>
+                    <h4 th:text="${cartItem.book.title}">...</h4>
+                    <p style="color: green;" th:if="*{cartItem.book.inStockNumber}&gt;0">In Stock</p>
+                    <p style="color: darkred;" th:if="*{cartItem.book.inStockNumber}==0">Product Unavailable</p>
 
                     <a href="#">delete</a>
                 </div>
                 <div class="col-xs-2">
-                    <h5 style="color: #db3208; font-size: large;">$<span th:text="${cartItem.bookPrice}"></span></h5>
+                    <h5 style="color: #db3208; font-size: large;">$<span th:text="${cartItem.book.ourPrice}"></span></h5>
 
                 </div>
                 <div class="col-xs-2"><input class="form-control" th:value="${cartItem.qty}"/></div>

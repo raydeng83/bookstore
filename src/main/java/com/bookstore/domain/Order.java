@@ -24,16 +24,16 @@ public class Order {
     private String orderStatus;
     private BigDecimal orderTotal;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade=CascadeType.ALL)
     private List<CartItem> cartItemList;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private ShippingAddress shippingAddress;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private BillingAddress billingAddress;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private Payment payment;
 
     public Long getId() {
@@ -106,5 +106,13 @@ public class Order {
 
     public void setShippingMethod(String shippingMethod) {
         this.shippingMethod = shippingMethod;
+    }
+
+    public List<CartItem> getCartItemList() {
+        return cartItemList;
+    }
+
+    public void setCartItemList(List<CartItem> cartItemList) {
+        this.cartItemList = cartItemList;
     }
 }

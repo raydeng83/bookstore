@@ -78,12 +78,21 @@ public class CheckoutController {
             @ModelAttribute("billingAddress") BillingAddress billingAddress,
             @ModelAttribute("payment") Payment payment,
             @ModelAttribute("billingSameAsShipping") String billingSameAsShipping,
-            @ModelAttribute("shippingMethod") String shippingMethod
+            @ModelAttribute("shippingMethod") String shippingMethod,
+            Principal principal
             ) {
+        ShoppingCart shoppingCart = userService.findByUsername(principal.getName()).getShoppingCart();
 
+        if (billingSameAsShipping.equals("true")) {
+            billingAddress.setStreet1(shippingAddress.getStreet1());
+            billingAddress.setStreet2(shippingAddress.getStreet2());
+            billingAddress.setCity(shippingAddress.getCity());
+            billingAddress.setState(shippingAddress.getState());
+            billingAddress.setCountry(shippingAddress.getCountry());
+            billingAddress.setZipcode(shippingAddress.getZipcode());
+        }
 
-
-
+        orderService.createOrder(shoppingCart,shippingAddress,billingAddress,payment,shippingMethod);
 
         return "orderSubmittedPage";
     }

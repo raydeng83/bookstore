@@ -13,7 +13,8 @@ public class Payment {
     private Long id;
     private String type;
     private String cardNumber;
-    private String expiryDate;
+    private int expiryMonth;
+    private int expiryYear;
     private int cvc;
     private String holderName;
 
@@ -44,12 +45,20 @@ public class Payment {
         this.cardNumber = cardNumber;
     }
 
-    public String getExpiryDate() {
-        return expiryDate;
+    public int getExpiryMonth() {
+        return expiryMonth;
     }
 
-    public void setExpiryDate(String expiryDate) {
-        this.expiryDate = expiryDate;
+    public void setExpiryMonth(int expiryMonth) {
+        this.expiryMonth = expiryMonth;
+    }
+
+    public int getExpiryYear() {
+        return expiryYear;
+    }
+
+    public void setExpiryYear(int expiryYear) {
+        this.expiryYear = expiryYear;
     }
 
     public int getCvc() {

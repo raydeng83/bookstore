@@ -4,6 +4,7 @@ import com.bookstore.domain.*;
 import com.bookstore.service.CartItemService;
 import com.bookstore.service.ShoppingCartService;
 import com.bookstore.service.UserService;
+import com.bookstore.utility.USConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -54,6 +56,10 @@ public class CheckoutController {
         model.addAttribute("payment", payment);
         model.addAttribute("billingAddress", billingAddress);
 
+        List<String> stateList = USConstants.listOfUSStatesCode;
+        Collections.sort(stateList);
+        model.addAttribute("stateList", stateList);
+
         return "checkout";
     }
 
@@ -61,7 +67,9 @@ public class CheckoutController {
     public String checkoutPost(
             @ModelAttribute("shippingAddress") ShippingAddress shippingAddress,
             @ModelAttribute("billingAddress") BillingAddress billingAddress,
-            @ModelAttribute("payment") Payment payment
+            @ModelAttribute("payment") Payment payment,
+            @ModelAttribute("billingSameAsShipping") String billingSameAsShipping,
+            @ModelAttribute("shippingMethod") String shippingMethod
             ) {
         System.out.println(shippingAddress);
         System.out.println(payment);

@@ -20,6 +20,7 @@ public class Order {
     private Long id;
     private Date orderDate;
     private Date shippingDate;
+    private String shippingMethod;
     private String orderStatus;
     private BigDecimal orderTotal;
     private int qty;
@@ -117,5 +118,11 @@ public class Order {
         this.payment = payment;
     }
 
+    public String getShippingMethod() {
+        return shippingMethod;
+    }
 
+    public void setShippingMethod(String shippingMethod) {
+        this.shippingMethod = shippingMethod;
+    }
 }

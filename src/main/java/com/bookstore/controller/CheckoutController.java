@@ -71,8 +71,8 @@ public class CheckoutController {
             @ModelAttribute("billingSameAsShipping") String billingSameAsShipping,
             @ModelAttribute("shippingMethod") String shippingMethod
             ) {
-        System.out.println(shippingAddress);
-        System.out.println(payment);
+
+
 
 
         return "orderSubmittedPage";

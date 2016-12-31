@@ -23,7 +23,6 @@ public class CartItem {
     @OneToOne
     private Book book;
 
-
     @OneToMany(mappedBy = "cartItem")
     @JsonIgnore
     private List<BookToCartItem> bookToCartItemList;
@@ -31,6 +30,9 @@ public class CartItem {
     @ManyToOne
     @JoinColumn(name = "shopping_cart_id")
     private ShoppingCart shoppingCart;
+
+    @OneToMany(mappedBy = "cartItem")
+    private List<CartItemToOrder> cartItemToOrderList;
 
     public Long getId() {
         return id;
@@ -78,5 +80,13 @@ public class CartItem {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public List<CartItemToOrder> getCartItemToOrderList() {
+        return cartItemToOrderList;
+    }
+
+    public void setCartItemToOrderList(List<CartItemToOrder> cartItemToOrderList) {
+        this.cartItemToOrderList = cartItemToOrderList;
     }
 }

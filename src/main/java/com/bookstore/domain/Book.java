@@ -42,10 +42,6 @@ public class Book {
     @JsonIgnore
     private List<BookToCartItem> bookToCartItemList;
 
-    @OneToMany(mappedBy = "book")
-    @JsonIgnore
-    private List<BookToOrder> bookToOrderList;
-
     public Book() {
         super();
     }
@@ -184,14 +180,6 @@ public class Book {
 
     public void setBookImage(MultipartFile bookImage) {
         this.bookImage = bookImage;
-    }
-
-    public List<BookToOrder> getBookToOrderList() {
-        return bookToOrderList;
-    }
-
-    public void setBookToOrderList(List<BookToOrder> bookToOrderList) {
-        this.bookToOrderList = bookToOrderList;
     }
 
     public List<BookToCartItem> getBookToCartItemList() {

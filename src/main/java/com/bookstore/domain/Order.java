@@ -27,7 +27,7 @@ public class Order {
 
     @OneToMany(mappedBy = "order")
     @JsonIgnore
-    private List<BookToOrder> bookToOrderList;
+    private List<CartItemToOrder> cartItemToOrderList;
 
     @OneToOne
     private ShippingAddress shippingAddress;
@@ -86,12 +86,12 @@ public class Order {
         this.qty = qty;
     }
 
-    public List<BookToOrder> getBookToOrderList() {
-        return bookToOrderList;
+    public List<CartItemToOrder> getCartItemToOrderList() {
+        return cartItemToOrderList;
     }
 
-    public void setBookToOrderList(List<BookToOrder> bookToOrderList) {
-        this.bookToOrderList = bookToOrderList;
+    public void setCartItemToOrderList(List<CartItemToOrder> cartItemToOrderList) {
+        this.cartItemToOrderList = cartItemToOrderList;
     }
 
     public ShippingAddress getShippingAddress() {

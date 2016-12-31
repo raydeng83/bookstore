@@ -1,7 +1,6 @@
 package com.bookstore.domain;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Created by z00382545 on 12/28/16.
@@ -12,8 +11,9 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String type;
     private String cardNumber;
-    private Date expiryDate;
+    private String expiryDate;
     private int cvc;
     private String holderName;
 
@@ -28,6 +28,14 @@ public class Payment {
         this.id = id;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getCardNumber() {
         return cardNumber;
     }
@@ -36,11 +44,11 @@ public class Payment {
         this.cardNumber = cardNumber;
     }
 
-    public Date getExpiryDate() {
+    public String getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(Date expiryDate) {
+    public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
     }
 

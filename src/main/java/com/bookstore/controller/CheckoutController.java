@@ -1,8 +1,6 @@
 package com.bookstore.controller;
 
-import com.bookstore.domain.CartItem;
-import com.bookstore.domain.ShoppingCart;
-import com.bookstore.domain.User;
+import com.bookstore.domain.*;
 import com.bookstore.service.CartItemService;
 import com.bookstore.service.ShoppingCartService;
 import com.bookstore.service.UserService;
@@ -10,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
@@ -46,6 +46,27 @@ public class CheckoutController {
             }
         }
 
+        ShippingAddress shippingAddress = new ShippingAddress();
+        Payment payment = new Payment();
+        BillingAddress billingAddress = new BillingAddress();
+
+        model.addAttribute("shippingAddress", shippingAddress);
+        model.addAttribute("payment", payment);
+        model.addAttribute("billingAddress", billingAddress);
+
         return "checkout";
+    }
+
+    @RequestMapping(value = "/checkout", method = RequestMethod.POST)
+    public String checkoutPost(
+            @ModelAttribute("shippingAddress") ShippingAddress shippingAddress,
+            @ModelAttribute("billingAddress") BillingAddress billingAddress,
+            @ModelAttribute("payment") Payment payment
+            ) {
+        System.out.println(shippingAddress);
+        System.out.println(payment);
+
+
+        return "orderSubmittedPage";
     }
 }

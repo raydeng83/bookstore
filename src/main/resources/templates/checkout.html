@@ -18,7 +18,7 @@
     </div>
     <div class="row" style="margin-top: 120px;">
         <div class="col-xs-9 col-xs-offset-3">
-            <form>
+            <form th:action="@{/checkout}" method="post">
                 <div class="panel-group" id="accordion">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -32,31 +32,31 @@
                                 <div class="form-group">
                                     <label for="shippingAddress">Street Address</label>
                                     <input type="text" class="form-control" id="shippingAddress"
-                                           placeholder="Street Address 1"/>
+                                           placeholder="Street Address 1" th:name="street1" th:value="${shippingAddress.street1}"/>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Street Address 2"/>
+                                    <input type="text" class="form-control" placeholder="Street Address 2" th:name="street2" th:value="${shippingAddress.street2}"/>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <label for="shippingCity">City</label>
                                             <input type="text" class="form-control" id="shippingCity"
-                                                   placeholder="Your Shipping city"/>
+                                                   placeholder="Your Shipping city" th:name="city" th:value="${shippingAddress.city}"/>
                                         </div>
                                     </div>
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <label for="shippingState">State</label>
                                             <input type="text" class="form-control" id="shippingState"
-                                                   placeholder="Your Shipping state"/>
+                                                   placeholder="Your Shipping state" th:name="state" th:value="${shippingAddress.state}"/>
                                         </div>
                                     </div>
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <label for="shippingZipcode">Zipcode</label>
                                             <input type="text" class="form-control" id="shippingZipcode"
-                                                   placeholder="Zipcode"/>
+                                                   placeholder="Zipcode" th:name="zipcode" th:value="${shippingAddress.zipcode}"/>
                                         </div>
                                     </div>
                                 </div>
@@ -81,18 +81,18 @@
                                         <img src="/image/creditcard.png" class="img-responsive"/><br/>
                                         <div class="form-group">
                                             <label for="cardType">Select Card Type:</label>
-                                            <select class="form-control" id="cardType">
-                                                <option>Visa</option>
-                                                <option>Mastercard</option>
-                                                <option>Discover</option>
-                                                <option>American Express</option>
+                                            <select class="form-control" id="cardType" th:name="type" th:value="${payment.type}">
+                                                <option value="visa">Visa</option>
+                                                <option value="mastercard">Mastercard</option>
+                                                <option value="discover">Discover</option>
+                                                <option value="amex">American Express</option>
                                             </select>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="cardHolder">Card Holder</label>
                                             <input type="text" class="form-control" id="cardHolder"
-                                                   placeholder="Card Holder Name"/>
+                                                   placeholder="Card Holder Name" th:name="holderName" th:value="${payment.holderName}"/>
                                         </div>
 
                                         <div class="form-group">
@@ -104,7 +104,7 @@
                                                         class="form-control"
                                                         name="cardNumber"
                                                         placeholder="Valid Card Number"
-                                                        required="required"
+                                                        th:name="cardNumber" th:value="${payment.cardNumber}"
                                                 />
                                                 <span class="input-group-addon"><i class="fa fa-credit-card"
                                                                                    aria-hidden="true"></i></span>
@@ -122,7 +122,7 @@
                                                     class="form-control"
                                                     name="cardExpiry"
                                                     placeholder="MM / YY"
-                                                    required="required"
+                                                    th:name="expiryDate" th:value="${payment.expiryDate}"
                                             />
                                         </div>
                                     </div>
@@ -135,8 +135,7 @@
                                                     class="form-control"
                                                     name="cardCVC"
                                                     placeholder="CVC"
-                                                    autocomplete="cc-csc"
-                                                    required="required"
+                                                    th:name="cvc" th:value="${payment.cvc}"
                                             />
                                         </div>
                                     </div>
@@ -172,32 +171,32 @@
                                 <div class="form-group">
                                     <label for="billingAddress">Street Address</label>
                                     <input type="text" id="billingAddress" class="form-control billingAddress"
-                                           placeholder="Street Address 1"/>
+                                           placeholder="Street Address 1" th:name="street1" th:value="${billingAddress.street1}"/>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control billingAddress"
-                                           placeholder="Street Address 2"/>
+                                           placeholder="Street Address 2" th:name="street2" th:value="${billingAddress.street2}"/>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <label for="billingCity">City</label>
                                             <input type="text" class="form-control billingAddress" id="billingCity"
-                                                   placeholder="Your city"/>
+                                                   placeholder="Your city" th:name="city" th:value="${billingAddress.city}"/>
                                         </div>
                                     </div>
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <label for="billingState">State</label>
                                             <input type="text" class="form-control billingAddress" id="billingState"
-                                                   placeholder="Your Billing state"/>
+                                                   placeholder="Your Billing state" th:name="state" th:value="${billingAddress.state}"/>
                                         </div>
                                     </div>
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <label for="billingZipcode">Zipcode</label>
                                             <input type="text" class="form-control billingAddress" id="billingZipcode"
-                                                   placeholder="Zipcode"/>
+                                                   placeholder="Zipcode" th:name="zipcode" th:value="${billingAddress.zipcode}"/>
                                         </div>
                                     </div>
                                     <a data-toggle="collapse" data-parent="#accordion"
@@ -260,7 +259,8 @@
                                     <div class="col-xs-12 text-right">
                                         <Strong style="font-size: large">Order Totals: </Strong>
                                         <span style="color: #db3208; font-size: large;">$290.34</span><br/><br/>
-                                        <a href="#" class="btn btn-warning btn-block">Place your order</a>
+
+                                        <button type="submit" class="btn btn-warning btn-block">Place your order</button>
                                         <p>By placing your order, you agree to Le's Bookstore <a href="#">privacy</a> notice and
                                             <a href="#">conditions</a> of use.</p>
                                     </div>

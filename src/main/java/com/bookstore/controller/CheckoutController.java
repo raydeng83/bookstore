@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.thymeleaf.expression.Calendars;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -79,7 +83,8 @@ public class CheckoutController {
             @ModelAttribute("payment") Payment payment,
             @ModelAttribute("billingSameAsShipping") String billingSameAsShipping,
             @ModelAttribute("shippingMethod") String shippingMethod,
-            Principal principal
+            Principal principal,
+            Model model
             ) {
         ShoppingCart shoppingCart = userService.findByUsername(principal.getName()).getShoppingCart();
 
@@ -95,6 +100,17 @@ public class CheckoutController {
         orderService.createOrder(shoppingCart,shippingAddress,billingAddress,payment,shippingMethod);
 
         shoppingCartService.clearShoppingCart(shoppingCart);
+
+        LocalDate today = LocalDate.now();
+        LocalDate estimatedDeliveryDate;
+
+        if (shippingMethod.equals("groundShipping")) {
+            estimatedDeliveryDate = today.plusDays(5);
+        } else {
+            estimatedDeliveryDate = today.plusDays(3);
+        }
+
+        model.addAttribute("estimatedDeliveryDate", estimatedDeliveryDate);
 
         return "orderSubmittedPage";
     }

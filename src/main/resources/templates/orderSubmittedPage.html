@@ -20,7 +20,13 @@
 
     <div class="row" style="margin-top: 120px;">
         <div class="col-xs-12">
-            <h1>Order submitted!</h1>
+            <div class="alert alert-success">
+                <h3><i class="fa fa-check" aria-hidden="true" style="color: limegreen"></i> Thank you, your order has
+                    been placed.</h3>
+                <hr class="message-inner-separator" />
+                <h4>
+                    The estimated delivery date is <span th:text="${estimatedDeliveryDate}"></span></h4>
+            </div>
         </div>
     </div>
 

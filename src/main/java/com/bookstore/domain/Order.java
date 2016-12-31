@@ -23,11 +23,9 @@ public class Order {
     private String shippingMethod;
     private String orderStatus;
     private BigDecimal orderTotal;
-    private int qty;
 
     @OneToMany(mappedBy = "order")
-    @JsonIgnore
-    private List<CartItemToOrder> cartItemToOrderList;
+    private List<CartItem> cartItemList;
 
     @OneToOne
     private ShippingAddress shippingAddress;
@@ -76,22 +74,6 @@ public class Order {
 
     public void setOrderTotal(BigDecimal orderTotal) {
         this.orderTotal = orderTotal;
-    }
-
-    public int getQty() {
-        return qty;
-    }
-
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
-
-    public List<CartItemToOrder> getCartItemToOrderList() {
-        return cartItemToOrderList;
-    }
-
-    public void setCartItemToOrderList(List<CartItemToOrder> cartItemToOrderList) {
-        this.cartItemToOrderList = cartItemToOrderList;
     }
 
     public ShippingAddress getShippingAddress() {

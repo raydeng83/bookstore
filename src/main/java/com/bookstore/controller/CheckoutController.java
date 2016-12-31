@@ -2,6 +2,7 @@ package com.bookstore.controller;
 
 import com.bookstore.domain.*;
 import com.bookstore.service.CartItemService;
+import com.bookstore.service.OrderService;
 import com.bookstore.service.ShoppingCartService;
 import com.bookstore.service.UserService;
 import com.bookstore.utility.USConstants;
@@ -30,6 +31,9 @@ public class CheckoutController {
 
     @Autowired
     private CartItemService cartItemService;
+
+    @Autowired
+    private OrderService orderService;
 
     @Autowired
     private ShoppingCartService shoppingCartService;
@@ -76,6 +80,7 @@ public class CheckoutController {
             @ModelAttribute("billingSameAsShipping") String billingSameAsShipping,
             @ModelAttribute("shippingMethod") String shippingMethod
             ) {
+
 
 
 

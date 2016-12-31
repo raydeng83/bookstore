@@ -16,7 +16,6 @@ public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private int qty;
     private BigDecimal subtotal;
 
@@ -31,8 +30,10 @@ public class CartItem {
     @JoinColumn(name = "shopping_cart_id")
     private ShoppingCart shoppingCart;
 
-    @OneToMany(mappedBy = "cartItem")
-    private List<CartItemToOrder> cartItemToOrderList;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
 
     public Long getId() {
         return id;
@@ -80,13 +81,5 @@ public class CartItem {
 
     public void setBook(Book book) {
         this.book = book;
-    }
-
-    public List<CartItemToOrder> getCartItemToOrderList() {
-        return cartItemToOrderList;
-    }
-
-    public void setCartItemToOrderList(List<CartItemToOrder> cartItemToOrderList) {
-        this.cartItemToOrderList = cartItemToOrderList;
     }
 }

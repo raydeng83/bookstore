@@ -94,6 +94,8 @@ public class CheckoutController {
 
         orderService.createOrder(shoppingCart,shippingAddress,billingAddress,payment,shippingMethod);
 
+        shoppingCartService.clearShoppingCart(shoppingCart);
+
         return "orderSubmittedPage";
     }
 }

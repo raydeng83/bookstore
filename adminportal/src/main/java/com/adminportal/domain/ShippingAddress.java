@@ -14,6 +14,7 @@ public class ShippingAddress {
     private Long id;
     private String street1;
     private String street2;
+    private String city;
     private String state;
     private String country;
     private String zipcode;
@@ -77,5 +78,11 @@ public class ShippingAddress {
         this.order = order;
     }
 
+    public String getCity() {
+        return city;
+    }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
 }

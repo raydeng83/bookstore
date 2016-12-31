@@ -21,9 +21,6 @@ public class ShoppingCart {
     @JsonIgnore
     private List<CartItem> cartItemList;
 
-    @OneToOne
-    private Order order;
-
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
@@ -41,14 +38,6 @@ public class ShoppingCart {
 
     public void setGrandTotal(BigDecimal grandTotal) {
         GrandTotal = grandTotal;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 
     public User getUser() {

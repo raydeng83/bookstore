@@ -78,4 +78,8 @@ public class CartItemServiceImpl implements CartItemService{
         return cartItemRepository.findOne(id);
     }
 
+    public CartItem save(CartItem cartItem) {
+        return cartItemRepository.save(cartItem);
+    }
+
 }

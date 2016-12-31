@@ -1,7 +1,5 @@
 package com.adminportal.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -20,21 +18,20 @@ public class Order {
     private Long id;
     private Date orderDate;
     private Date shippingDate;
+    private String shippingMethod;
     private String orderStatus;
     private BigDecimal orderTotal;
-    private int qty;
 
-    @OneToMany(mappedBy = "order")
-    @JsonIgnore
-    private List<BookToOrder> bookToOrderList;
+    @OneToMany(mappedBy = "order", cascade=CascadeType.ALL)
+    private List<CartItem> cartItemList;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private ShippingAddress shippingAddress;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private BillingAddress billingAddress;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private Payment payment;
 
     public Long getId() {
@@ -77,22 +74,6 @@ public class Order {
         this.orderTotal = orderTotal;
     }
 
-    public int getQty() {
-        return qty;
-    }
-
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
-
-    public List<BookToOrder> getBookToOrderList() {
-        return bookToOrderList;
-    }
-
-    public void setBookToOrderList(List<BookToOrder> bookToOrderList) {
-        this.bookToOrderList = bookToOrderList;
-    }
-
     public ShippingAddress getShippingAddress() {
         return shippingAddress;
     }
@@ -117,5 +98,19 @@ public class Order {
         this.payment = payment;
     }
 
+    public String getShippingMethod() {
+        return shippingMethod;
+    }
 
+    public void setShippingMethod(String shippingMethod) {
+        this.shippingMethod = shippingMethod;
+    }
+
+    public List<CartItem> getCartItemList() {
+        return cartItemList;
+    }
+
+    public void setCartItemList(List<CartItem> cartItemList) {
+        this.cartItemList = cartItemList;
+    }
 }

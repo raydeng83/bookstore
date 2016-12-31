@@ -1,7 +1,6 @@
 package com.adminportal.domain;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Created by z00382545 on 12/28/16.
@@ -12,8 +11,10 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String type;
     private String cardNumber;
-    private Date expiryDate;
+    private int expiryMonth;
+    private int expiryYear;
     private int cvc;
     private String holderName;
 
@@ -28,6 +29,14 @@ public class Payment {
         this.id = id;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getCardNumber() {
         return cardNumber;
     }
@@ -36,12 +45,20 @@ public class Payment {
         this.cardNumber = cardNumber;
     }
 
-    public Date getExpiryDate() {
-        return expiryDate;
+    public int getExpiryMonth() {
+        return expiryMonth;
     }
 
-    public void setExpiryDate(Date expiryDate) {
-        this.expiryDate = expiryDate;
+    public void setExpiryMonth(int expiryMonth) {
+        this.expiryMonth = expiryMonth;
+    }
+
+    public int getExpiryYear() {
+        return expiryYear;
+    }
+
+    public void setExpiryYear(int expiryYear) {
+        this.expiryYear = expiryYear;
     }
 
     public int getCvc() {

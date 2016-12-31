@@ -31,6 +31,9 @@ public class CheckoutController {
     @Autowired
     private CartItemService cartItemService;
 
+    @Autowired
+    private ShoppingCartService shoppingCartService;
+
     @RequestMapping("/checkout")
     public String checkout(@RequestParam("id") Long cartId, Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
@@ -55,6 +58,8 @@ public class CheckoutController {
         model.addAttribute("shippingAddress", shippingAddress);
         model.addAttribute("payment", payment);
         model.addAttribute("billingAddress", billingAddress);
+        model.addAttribute("cartItemList", cartItemList);
+        model.addAttribute("shoppingCart", user.getShoppingCart());
 
         List<String> stateList = USConstants.listOfUSStatesCode;
         Collections.sort(stateList);

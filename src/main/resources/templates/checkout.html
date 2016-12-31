@@ -131,7 +131,8 @@
                                             <div class="row">
                                                 <div class="col-xs-6">
                                                     <select class="form-control" name="expiryMonth">
-                                                        <option selected="selected" disabled="disabled">--Month--</option>
+                                                        <option selected="selected" disabled="disabled">--Month--
+                                                        </option>
                                                         <option value="01">Jan (01)</option>
                                                         <option value="02">Feb (02)</option>
                                                         <option value="03">Mar (03)</option>
@@ -148,7 +149,8 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <select class="form-control" name="expiryYear">
-                                                        <option selected="selected" disabled="disabled">--Year--</option>
+                                                        <option selected="selected" disabled="disabled">--Year--
+                                                        </option>
                                                         <option value="17">2017</option>
                                                         <option value="18">2018</option>
                                                         <option value="19">2019</option>
@@ -284,47 +286,57 @@
                                     </label>
                                 </div>
 
-                                <div class="row">
-                                    <hr/>
-                                    <div class="col-xs-2"><img class="img-responsive shelf-book"
-                                                               th:src="@{/image/book1.png/}" style="width:70px;"/>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <h4>Meow Mix Original Choice Dry Cat Food, 16-Pound</h4>
-                                        <p style="color: green;">In Stock</p>
-                                        <a href="#">delete</a>
-                                    </div>
-                                    <div class="col-xs-2"><h5 style="color: #db3208; font-size: large;">$10.39</h5>
-                                    </div>
-                                    <div class="col-xs-2"><input class="form-control" value="1"/></div>
-                                </div>
-                                <div class="row">
-                                    <hr/>
-                                    <div class="col-xs-2"><img class="img-responsive shelf-book"
-                                                               th:src="@{/image/book1.png/}" style="width:70px;"/>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <h4>Meow Mix Original Choice Dry Cat Food, 16-Pound</h4>
-                                        <p style="color: green;">In Stock</p>
-                                        <a href="#">delete</a>
-                                    </div>
-                                    <div class="col-xs-2"><h5 style="color: #db3208; font-size: large;">$10.39</h5>
-                                    </div>
-                                    <div class="col-xs-2"><input class="form-control" value="1"/></div>
-                                </div>
-                                <div class="row">
-                                    <hr/>
-                                    <div class="col-xs-12 text-right">
-                                        <Strong style="font-size: large">Order Totals: </Strong>
-                                        <span style="color: #db3208; font-size: large;">$290.34</span><br/><br/>
+                                <!--*******  display products in cart  ********-->
+                                <div class="row" th:each="cartItem : ${cartItemList}">
+                                    <form th:action="@{/shoppingCart/updateCartItem}" method="post">
 
-                                        <button type="submit" class="btn btn-warning btn-block">Place your order
-                                        </button>
-                                        <p>By placing your order, you agree to Le's Bookstore <a
-                                                href="#">privacy</a> notice and
-                                            <a href="#">conditions</a> of use.</p>
-                                    </div>
+                                        <hr/>
+                                        <div class="col-xs-2"><img class="img-responsive shelf-book"
+                                                                   th:src="#{adminPath}+@{/image/book/}+${cartItem.book.id}+'.png'"
+                                                                   style="width:70px;"/></div>
+                                        <div class="col-xs-6">
+                                            <h4 th:text="${cartItem.book.title}">...</h4>
+                                            <p th:if="${cartItem.book.inStockNumber&gt;10}" style="color: green;">In
+                                                Stock</p>
+                                            <p th:if="${cartItem.book.inStockNumber&lt;10 and cartItem.book.inStockNumber&gt;0}"
+                                               style="color: green;"> Only <span
+                                                    th:text="${cartItem.book.inStockNumber}"></span> In
+                                                Stock</p>
+                                            <p style="color: darkred;" th:if="${cartItem.book.inStockNumber}==0">Product
+                                                Unavailable</p>
+
+                                            <a th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}">delete</a>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <h5 style="color: #db3208; font-size: large;">$<span
+                                                    th:text="${cartItem.book.ourPrice}"
+                                                    th:style="${cartItem.book.inStockNumber}==0 ? 'text-decoration: line-through;' : ''"></span>
+                                            </h5>
+                                        </div>
+
+                                        <div class="col-xs-2">
+                                            <input hidden="hidden" name="id" th:value="${cartItem.id}"/>
+                                            <input th:id="${cartItem.id}" th:name="qty"
+                                                   th:disabled="${cartItem.book.inStockNumber==0}"
+                                                   class="form-control cartItemQty" th:value="${cartItem.qty}"/>
+                                            <button style="display:none;" th:id="'update-item-'+${cartItem.id}"
+                                                    type="submit" class="btn btn-warning btn-xs">Update
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
+
+                                <hr/>
+                                <h4 class="col-xs-12 text-right"><Strong style="font-size: large">Order Total (<span
+                                        th:text="${#lists.size(cartItemList)}"></span> items): </Strong><span
+                                        style="color: #db3208; font-size: large;">$<span
+                                        th:text="${shoppingCart.grandTotal}"></span></span></h4>
+                                <br/>
+                                <button type="submit" class="btn btn-warning btn-block">Place your order
+                                </button>
+                                <p>By placing your order, you agree to Le's Bookstore <a
+                                        href="#">privacy</a> notice and
+                                    <a href="#">conditions</a> of use.</p>
                             </div>
                         </div>
                     </div>

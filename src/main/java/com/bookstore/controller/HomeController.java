@@ -2,14 +2,14 @@ package com.bookstore.controller;
 
 import com.bookstore.config.SecurityConfig;
 import com.bookstore.config.SecurityUtility;
-import com.bookstore.domain.Book;
-import com.bookstore.domain.User;
+import com.bookstore.domain.*;
 import com.bookstore.domain.security.PasswordResetToken;
 import com.bookstore.domain.security.Role;
 import com.bookstore.domain.security.UserRole;
 import com.bookstore.service.BookService;
 import com.bookstore.service.UserService;
 import com.bookstore.service.impl.UserSecurityService;
+import com.bookstore.utility.USConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.core.env.Environment;
@@ -140,6 +140,18 @@ public class HomeController {
         String username = principal.getName();
         User user = userService.findByUsername(username);
         model.addAttribute("user", user);
+
+        UserShipping userShipping = new UserShipping();
+        UserBilling userBilling = new UserBilling();
+        UserPayment userPayment = new UserPayment();
+
+        model.addAttribute("userShipping", userShipping);
+        model.addAttribute("userBilling", userBilling);
+        model.addAttribute("userPayment", userPayment);
+
+        List<String> stateList = USConstants.listOfUSStatesCode;
+        Collections.sort(stateList);
+        model.addAttribute("stateList", stateList);
 
         return "myProfile";
     }

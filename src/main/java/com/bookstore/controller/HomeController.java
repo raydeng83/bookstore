@@ -84,9 +84,9 @@ public class HomeController {
         Book book = bookService.findOne(id);
 
         model.addAttribute("book", book);
-        List<Integer> qtyList = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+        List<Integer> qtyList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         model.addAttribute("qtyList", qtyList);
-        model.addAttribute("qty","1");
+        model.addAttribute("qty", "1");
         return "bookDetail";
     }
 
@@ -136,25 +136,62 @@ public class HomeController {
     }
 
     @RequestMapping("/myProfile")
-    public String myProfile(Model model, Principal principal) {
+    public String myProfile(
+            @RequestParam(value = "options", required = false) String options,
+            Model model, Principal principal) {
         String username = principal.getName();
         User user = userService.findByUsername(username);
         model.addAttribute("user", user);
 
-        UserShipping userShipping = new UserShipping();
-        UserBilling userBilling = new UserBilling();
-        UserPayment userPayment = new UserPayment();
-
-        model.addAttribute("userShipping", userShipping);
-        model.addAttribute("userBilling", userBilling);
-        model.addAttribute("userPayment", userPayment);
+        List<UserBilling> userBillingList = user.getUserBillingList();
+        List<UserShipping> userShippingList = user.getUserShippingList();
+        List<UserPayment> userPaymentList = user.getUserPaymentList();
+        model.addAttribute("userBillingList", userBillingList);
+        model.addAttribute("userShippingList", userShippingList);
+        model.addAttribute("userPaymentList", userPaymentList);
 
         List<String> stateList = USConstants.listOfUSStatesCode;
         Collections.sort(stateList);
         model.addAttribute("stateList", stateList);
 
+        if (options != null) {
+
+            if (options.equals("listOfCreditCards")) {
+                model.addAttribute("listOfCreditCards", true);
+                model.addAttribute("classActiveBilling", true);
+                return "myProfile";
+            }
+
+            if (options.equals("addNewCreditCard")) {
+                model.addAttribute("addNewCreditCard", true);
+                model.addAttribute("classActiveBilling", true);
+                return "myProfile";
+            }
+        }
+
+        model.addAttribute("listOfCreditCards", true);
+        model.addAttribute("classActiveEdit", true);
+
         return "myProfile";
     }
+
+//    @RequestMapping(value = "/myProfile", method = RequestMethod.POST)
+//    public String myProfilePost(
+//            @ModelAttribute("options") String options,
+//            Model model
+//    ) {
+//        if(options.equals("listOfCreditCards")) {
+//            model.addAttribute("listOfCreditCards", true);
+//            return "myProfile";
+//        }
+//
+//        if(options.equals("addNewCreditCard")) {
+//            model.addAttribute("addNewCreditCard", true);
+//            return "myProfile";
+//        }
+//
+//        return "myProfile";
+//    }
 
     @RequestMapping("/badRequest")
     public String badRequest() {
@@ -329,6 +366,21 @@ public class HomeController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        return "myProfile";
+    }
+
+    @RequestMapping(value = "/updateUserPaymentInfo", method = RequestMethod.POST)
+    public String updateUserPaymentInfo(
+            @ModelAttribute("userShipping") UserShipping userShipping,
+            @ModelAttribute("userBilling") UserBilling userBilling,
+            @ModelAttribute("userPayment") UserPayment userPayment,
+            Principal principal,
+            Model model
+    ) {
+        User user = userService.findByUsername(principal.getName());
+        userService.updateUserPaymentInfo(userShipping, userBilling, userPayment, user);
+        model.addAttribute("user", user);
+        model.addAttribute("updateUserPaymentInfo", true);
         return "myProfile";
     }
 }

@@ -41,9 +41,6 @@ public class User implements UserDetails {
     private ShoppingCart shoppingCart;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<UserBilling> userBillingList;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserShipping> userShippingList;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -111,14 +108,6 @@ public class User implements UserDetails {
 
     public void setShoppingCart(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
-    }
-
-    public List<UserBilling> getUserBillingList() {
-        return userBillingList;
-    }
-
-    public void setUserBillingList(List<UserBilling> userBillingList) {
-        this.userBillingList = userBillingList;
     }
 
     public List<UserShipping> getUserShippingList() {

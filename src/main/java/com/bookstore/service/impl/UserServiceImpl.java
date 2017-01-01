@@ -64,7 +64,6 @@ public class UserServiceImpl implements UserService{
             shoppingCart.setUser(user);
             user.setShoppingCart(shoppingCart);
 
-            user.setUserBillingList(new ArrayList<UserBilling>());
             user.setUserShippingList(new ArrayList<UserShipping>());
             user.setUserPaymentList(new ArrayList<UserPayment>());
 
@@ -114,10 +113,10 @@ public class UserServiceImpl implements UserService{
     }
 
     public void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user) {
-        userBilling.setUser(user);
         userPayment.setUser(user);
+        userPayment.setUserBilling(userBilling);
         userPayment.setDefaultPayment(true);
-        user.getUserBillingList().add(userBilling);
+        userBilling.setUserPayment(userPayment);
         user.getUserPaymentList().add(userPayment);
         save(user);
     }
@@ -135,4 +134,5 @@ public class UserServiceImpl implements UserService{
             }
         }
     }
+
 }

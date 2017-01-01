@@ -177,8 +177,8 @@
                                                 </td>
                                                 <td th:text="${userPayment.cardName}">...</td>
                                                 <td>
-                                                    <a class="teal-text"><i class="fa fa-pencil"></i></a>
-                                                    <a class="red-text"><i class="fa fa-times"></i></a>
+                                                    <a th:href="@{/updateCreditCard(id=${userPayment.id})}"><i class="fa fa-pencil"></i></a>
+                                                    <a th:href="@{/removeCreditCard(id=${userPayment.id})}"><i class="fa fa-times"></i></a>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -237,6 +237,9 @@
                                         <!--</div>-->
                                         <!--</div>-->
                                         <!--</div>-->
+
+                                        <input hidden="hidden" name="id" th:value="${userPayment.id}"/>
+
                                         <div class="form-group">
                                             <h5>Give a name for your card: </h5>
                                             <input type="text" class="form-control" id="cardName"

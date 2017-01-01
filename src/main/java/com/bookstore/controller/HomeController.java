@@ -7,6 +7,7 @@ import com.bookstore.domain.security.PasswordResetToken;
 import com.bookstore.domain.security.Role;
 import com.bookstore.domain.security.UserRole;
 import com.bookstore.service.BookService;
+import com.bookstore.service.UserPaymentService;
 import com.bookstore.service.UserService;
 import com.bookstore.service.impl.UserSecurityService;
 import com.bookstore.utility.USConstants;
@@ -53,6 +54,9 @@ public class HomeController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private UserPaymentService userPaymentService;
 
     @RequestMapping("/")
     public String index() {
@@ -150,6 +154,10 @@ public class HomeController {
 
         model.addAttribute("listOfCreditCards", true);
 
+        List<String> stateList = USConstants.listOfUSStatesCode;
+        Collections.sort(stateList);
+        model.addAttribute("stateList", stateList);
+
         return "myProfile";
     }
 
@@ -185,13 +193,17 @@ public class HomeController {
 
         model.addAttribute("userBilling", userBilling);
         model.addAttribute("userPayment", userPayment);
+
+        List<String> stateList = USConstants.listOfUSStatesCode;
+        Collections.sort(stateList);
+        model.addAttribute("stateList", stateList);
         return "myProfile";
     }
 
     @RequestMapping(value = "/addNewCreditCard", method = RequestMethod.POST)
     public String addNewCreditCardPost(
-            @ModelAttribute("userBilling") UserBilling userBilling,
             @ModelAttribute("userPayment") UserPayment userPayment,
+            @ModelAttribute("userBilling") UserBilling userBilling,
             Principal principal, Model model) {
         User user = userService.findByUsername(principal.getName());
         userService.updateUserBilling(userBilling, userPayment, user);
@@ -217,6 +229,46 @@ public class HomeController {
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("listOfCreditCards", true);
         model.addAttribute("classActiveBilling", true);
+        return "myProfile";
+    }
+
+    @RequestMapping("/updateCreditCard")
+    public String updateCreditCard(
+            @ModelAttribute("id") Long creditCardId, Principal principal,
+            Model model
+    ) {
+        User user = userService.findByUsername(principal.getName());
+        model.addAttribute("user", user);
+
+        UserPayment userPayment = userPaymentService.findById(creditCardId);
+        UserBilling userBilling = userPayment.getUserBilling();
+        model.addAttribute("userPayment", userPayment);
+        model.addAttribute("userBilling", userBilling);
+
+        List<String> stateList = USConstants.listOfUSStatesCode;
+        Collections.sort(stateList);
+        model.addAttribute("stateList", stateList);
+
+        model.addAttribute("addNewCreditCard", true);
+        model.addAttribute("classActiveBilling", true);
+
+        return "myProfile";
+    }
+
+    @RequestMapping("/removeCreditCard")
+    public String removeCreditCard(
+            @ModelAttribute("id") Long creditCardId, Principal principal,
+            Model model
+    ) {
+        User user = userService.findByUsername(principal.getName());
+        model.addAttribute("user", user);
+
+        userPaymentService.removeById(creditCardId);
+
+        model.addAttribute("listOfCreditCards", true);
+        model.addAttribute("classActiveBilling", true);
+        model.addAttribute("userPaymentList", user.getUserPaymentList());
+
         return "myProfile";
     }
 

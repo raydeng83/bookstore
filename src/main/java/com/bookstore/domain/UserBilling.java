@@ -19,9 +19,8 @@ public class UserBilling {
     private String country;
     private String zipcode;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @OneToOne(cascade = CascadeType.ALL)
+    private UserPayment userPayment;
 
     public Long getId() {
         return id;
@@ -79,11 +78,13 @@ public class UserBilling {
         this.zipcode = zipcode;
     }
 
-    public User getUser() {
-        return user;
+    public UserPayment getUserPayment() {
+        return userPayment;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserPayment(UserPayment userPayment) {
+        this.userPayment = userPayment;
     }
+
+
 }

@@ -17,8 +17,32 @@
         <img class="img-responsive" src="/image/wood.png" style="margin-top: -75px;"/>
     </div>
     <div class="row" style="margin-top: 120px;">
-        <div class="col-xs-9 col-xs-offset-3">
-            <form th:action="@{/checkout}" method="post">
+        <form th:action="@{/checkout}" method="post">
+            <div class="col-xs-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <button type="submit" class="btn btn-warning btn-block">Place your order
+                        </button>
+                        <p style="font-size: smaller">By placing your order, you agree to Le's Bookstore <a
+                                href="#">privacy</a> notice and
+                            <a href="#">conditions</a> of use.</p>
+                        <hr/>
+                        <h3>Order Summary</h3>
+                        <div class="row">
+                            <div class="col-xs-7 text-left">
+                                Items:
+                            </div>
+                            <div class="col-xs-5 text-right">
+                                $<span
+                                    th:text="${shoppingCart.grandTotal}"></span>
+                            </div>
+                            <p></p>
+                        </div>
+                        <div class="panel-footer">Panel footer</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-9">
 
                 <div class="panel-group" id="accordion">
 
@@ -30,7 +54,8 @@
                                     1. Shipping Address</a>
                             </h4>
                         </div>
-                        <div id="shippingInfo" class="panel-collapse collapse" th:classappend="${classActiveShipping}? 'in'">
+                        <div id="shippingInfo" class="panel-collapse collapse"
+                             th:classappend="${classActiveShipping}? 'in'">
                             <div class="panel-body">
                                 <table class="table">
                                     <thead>
@@ -45,7 +70,8 @@
                                             ...
                                         </td>
                                         <td>
-                                            <a th:href="@{/setShippingAddress(userShippingId=${userShipping.id})}">use this address</a>
+                                            <a th:href="@{/setShippingAddress(userShippingId=${userShipping.id})}">use
+                                                this address</a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -92,7 +118,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-toggle="collapse" data-parent="#accordion" class="btn btn-warning pull-right"
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                   class="btn btn-warning pull-right"
                                    href="#paymentInfo">Next</a>
                             </div>
                         </div>
@@ -106,7 +133,8 @@
                                     2. Payment Information</a>
                             </h4>
                         </div>
-                        <div id="paymentInfo" class="panel-collapse collapse" th:classappend="${classActivePayment}? 'in'">
+                        <div id="paymentInfo" class="panel-collapse collapse"
+                             th:classappend="${classActivePayment}? 'in'">
                             <div class="panel-body">
                                 <table class="table">
                                     <thead>
@@ -121,7 +149,9 @@
                                             ...
                                         </td>
                                         <td>
-                                            <a th:href="@{/setPaymentMethod(userPaymentId=${userPayment.id})}">use this address</a>
+                                            <a th:href="@{/setPaymentMethod(userPaymentId=${userPayment.id})}">use
+                                                this
+                                                address</a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -337,7 +367,8 @@
                                                style="color: green;"> Only <span
                                                     th:text="${cartItem.book.inStockNumber}"></span> In
                                                 Stock</p>
-                                            <p style="color: darkred;" th:if="${cartItem.book.inStockNumber}==0">Product
+                                            <p style="color: darkred;" th:if="${cartItem.book.inStockNumber}==0">
+                                                Product
                                                 Unavailable</p>
 
                                             <a th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}">delete</a>
@@ -370,8 +401,8 @@
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
 

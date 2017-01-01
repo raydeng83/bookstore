@@ -63,16 +63,9 @@ public class UserServiceImpl implements UserService{
             shoppingCart.setUser(user);
             user.setShoppingCart(shoppingCart);
 
-            UserShipping userShipping = new UserShipping();
-            UserBilling userBilling = new UserBilling();
-            UserPayment userPayment = new UserPayment();
-
-            userBilling.setUser(user);
-            userPayment.setUser(user);
-            userShipping.setUser(user);
-            user.setUserBillingList(new ArrayList<UserBilling>(Arrays.asList(userBilling)));
-            user.setUserShippingList(new ArrayList<UserShipping>(Arrays.asList(userShipping)));
-            user.setUserPaymentList(new ArrayList<UserPayment>(Arrays.asList(userPayment)));
+            user.setUserBillingList(new ArrayList<UserBilling>());
+            user.setUserShippingList(new ArrayList<UserShipping>());
+            user.setUserPaymentList(new ArrayList<UserPayment>());
 
             localUser = userRepository.save(user);
         }
@@ -117,5 +110,13 @@ public class UserServiceImpl implements UserService{
         userBillingRepository.save(userBilling);
         userShippingRepository.save(userShipping);
         userPaymentRepository.save(userPayment);
+    }
+
+    public void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user) {
+        userBilling.setUser(user);
+        userPayment.setUser(user);
+        user.getUserBillingList().add(userBilling);
+        user.getUserPaymentList().add(userPayment);
+        save(user);
     }
 }

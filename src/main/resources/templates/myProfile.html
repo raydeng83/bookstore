@@ -181,7 +181,7 @@
                                 <!--</div>-->
 
                                 <div th:if="${addNewCreditCard}">
-                                    <form th:action="@{/updateUserPaymentInfo}" method="post">
+                                    <form th:action="@{/addNewCreditCard}" method="post">
                                         <div class="bg-info" th:if="${updateUserPaymentInfo}">User info updated.</div>
 
                                         <!--&lt;!&ndash;Shipping Address&ndash;&gt;-->
@@ -230,8 +230,15 @@
                                                 <!--</div>-->
                                             <!--</div>-->
                                         <!--</div>-->
+                                        <div class="form-group">
+                                            <h5>Give a name for your card: </h5>
+                                            <input type="text" class="form-control" id="cardName"
+                                                   placeholder="Card Name" th:name="cardName"
+                                                   th:value="${userPayment.cardName}"/>
+                                        </div>
 
                                         <!--Billing Address-->
+                                        <hr />
                                         <div class="form-group">
                                             <h4>Billing Address</h4>
                                         </div>

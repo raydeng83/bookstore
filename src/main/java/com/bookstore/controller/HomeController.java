@@ -178,7 +178,7 @@ public class HomeController {
 
     @RequestMapping("/addNewCreditCard")
     public String addNewCreditCard(
-            Model model, Principal principal, HttpServletRequest request
+            Model model, Principal principal
     ) {
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("user", user);
@@ -200,23 +200,28 @@ public class HomeController {
         return "myProfile";
     }
 
-//    @RequestMapping(value = "/myProfile", method = RequestMethod.POST)
-//    public String myProfilePost(
-//            @ModelAttribute("options") String options,
-//            Model model
-//    ) {
-//        if(options.equals("listOfCreditCards")) {
-//            model.addAttribute("listOfCreditCards", true);
-//            return "myProfile";
-//        }
-//
-//        if(options.equals("addNewCreditCard")) {
-//            model.addAttribute("addNewCreditCard", true);
-//            return "myProfile";
-//        }
-//
-//        return "myProfile";
-//    }
+    @RequestMapping(value = "/addNewCreditCard", method = RequestMethod.POST)
+    public String addNewCreditCardPost(
+            @ModelAttribute("userBilling") UserBilling userBilling,
+            @ModelAttribute("userPayment") UserPayment userPayment,
+            Principal principal, Model model) {
+        User user = userService.findByUsername(principal.getName());
+        userService.updateUserBilling(userBilling, userPayment, user);
+
+        model.addAttribute("user", user);
+        model.addAttribute("userBillingList", user.getUserBillingList());
+        model.addAttribute("userShippingList", user.getUserShippingList());
+        model.addAttribute("userPaymentList", user.getUserPaymentList());
+
+        List<String> stateList = USConstants.listOfUSStatesCode;
+        Collections.sort(stateList);
+        model.addAttribute("stateList", stateList);
+        model.addAttribute("listOfCreditCards", true);
+        model.addAttribute("classActiveBilling", true);
+
+        return "myProfile";
+
+    }
 
     @RequestMapping("/badRequest")
     public String badRequest() {

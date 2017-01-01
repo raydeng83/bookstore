@@ -25,4 +25,6 @@ public interface UserService {
     void createPasswordResetTokenForUser(final User user, final String token);
 
     void updateUserPaymentInfo(UserShipping userShipping, UserBilling userBilling, UserPayment userPayment, User user);
+
+    void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user);
 }

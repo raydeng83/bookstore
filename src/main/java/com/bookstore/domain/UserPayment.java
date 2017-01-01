@@ -13,6 +13,7 @@ public class UserPayment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String type;
+    private String cardName;
     private String cardNumber;
     private int expiryMonth;
     private int expiryYear;
@@ -85,5 +86,13 @@ public class UserPayment {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getCardName() {
+        return cardName;
+    }
+
+    public void setCardName(String cardName) {
+        this.cardName = cardName;
     }
 }

@@ -30,7 +30,7 @@
                                     1. Shipping Address</a>
                             </h4>
                         </div>
-                        <div id="shippingInfo" class="panel-collapse collapse in">
+                        <div id="shippingInfo" class="panel-collapse collapse" th:classappend="${classActiveShipping}? 'in'">
                             <div class="panel-body">
                                 <table class="table">
                                     <thead>
@@ -106,8 +106,26 @@
                                     2. Payment Information</a>
                             </h4>
                         </div>
-                        <div id="paymentInfo" class="panel-collapse collapse">
+                        <div id="paymentInfo" class="panel-collapse collapse" th:classappend="${classActivePayment}? 'in'">
                             <div class="panel-body">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Available Credit Card</th>
+                                        <th>Operations</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="userPayment : ${userPaymentList}">
+                                        <td th:text="${userPayment.cardName}">
+                                            ...
+                                        </td>
+                                        <td>
+                                            <a th:href="@{/setPaymentMethod(userPaymentId=${userPayment.id})}">use this address</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
 
                                 <!-- CREDIT CARD FORM STARTS HERE -->
                                 <div class="row">
@@ -155,8 +173,6 @@
                                             <div class="row">
                                                 <div class="col-xs-6">
                                                     <select class="form-control" name="expiryMonth">
-                                                        <option selected="selected" disabled="disabled">--Month--
-                                                        </option>
                                                         <option value="01">Jan (01)</option>
                                                         <option value="02">Feb (02)</option>
                                                         <option value="03">Mar (03)</option>
@@ -173,8 +189,6 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <select class="form-control" name="expiryYear">
-                                                        <option selected="selected" disabled="disabled">--Year--
-                                                        </option>
                                                         <option value="17">2017</option>
                                                         <option value="18">2018</option>
                                                         <option value="19">2019</option>
@@ -214,24 +228,6 @@
                                 </div>
                                 <!-- CREDIT CARD FORM ENDS HERE -->
 
-
-                                <a data-toggle="collapse" data-parent="#accordion"
-                                   class="btn btn-warning pull-right"
-                                   href="#billingInfo">Next</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--3. Billing Address-->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#billingInfo">
-                                    3. Billing Address</a>
-                            </h4>
-                        </div>
-                        <div id="billingInfo" class="panel-collapse collapse">
-                            <div class="panel-body">
                                 <div class="checkbox">
                                     <label>
                                         <input id="theSameAsShippingAddress" type="checkbox"
@@ -264,7 +260,7 @@
                                             <label for="billingState">State</label>
                                             <select id="billingState" class="form-control billingAddress"
                                                     name="state" th:value="${billingAddress.state}">
-                                                <option value="" selected="selected" disabled="disabled">Please
+                                                <option value="" disabled="disabled">Please
                                                     select an option...
                                                 </option>
                                                 <option th:each="state : ${stateList}"
@@ -282,19 +278,21 @@
                                                    th:value="${billingAddress.zipcode}"/>
                                         </div>
                                     </div>
-                                    <a data-toggle="collapse" data-parent="#accordion"
-                                       class="btn btn-warning pull-right" href="#reviewItems">Next</a>
                                 </div>
+
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                   class="btn btn-warning pull-right"
+                                   href="#reviewItems">Next</a>
                             </div>
                         </div>
                     </div>
 
-                    <!--4. Review Items and Shipping-->
+                    <!--3. Review Items and Shipping-->
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#reviewItems">
-                                    4. Review Items and Shipping</a>
+                                    3. Review Items and Shipping</a>
                             </h4>
                         </div>
                         <div id="reviewItems" class="panel-collapse collapse">

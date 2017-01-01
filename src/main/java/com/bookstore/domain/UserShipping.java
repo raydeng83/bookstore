@@ -95,4 +95,6 @@ public class UserShipping {
     public void setDefaultShipping(boolean defaultShipping) {
         this.defaultShipping = defaultShipping;
     }
+
+
 }

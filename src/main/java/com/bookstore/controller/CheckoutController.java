@@ -1,10 +1,7 @@
 package com.bookstore.controller;
 
 import com.bookstore.domain.*;
-import com.bookstore.service.CartItemService;
-import com.bookstore.service.OrderService;
-import com.bookstore.service.ShoppingCartService;
-import com.bookstore.service.UserService;
+import com.bookstore.service.*;
 import com.bookstore.utility.USConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -42,6 +39,9 @@ public class CheckoutController {
     @Autowired
     private ShoppingCartService shoppingCartService;
 
+    @Autowired
+    private UserShippingService userShippingService;
+
     @RequestMapping("/checkout")
     public String checkout(@RequestParam("id") Long cartId, Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
@@ -72,6 +72,12 @@ public class CheckoutController {
         List<String> stateList = USConstants.listOfUSStatesCode;
         Collections.sort(stateList);
         model.addAttribute("stateList", stateList);
+
+        List<UserShipping> userShippingList = user.getUserShippingList();
+        List<UserPayment> userPaymentList = user.getUserPaymentList();
+
+        model.addAttribute("userShippingList", userShippingList);
+        model.addAttribute("userPaymentList", userPaymentList);
 
         return "checkout";
     }
@@ -113,5 +119,54 @@ public class CheckoutController {
         model.addAttribute("estimatedDeliveryDate", estimatedDeliveryDate);
 
         return "orderSubmittedPage";
+    }
+
+    @RequestMapping("/setShippingAddress")
+    public String setShippingAddress(
+            @RequestParam("userShippingId") Long userShippingId,
+            Principal principal, Model model
+    ) {
+        User user = userService.findByUsername(principal.getName());
+        UserShipping userShipping = userShippingService.findById(userShippingId);
+
+        if(userShipping.getUser().getId()!=user.getId()) {
+            return "badRequestPage";
+        } else {
+            ShippingAddress shippingAddress = new ShippingAddress();
+            shippingAddress.setStreet1(userShipping.getStreet1());
+            shippingAddress.setStreet2(userShipping.getStreet2());
+            shippingAddress.setCity(userShipping.getCity());
+            shippingAddress.setState(userShipping.getState());
+            shippingAddress.setCity(userShipping.getCity());
+            shippingAddress.setCountry(userShipping.getCountry());
+            shippingAddress.setZipcode(userShipping.getZipcode());
+
+            model.addAttribute("shippingAddress", shippingAddress);
+
+            List<CartItem> cartItemList = cartItemService.findByShoppingCart(user.getShoppingCart());
+
+            Payment payment = new Payment();
+            BillingAddress billingAddress = new BillingAddress();
+
+            model.addAttribute("shippingAddress", shippingAddress);
+            model.addAttribute("payment", payment);
+            model.addAttribute("billingAddress", billingAddress);
+            model.addAttribute("cartItemList", cartItemList);
+            model.addAttribute("shoppingCart", user.getShoppingCart());
+
+            List<String> stateList = USConstants.listOfUSStatesCode;
+            Collections.sort(stateList);
+            model.addAttribute("stateList", stateList);
+
+            List<UserShipping> userShippingList = user.getUserShippingList();
+            List<UserPayment> userPaymentList = user.getUserPaymentList();
+
+            model.addAttribute("userShippingList", userShippingList);
+            model.addAttribute("userPaymentList", userPaymentList);
+
+            return "checkout";
+        }
+
+
     }
 }

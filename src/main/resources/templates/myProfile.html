@@ -149,12 +149,12 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item active">
                                         <a th:href="@{/listOfCreditCards}"
-                                           th:classappend="${listOfCreditCards}? 'bg-primary'">List of your Credit
+                                           th:style="${listOfCreditCards}? 'color:red;'">List of Credit
                                             Cards</a>
                                     </li>
                                     <li class="breadcrumb-item">
                                         <a th:href="@{/addNewCreditCard}"
-                                           th:classappend="${addNewCreditCard}? 'bg-primary'">Add a new Credit Card</a>
+                                           th:style="${addNewCreditCard}? 'color:red;'">Add(Update) Credit Card</a>
                                     </li>
                                 </ol>
 
@@ -345,8 +345,8 @@
                                                     <label>Expiration Date</label>
                                                     <div class="row">
                                                         <div class="col-xs-6">
-                                                            <select class="form-control" name="expiryMonth">
-                                                                <option selected="selected" disabled="disabled">
+                                                            <select class="form-control" name="expiryMonth" th:value="${userPayment.expiryMonth}">
+                                                                <option disabled="disabled">
                                                                     --Month--
                                                                 </option>
                                                                 <option value="01">Jan (01)</option>
@@ -364,8 +364,8 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-xs-6">
-                                                            <select class="form-control" name="expiryYear">
-                                                                <option selected="selected" disabled="disabled">--Year--
+                                                            <select class="form-control" name="expiryYear" th:value="${userPayment.expiryYear}">
+                                                                <option disabled="disabled">--Year--
                                                                 </option>
                                                                 <option value="17">2017</option>
                                                                 <option value="18">2018</option>

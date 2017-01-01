@@ -134,7 +134,7 @@ public class HomeController {
 
         mailSender.send(newEmail);
 
-        model.addAttribute("emailSent", true);
+        model.addAttribute("forgetPasswordEmailSent", true);
 
         return "myAccount";
     }
@@ -146,8 +146,6 @@ public class HomeController {
         model.addAttribute("user", user);
         model.addAttribute("userPaymentList", user.getUserPaymentList());
 
-        model.addAttribute("classActiveEdit", true);
-
         UserShipping userShipping = new UserShipping();
         model.addAttribute("userShipping", userShipping);
 
@@ -157,6 +155,7 @@ public class HomeController {
         List<String> stateList = USConstants.listOfUSStatesCode;
         Collections.sort(stateList);
         model.addAttribute("stateList", stateList);
+        model.addAttribute("classActiveEdit", true);
 
         return "myProfile";
     }
@@ -206,6 +205,8 @@ public class HomeController {
             @ModelAttribute("userBilling") UserBilling userBilling,
             Principal principal, Model model) {
         User user = userService.findByUsername(principal.getName());
+
+
         userService.updateUserBilling(userBilling, userPayment, user);
 
         model.addAttribute("user", user);
@@ -237,22 +238,28 @@ public class HomeController {
             @ModelAttribute("id") Long creditCardId, Principal principal,
             Model model
     ) {
+
         User user = userService.findByUsername(principal.getName());
-        model.addAttribute("user", user);
-
         UserPayment userPayment = userPaymentService.findById(creditCardId);
-        UserBilling userBilling = userPayment.getUserBilling();
-        model.addAttribute("userPayment", userPayment);
-        model.addAttribute("userBilling", userBilling);
 
-        List<String> stateList = USConstants.listOfUSStatesCode;
-        Collections.sort(stateList);
-        model.addAttribute("stateList", stateList);
+        if (user.getId()!=userPayment.getUser().getId()) {
+            return "badRequestPage";
+        } else {
 
-        model.addAttribute("addNewCreditCard", true);
-        model.addAttribute("classActiveBilling", true);
+            model.addAttribute("user", user);
+            UserBilling userBilling = userPayment.getUserBilling();
+            model.addAttribute("userPayment", userPayment);
+            model.addAttribute("userBilling", userBilling);
 
-        return "myProfile";
+            List<String> stateList = USConstants.listOfUSStatesCode;
+            Collections.sort(stateList);
+            model.addAttribute("stateList", stateList);
+
+            model.addAttribute("addNewCreditCard", true);
+            model.addAttribute("classActiveBilling", true);
+
+            return "myProfile";
+        }
     }
 
     @RequestMapping("/removeCreditCard")
@@ -370,6 +377,8 @@ public class HomeController {
 
         model.addAttribute("user", user);
 
+        model.addAttribute("classActiveEdit", true);
+
         return "myProfile";
     }
 
@@ -438,6 +447,8 @@ public class HomeController {
 
         model.addAttribute("updateSuccess", "true");
         model.addAttribute("user", currentUser);
+        model.addAttribute("classActiveEdit", true);
+
 
         UserDetails userDetails = userSecurityService.loadUserByUsername(currentUser.getUsername());
 

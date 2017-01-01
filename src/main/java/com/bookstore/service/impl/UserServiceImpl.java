@@ -64,7 +64,6 @@ public class UserServiceImpl implements UserService{
             shoppingCart.setUser(user);
             user.setShoppingCart(shoppingCart);
 
-            user.setUserBillingList(new ArrayList<UserBilling>());
             user.setUserShippingList(new ArrayList<UserShipping>());
             user.setUserPaymentList(new ArrayList<UserPayment>());
 
@@ -114,11 +113,18 @@ public class UserServiceImpl implements UserService{
     }
 
     public void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user) {
-        userBilling.setUser(user);
         userPayment.setUser(user);
+        userPayment.setUserBilling(userBilling);
         userPayment.setDefaultPayment(true);
-        user.getUserBillingList().add(userBilling);
+        userBilling.setUserPayment(userPayment);
         user.getUserPaymentList().add(userPayment);
+        save(user);
+    }
+
+    public void updateUserShipping(UserShipping userShipping, User user) {
+        userShipping.setUser(user);
+        userShipping.setDefaultShipping(true);
+        user.getUserShippingList().add(userShipping);
         save(user);
     }
 
@@ -135,4 +141,19 @@ public class UserServiceImpl implements UserService{
             }
         }
     }
+
+    public void setUserDefaultShipping(Long userShippingId, User user) {
+        List<UserShipping> userShippingList = (List<UserShipping>) userShippingRepository.findAll();
+
+        for (UserShipping userShipping : userShippingList) {
+            if(userShipping.getId() == userShippingId) {
+                userShipping.setDefaultShipping(true);
+                userShippingRepository.save(userShipping);
+            } else {
+                userShipping.setDefaultShipping(false);
+                userShippingRepository.save(userShipping);
+            }
+        }
+    }
+
 }

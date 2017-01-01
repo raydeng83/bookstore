@@ -25,6 +25,9 @@ public class UserPayment {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userPayment")
+    private UserBilling userBilling;
+
     public Long getId() {
         return id;
     }
@@ -104,4 +107,14 @@ public class UserPayment {
     public void setDefaultPayment(boolean defaultPayment) {
         this.defaultPayment = defaultPayment;
     }
+
+    public UserBilling getUserBilling() {
+        return userBilling;
+    }
+
+    public void setUserBilling(UserBilling userBilling) {
+        this.userBilling = userBilling;
+    }
+
+
 }

@@ -121,6 +121,13 @@ public class UserServiceImpl implements UserService{
         save(user);
     }
 
+    public void updateUserShipping(UserShipping userShipping, User user) {
+        userShipping.setUser(user);
+        userShipping.setDefaultShipping(true);
+        user.getUserShippingList().add(userShipping);
+        save(user);
+    }
+
     public void setUserDefaultPayment(Long userPaymentId, User user) {
         List<UserPayment> userPaymentList = (List<UserPayment>) userPaymentRepository.findAll();
 
@@ -131,6 +138,20 @@ public class UserServiceImpl implements UserService{
             } else {
                 userPayment.setDefaultPayment(false);
                 userPaymentRepository.save(userPayment);
+            }
+        }
+    }
+
+    public void setUserDefaultShipping(Long userShippingId, User user) {
+        List<UserShipping> userShippingList = (List<UserShipping>) userShippingRepository.findAll();
+
+        for (UserShipping userShipping : userShippingList) {
+            if(userShipping.getId() == userShippingId) {
+                userShipping.setDefaultShipping(true);
+                userShippingRepository.save(userShipping);
+            } else {
+                userShipping.setDefaultShipping(false);
+                userShippingRepository.save(userShipping);
             }
         }
     }

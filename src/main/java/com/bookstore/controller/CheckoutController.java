@@ -123,6 +123,10 @@ public class CheckoutController {
             ) {
         ShoppingCart shoppingCart = userService.findByUsername(principal.getName()).getShoppingCart();
 
+        List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
+
+        model.addAttribute("cartItemList", cartItemList);
+
         if (billingSameAsShipping.equals("true")) {
             billingAddress.setStreet1(shippingAddress.getStreet1());
             billingAddress.setStreet2(shippingAddress.getStreet2());

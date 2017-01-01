@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -115,8 +116,23 @@ public class UserServiceImpl implements UserService{
     public void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user) {
         userBilling.setUser(user);
         userPayment.setUser(user);
+        userPayment.setDefaultPayment(true);
         user.getUserBillingList().add(userBilling);
         user.getUserPaymentList().add(userPayment);
         save(user);
+    }
+
+    public void setUserDefaultPayment(Long userPaymentId, User user) {
+        List<UserPayment> userPaymentList = (List<UserPayment>) userPaymentRepository.findAll();
+
+        for (UserPayment userPayment : userPaymentList) {
+            if(userPayment.getId() == userPaymentId) {
+                userPayment.setDefaultPayment(true);
+                userPaymentRepository.save(userPayment);
+            } else {
+                userPayment.setDefaultPayment(false);
+                userPaymentRepository.save(userPayment);
+            }
+        }
     }
 }

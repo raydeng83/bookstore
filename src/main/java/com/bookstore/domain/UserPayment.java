@@ -19,6 +19,7 @@ public class UserPayment {
     private int expiryYear;
     private int cvc;
     private String holderName;
+    private boolean defaultPayment;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -94,5 +95,13 @@ public class UserPayment {
 
     public void setCardName(String cardName) {
         this.cardName = cardName;
+    }
+
+    public boolean isDefaultPayment() {
+        return defaultPayment;
+    }
+
+    public void setDefaultPayment(boolean defaultPayment) {
+        this.defaultPayment = defaultPayment;
     }
 }

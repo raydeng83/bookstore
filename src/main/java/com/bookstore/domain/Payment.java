@@ -17,6 +17,7 @@ public class Payment {
     private int expiryYear;
     private int cvc;
     private String holderName;
+    private boolean defaultPayment;
 
     @OneToOne
     private Order order;
@@ -85,5 +86,11 @@ public class Payment {
         this.order = order;
     }
 
+    public boolean isDefaultPayment() {
+        return defaultPayment;
+    }
 
+    public void setDefaultPayment(boolean defaultPayment) {
+        this.defaultPayment = defaultPayment;
+    }
 }

@@ -219,6 +219,8 @@ public class HomeController {
         Collections.sort(stateList);
         model.addAttribute("stateList", stateList);
         model.addAttribute("listOfShippingAddresses", true);
+        model.addAttribute("userPaymentList", user.getUserPaymentList());
+        model.addAttribute("userShippingList", user.getUserShippingList());
 
         return "myProfile";
     }
@@ -242,6 +244,8 @@ public class HomeController {
         Collections.sort(stateList);
         model.addAttribute("stateList", stateList);
         model.addAttribute("listOfCreditCards", true);
+        model.addAttribute("userPaymentList", user.getUserPaymentList());
+        model.addAttribute("userShippingList", user.getUserShippingList());
 
         return "myProfile";
     }

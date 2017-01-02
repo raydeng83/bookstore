@@ -80,6 +80,7 @@ public class HomeController {
 
         List<Book> bookList = bookService.findAll();
         model.addAttribute("bookList", bookList);
+        model.addAttribute("activeAll", true);
 
         return "bookshelf";
     }

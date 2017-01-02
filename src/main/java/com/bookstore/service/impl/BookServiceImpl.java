@@ -30,4 +30,7 @@ public class BookServiceImpl implements BookService{
         return bookRepository.save(book);
     }
 
+    public List<Book> findByCategory(String category) {
+        return bookRepository.findByCategory(category);
+    }
 }

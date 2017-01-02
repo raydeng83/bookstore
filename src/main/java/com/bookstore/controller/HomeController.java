@@ -62,6 +62,9 @@ public class HomeController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private CartItemService cartItemService;
+
     @RequestMapping("/")
     public String index() {
         return "index";
@@ -165,6 +168,43 @@ public class HomeController {
         model.addAttribute("classActiveEdit", true);
 
         return "myProfile";
+    }
+
+    @RequestMapping("/orderDetail")
+    public String orderDetail(
+            @RequestParam("id") Long orderId,
+            Principal principal, Model model
+    ){
+        User user = userService.findByUsername(principal.getName());
+        Order order = orderService.findOne(orderId);
+
+        if(order.getUser().getId()!=user.getId()) {
+            return "badRequestPage";
+        } else {
+            List<CartItem> cartItemList = cartItemService.findByOrder(order);
+            model.addAttribute("cartItemList", cartItemList);
+            model.addAttribute("user", user);
+            model.addAttribute("order", order);
+
+            model.addAttribute("userPaymentList", user.getUserPaymentList());
+            model.addAttribute("userShippingList", user.getUserShippingList());
+            model.addAttribute("orderList", user.getOrderList());
+
+            UserShipping userShipping = new UserShipping();
+            model.addAttribute("userShipping", userShipping);
+
+
+            model.addAttribute("listOfCreditCards", true);
+            model.addAttribute("listOfShippingAddresses", true);
+
+            List<String> stateList = USConstants.listOfUSStatesCode;
+            Collections.sort(stateList);
+            model.addAttribute("stateList", stateList);
+            model.addAttribute("classActiveOrders", true);
+            model.addAttribute("displayOrderDetail", true);
+
+            return "myProfile";
+        }
     }
 
     @RequestMapping("/listOfCreditCards")

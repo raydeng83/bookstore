@@ -94,10 +94,4 @@ public class ShoppingCartController {
 
         return "forward:/shoppingCart/cart";
     }
-
-//    @RequestParam("/updateShoppingCart")
-//    public String updateShoppingCart() {
-//
-//    }
-
 }

@@ -232,24 +232,4 @@ public class CheckoutController {
             return "checkout";
         }
     }
-
-    @RequestMapping("/orderDetail")
-    public String orderDetail(
-            @RequestParam("id") Long orderId,
-            Principal principal, Model model
-    ){
-        User user = userService.findByUsername(principal.getName());
-        Order order = orderService.findOne(orderId);
-
-        if(order.getUser().getId()!=user.getId()) {
-            return "badRequestPage";
-        } else {
-            List<CartItem> cartItemList = cartItemService.findByOrder(order);
-            model.addAttribute("cartItemList", cartItemList);
-            model.addAttribute("user", user);
-            model.addAttribute("order", order);
-
-            return "orderDetail";
-        }
-    }
 }

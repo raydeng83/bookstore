@@ -99,25 +99,25 @@
                                 <div class="form-group">
                                     <label for="shippingName">Name</label>
                                     <input type="text" class="form-control" id="shippingName"
-                                           placeholder="Recevier Name" th:name="name"
+                                           placeholder="Recevier Name" name="name"
                                            th:value="${shippingAddress.name}"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="shippingAddress">Street Address</label>
                                     <input type="text" class="form-control" id="shippingAddress"
-                                           placeholder="Street Address 1" th:name="street1"
+                                           placeholder="Street Address 1" name="street1"
                                            th:value="${shippingAddress.street1}"/>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Street Address 2"
-                                           th:name="street2" th:value="${shippingAddress.street2}"/>
+                                           name="street2" th:value="${shippingAddress.street2}"/>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <label for="shippingCity">City</label>
                                             <input type="text" class="form-control" id="shippingCity"
-                                                   placeholder="Your Shipping city" th:name="city"
+                                                   placeholder="Your Shipping city" name="city"
                                                    th:value="${shippingAddress.city}"/>
                                         </div>
                                     </div>
@@ -138,7 +138,7 @@
                                         <div class="form-group">
                                             <label for="shippingZipcode">Zipcode</label>
                                             <input type="text" class="form-control" id="shippingZipcode"
-                                                   placeholder="Zipcode" th:name="zipcode"
+                                                   placeholder="Zipcode" name="zipcode"
                                                    th:value="${shippingAddress.zipcode}"/>
                                         </div>
                                     </div>
@@ -188,7 +188,7 @@
                                         <img src="/image/creditcard.png" class="img-responsive"/><br/>
                                         <div class="form-group">
                                             <label for="cardType">Select Card Type:</label>
-                                            <select class="form-control" id="cardType" th:name="type"
+                                            <select class="form-control" id="cardType" name="type"
                                                     th:value="${payment.type}">
                                                 <option value="visa">Visa</option>
                                                 <option value="mastercard">Mastercard</option>
@@ -200,7 +200,7 @@
                                         <div class="form-group">
                                             <label for="cardHolder">Card Holder</label>
                                             <input type="text" class="form-control" id="cardHolder"
-                                                   placeholder="Card Holder Name" th:name="holderName"
+                                                   placeholder="Card Holder Name" name="holderName"
                                                    th:value="${payment.holderName}"/>
                                         </div>
 
@@ -213,7 +213,7 @@
                                                         class="form-control"
                                                         name="cardNumber"
                                                         placeholder="Valid Card Number"
-                                                        th:name="cardNumber" th:value="${payment.cardNumber}"
+                                                        th:value="${payment.cardNumber}"
                                                 />
                                                 <span class="input-group-addon"><i class="fa fa-credit-card"
                                                                                    aria-hidden="true"></i></span>
@@ -271,7 +271,7 @@
                                                     class="form-control"
                                                     name="cardCVC"
                                                     placeholder="CVC"
-                                                    th:name="cvc" th:value="${payment.cvc}"
+                                                    th:value="${payment.cvc}"
                                             />
                                         </div>
                                     </div>
@@ -293,18 +293,18 @@
                                 <div class="form-group">
                                     <label for="billingName">Name</label>
                                     <input type="text" class="form-control" id="billingName"
-                                           placeholder="Recevier Name" th:name="name"
+                                           placeholder="Recevier Name" name="name"
                                            th:value="${billingAddress.name}"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="billingAddress">Street Address</label>
                                     <input type="text" id="billingAddress" class="form-control billingAddress"
-                                           placeholder="Street Address 1" th:name="street1"
+                                           placeholder="Street Address 1" name="street1"
                                            th:value="${billingAddress.street1}"/>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control billingAddress"
-                                           placeholder="Street Address 2" th:name="street2"
+                                           placeholder="Street Address 2" name="street2"
                                            th:value="${billingAddress.street2}"/>
                                 </div>
                                 <div class="row">
@@ -312,7 +312,7 @@
                                         <div class="form-group">
                                             <label for="billingCity">City</label>
                                             <input type="text" class="form-control billingAddress" id="billingCity"
-                                                   placeholder="Your city" th:name="city"
+                                                   placeholder="Your city" name="city"
                                                    th:value="${billingAddress.city}"/>
                                         </div>
                                     </div>
@@ -335,7 +335,7 @@
                                             <label for="billingZipcode">Zipcode</label>
                                             <input type="text" class="form-control billingAddress"
                                                    id="billingZipcode"
-                                                   placeholder="Zipcode" th:name="zipcode"
+                                                   placeholder="Zipcode" name="zipcode"
                                                    th:value="${billingAddress.zipcode}"/>
                                         </div>
                                     </div>

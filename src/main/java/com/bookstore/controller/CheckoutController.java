@@ -65,6 +65,11 @@ public class CheckoutController {
 
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(user.getShoppingCart());
 
+        if (cartItemList.size()==0) {
+            model.addAttribute("emptyCart", true);
+            return "forward:/shoppingCart/cart";
+        }
+
         for (CartItem cartItem : cartItemList) {
             if(cartItem.getBook().getInStockNumber()<cartItem.getQty()) {
                 model.addAttribute("notEnoughStock", true);
@@ -124,6 +129,7 @@ public class CheckoutController {
         model.addAttribute("cartItemList", cartItemList);
 
         if (billingSameAsShipping.equals("true")) {
+            billingAddress.setBillingAddressName(shippingAddress.getShippingAddressName());
             billingAddress.setBillingAddressStreet1(shippingAddress.getShippingAddressStreet1());
             billingAddress.setBillingAddressStreet2(shippingAddress.getShippingAddressStreet2());
             billingAddress.setBillingAddressCity(shippingAddress.getShippingAddressCity());

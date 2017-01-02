@@ -136,7 +136,24 @@
                         <div class="panel panel-default panel-faq" style="border: none;">
 
                             <div class="panel-body" style="background-color: #ededed; margin-top: 20px;">
-
+                                <table class="table table-sm table-inverse">
+                                    <thead>
+                                    <tr>
+                                        <th>Order Date</th>
+                                        <th>Order Number</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="order : ${orderList}">
+                                        <td data-th-text="${order.orderDate}">...</td>
+                                        <td data-th-text="${order.id}">...</td>
+                                        <td data-th-text="${order.orderTotal}">...</td>
+                                        <td data-th-text="${order.orderStatus}">...</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
@@ -173,14 +190,17 @@
                                             <tbody>
                                             <tr th:each="userPayment : ${userPaymentList}">
                                                 <td>
-                                                    <input type="radio" name="defaultUserPaymentId" th:value="${userPayment.id}"
+                                                    <input type="radio" name="defaultUserPaymentId"
+                                                           th:value="${userPayment.id}"
                                                            th:checked="${userPayment.defaultPayment}"/>
                                                     <span>default</span>
                                                 </td>
                                                 <td th:text="${userPayment.cardName}">...</td>
                                                 <td>
-                                                    <a th:href="@{/updateCreditCard(id=${userPayment.id})}"><i class="fa fa-pencil"></i></a>
-                                                    <a th:href="@{/removeCreditCard(id=${userPayment.id})}"><i class="fa fa-times"></i></a>
+                                                    <a th:href="@{/updateCreditCard(id=${userPayment.id})}"><i
+                                                            class="fa fa-pencil"></i></a>
+                                                    <a th:href="@{/removeCreditCard(id=${userPayment.id})}"><i
+                                                            class="fa fa-times"></i></a>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -300,7 +320,8 @@
                                                     <label>Expiration Date</label>
                                                     <div class="row">
                                                         <div class="col-xs-6">
-                                                            <select class="form-control" name="expiryMonth" th:value="${userPayment.expiryMonth}">
+                                                            <select class="form-control" name="expiryMonth"
+                                                                    th:value="${userPayment.expiryMonth}">
                                                                 <option disabled="disabled">
                                                                     --Month--
                                                                 </option>
@@ -319,7 +340,8 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-xs-6">
-                                                            <select class="form-control" name="expiryYear" th:value="${userPayment.expiryYear}">
+                                                            <select class="form-control" name="expiryYear"
+                                                                    th:value="${userPayment.expiryYear}">
                                                                 <option disabled="disabled">--Year--
                                                                 </option>
                                                                 <option value="17">2017</option>
@@ -371,11 +393,13 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item active">
                                         <a th:href="@{/listOfShippingAddresses}"
-                                           th:style="${listOfShippingAddresses}? 'color:red;'">List of Shipping Addresses</a>
+                                           th:style="${listOfShippingAddresses}? 'color:red;'">List of Shipping
+                                            Addresses</a>
                                     </li>
                                     <li class="breadcrumb-item">
                                         <a th:href="@{/addNewShippingAddress}"
-                                           th:style="${addNewShippingAddress}? 'color:red;'">Add(Update) Shipping Address</a>
+                                           th:style="${addNewShippingAddress}? 'color:red;'">Add(Update) Shipping
+                                            Address</a>
                                     </li>
                                 </ol>
 
@@ -392,14 +416,19 @@
                                             <tbody>
                                             <tr th:each="userShipping : ${userShippingList}">
                                                 <td>
-                                                    <input type="radio" name="defaultShippingAddressId" th:value="${userShipping.id}"
+                                                    <input type="radio" name="defaultShippingAddressId"
+                                                           th:value="${userShipping.id}"
                                                            th:checked="${userShipping.defaultShipping}"/>
                                                     <span>default</span>
                                                 </td>
-                                                <td th:text="${userShipping.street1}+', '+${userShipping.city}+', '+${userShipping.state}">...</td>
+                                                <td th:text="${userShipping.street1}+', '+${userShipping.city}+', '+${userShipping.state}">
+                                                    ...
+                                                </td>
                                                 <td>
-                                                    <a th:href="@{/updateUserShipping(id=${userShipping.id})}"><i class="fa fa-pencil"></i></a>
-                                                    <a th:href="@{/removeUserShipping(id=${userShipping.id})}"><i class="fa fa-times"></i></a>
+                                                    <a th:href="@{/updateUserShipping(id=${userShipping.id})}"><i
+                                                            class="fa fa-pencil"></i></a>
+                                                    <a th:href="@{/removeUserShipping(id=${userShipping.id})}"><i
+                                                            class="fa fa-times"></i></a>
                                                 </td>
                                             </tr>
                                             </tbody>

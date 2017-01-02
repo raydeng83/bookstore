@@ -136,7 +136,9 @@ public class CheckoutController {
             billingAddress.setZipcode(shippingAddress.getZipcode());
         }
 
-        orderService.createOrder(shoppingCart,shippingAddress,billingAddress,payment,shippingMethod);
+        User user = userService.findByUsername(principal.getName());
+
+        orderService.createOrder(shoppingCart,shippingAddress,billingAddress,payment,shippingMethod, user);
 
         shoppingCartService.clearShoppingCart(shoppingCart);
 
@@ -233,5 +235,14 @@ public class CheckoutController {
 
             return "checkout";
         }
+    }
+
+    @RequestMapping("/orderDetail")
+    public String orderDetail(
+            Principal principal, Model model
+    ){
+        User user = userService.findByUsername(principal.getName());
+        model.addAttribute("user", user);
+        return "orderDetail";
     }
 }

@@ -11,6 +11,7 @@ public interface OrderService {
             ShippingAddress shippingAddress,
             BillingAddress billingAddress,
             Payment payment,
-            String shippingMethod
+            String shippingMethod,
+            User user
     );
 }

@@ -41,7 +41,8 @@ public class OrderServiceImpl implements OrderService {
             ShippingAddress shippingAddress,
             BillingAddress billingAddress,
             Payment payment,
-            String shippingMethod
+            String shippingMethod,
+            User user
             ) {
         Order order = new Order();
         order.setBillingAddress(billingAddress);
@@ -62,8 +63,10 @@ public class OrderServiceImpl implements OrderService {
         shippingAddress.setOrder(order);
         billingAddress.setOrder(order);
         payment.setOrder(order);
+        order.setUser(user);
         order = orderRepository.save(order);
 
         return order;
     }
+
 }

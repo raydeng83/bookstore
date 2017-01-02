@@ -12,14 +12,14 @@ public class UserShipping {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
-    private String street1;
-    private String street2;
-    private String city;
-    private String state;
-    private String country;
-    private String zipcode;
-    private boolean defaultShipping;
+    private String userShippingName;
+    private String userShippingStreet1;
+    private String userShippingStreet2;
+    private String userShippingCity;
+    private String userShippingState;
+    private String userShippingCountry;
+    private String userShippingZipcode;
+    private boolean userShippingDefault;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -33,52 +33,52 @@ public class UserShipping {
         this.id = id;
     }
 
-    public String getStreet1() {
-        return street1;
+    public String getUserShippingStreet1() {
+        return userShippingStreet1;
     }
 
-    public void setStreet1(String street1) {
-        this.street1 = street1;
+    public void setUserShippingStreet1(String userShippingStreet1) {
+        this.userShippingStreet1 = userShippingStreet1;
     }
 
-    public String getStreet2() {
-        return street2;
+    public String getUserShippingStreet2() {
+        return userShippingStreet2;
     }
 
-    public void setStreet2(String street2) {
-        this.street2 = street2;
+    public void setUserShippingStreet2(String userShippingStreet2) {
+        this.userShippingStreet2 = userShippingStreet2;
     }
 
-    public String getCity() {
-        return city;
+    public String getUserShippingCity() {
+        return userShippingCity;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setUserShippingCity(String userShippingCity) {
+        this.userShippingCity = userShippingCity;
     }
 
-    public String getState() {
-        return state;
+    public String getUserShippingState() {
+        return userShippingState;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setUserShippingState(String userShippingState) {
+        this.userShippingState = userShippingState;
     }
 
-    public String getCountry() {
-        return country;
+    public String getUserShippingCountry() {
+        return userShippingCountry;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setUserShippingCountry(String userShippingCountry) {
+        this.userShippingCountry = userShippingCountry;
     }
 
-    public String getZipcode() {
-        return zipcode;
+    public String getUserShippingZipcode() {
+        return userShippingZipcode;
     }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setUserShippingZipcode(String userShippingZipcode) {
+        this.userShippingZipcode = userShippingZipcode;
     }
 
     public User getUser() {
@@ -89,19 +89,19 @@ public class UserShipping {
         this.user = user;
     }
 
-    public boolean isDefaultShipping() {
-        return defaultShipping;
+    public boolean isUserShippingDefault() {
+        return userShippingDefault;
     }
 
-    public void setDefaultShipping(boolean defaultShipping) {
-        this.defaultShipping = defaultShipping;
+    public void setUserShippingDefault(boolean userShippingDefault) {
+        this.userShippingDefault = userShippingDefault;
     }
 
-    public String getName() {
-        return name;
+    public String getUserShippingName() {
+        return userShippingName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserShippingName(String userShippingName) {
+        this.userShippingName = userShippingName;
     }
 }

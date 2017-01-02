@@ -13,14 +13,14 @@ import org.springframework.stereotype.Service;
 public class ShippingAddressServiceImpl implements ShippingAddressService{
 
     public ShippingAddress setByUserShipping(UserShipping userShipping, ShippingAddress shippingAddress) {
-        shippingAddress.setName(userShipping.getName());
-        shippingAddress.setStreet1(userShipping.getStreet1());
-        shippingAddress.setStreet2(userShipping.getStreet2());
-        shippingAddress.setCity(userShipping.getCity());
-        shippingAddress.setState(userShipping.getState());
-        shippingAddress.setCity(userShipping.getCity());
-        shippingAddress.setCountry(userShipping.getCountry());
-        shippingAddress.setZipcode(userShipping.getZipcode());
+        shippingAddress.setShippingAddressName(userShipping.getUserShippingName());
+        shippingAddress.setShippingAddressStreet1(userShipping.getUserShippingStreet1());
+        shippingAddress.setShippingAddressStreet2(userShipping.getUserShippingStreet2());
+        shippingAddress.setShippingAddressCity(userShipping.getUserShippingCity());
+        shippingAddress.setShippingAddressState(userShipping.getUserShippingState());
+        shippingAddress.setShippingAddressCity(userShipping.getUserShippingCity());
+        shippingAddress.setShippingAddressCountry(userShipping.getUserShippingCountry());
+        shippingAddress.setShippingAddressZipcode(userShipping.getUserShippingZipcode());
 
         return shippingAddress;
     }

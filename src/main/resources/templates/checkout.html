@@ -85,7 +85,7 @@
                                     </thead>
                                     <tbody>
                                     <tr th:each="userShipping : ${userShippingList}">
-                                        <td th:text="${userShipping.street1}+' '+${userShipping.street2}+', '+${userShipping.city}+', '+${userShipping.state}">
+                                        <td th:text="${userShipping.userShippingStreet1}+' '+${userShipping.userShippingStreet2}+', '+${userShipping.userShippingCity}+', '+${userShipping.userShippingState}">
                                             ...
                                         </td>
                                         <td>
@@ -99,37 +99,37 @@
                                 <div class="form-group">
                                     <label for="shippingName">Name</label>
                                     <input type="text" class="form-control" id="shippingName"
-                                           placeholder="Recevier Name" name="name"
-                                           th:value="${shippingAddress.name}"/>
+                                           placeholder="Recevier Name" name="shippingAddressName"
+                                           th:value="${shippingAddress.shippingAddressName}"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="shippingAddress">Street Address</label>
                                     <input type="text" class="form-control" id="shippingAddress"
-                                           placeholder="Street Address 1" name="street1"
-                                           th:value="${shippingAddress.street1}"/>
+                                           placeholder="Street Address 1" name="shippingAddressStreet1"
+                                           th:value="${shippingAddress.shippingAddressStreet1}"/>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Street Address 2"
-                                           name="street2" th:value="${shippingAddress.street2}"/>
+                                           name="shippingAddressStreet2" th:value="${shippingAddress.shippingAddressStreet2}"/>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <label for="shippingCity">City</label>
                                             <input type="text" class="form-control" id="shippingCity"
-                                                   placeholder="Your Shipping city" name="city"
-                                                   th:value="${shippingAddress.city}"/>
+                                                   placeholder="Your Shipping shippingAddressCity" name="shippingAddressCity"
+                                                   th:value="${shippingAddress.shippingAddressCity}"/>
                                         </div>
                                     </div>
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <label for="shippingState">State</label>
-                                            <select id="shippingState" class="form-control">
+                                            <select id="shippingState" class="form-control" name="shippingAddressState" th:value="${shippingAddress.shippingAddressState}">
                                                 <option value="" disabled="disabled">Please select
                                                     an option...
                                                 </option>
-                                                <option th:each="state : ${stateList}"
-                                                        th:text="${state}">...
+                                                <option th:each="shippingAddressState : ${stateList}"
+                                                        th:text="${shippingAddressState}">...
                                                 </option>
                                             </select>
                                         </div>
@@ -138,8 +138,8 @@
                                         <div class="form-group">
                                             <label for="shippingZipcode">Zipcode</label>
                                             <input type="text" class="form-control" id="shippingZipcode"
-                                                   placeholder="Zipcode" name="zipcode"
-                                                   th:value="${shippingAddress.zipcode}"/>
+                                                   placeholder="Zipcode" name="shippingAddressZipcode"
+                                                   th:value="${shippingAddress.shippingAddressZipcode}"/>
                                         </div>
                                     </div>
                                 </div>
@@ -270,8 +270,8 @@
                                                     type="tel"
                                                     class="form-control"
                                                     name="cardCVC"
-                                                    placeholder="CVC"
                                                     th:value="${payment.cvc}"
+                                                    placeholder="CVC"
                                             />
                                         </div>
                                     </div>
@@ -286,46 +286,46 @@
                                 <div class="checkbox">
                                     <label>
                                         <input id="theSameAsShippingAddress" type="checkbox"
-                                               name="billingSameAsShipping" value="true"/> The same as shipping
+                                               shippingAddressName="billingSameAsShipping" value="true"/> The same as shipping
                                         address
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     <label for="billingName">Name</label>
                                     <input type="text" class="form-control" id="billingName"
-                                           placeholder="Recevier Name" name="name"
-                                           th:value="${billingAddress.name}"/>
+                                           placeholder="Recevier Name" name="billingAddressName"
+                                           th:value="${billingAddress.billingAddressName}"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="billingAddress">Street Address</label>
                                     <input type="text" id="billingAddress" class="form-control billingAddress"
-                                           placeholder="Street Address 1" name="street1"
-                                           th:value="${billingAddress.street1}"/>
+                                           placeholder="Street Address 1" name="billingAddressStreet1"
+                                           th:value="${billingAddress.billingAddressStreet1}"/>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control billingAddress"
-                                           placeholder="Street Address 2" name="street2"
-                                           th:value="${billingAddress.street2}"/>
+                                           placeholder="Street Address 2" name="billingAddressStreet2"
+                                           th:value="${billingAddress.billingAddressStreet2}"/>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <label for="billingCity">City</label>
                                             <input type="text" class="form-control billingAddress" id="billingCity"
-                                                   placeholder="Your city" name="city"
-                                                   th:value="${billingAddress.city}"/>
+                                                   placeholder="Your shippingAddressCity" name="billingAddressCity"
+                                                   th:value="${billingAddress.billingAddressCity}"/>
                                         </div>
                                     </div>
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <label for="billingState">State</label>
                                             <select id="billingState" class="form-control billingAddress"
-                                                    name="state" th:value="${billingAddress.state}">
+                                                    name="billingAddressState" th:value="${billingAddress.billingAddressState}">
                                                 <option value="" disabled="disabled">Please
                                                     select an option...
                                                 </option>
-                                                <option th:each="state : ${stateList}"
-                                                        th:text="${state}">...
+                                                <option th:each="shippingAddressState : ${stateList}"
+                                                        th:text="${shippingAddressState}">...
                                                 </option>
                                             </select>
                                         </div>
@@ -335,8 +335,8 @@
                                             <label for="billingZipcode">Zipcode</label>
                                             <input type="text" class="form-control billingAddress"
                                                    id="billingZipcode"
-                                                   placeholder="Zipcode" name="zipcode"
-                                                   th:value="${billingAddress.zipcode}"/>
+                                                   placeholder="Zipcode" name="billingAddressZipcode"
+                                                   th:value="${billingAddress.billingAddressZipcode}"/>
                                         </div>
                                     </div>
                                 </div>

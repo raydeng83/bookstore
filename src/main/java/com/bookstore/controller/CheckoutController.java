@@ -79,7 +79,7 @@ public class CheckoutController {
         model.addAttribute("userPaymentList", userPaymentList);
 
         for (UserShipping userShipping : userShippingList) {
-            if(userShipping.isDefaultShipping()) {
+            if(userShipping.isUserShippingDefault()) {
                 shippingAddressService.setByUserShipping(userShipping,shippingAddress);
             }
         }
@@ -124,12 +124,12 @@ public class CheckoutController {
         model.addAttribute("cartItemList", cartItemList);
 
         if (billingSameAsShipping.equals("true")) {
-            billingAddress.setStreet1(shippingAddress.getStreet1());
-            billingAddress.setStreet2(shippingAddress.getStreet2());
-            billingAddress.setCity(shippingAddress.getCity());
-            billingAddress.setState(shippingAddress.getState());
-            billingAddress.setCountry(shippingAddress.getCountry());
-            billingAddress.setZipcode(shippingAddress.getZipcode());
+            billingAddress.setBillingAddressStreet1(shippingAddress.getShippingAddressStreet1());
+            billingAddress.setBillingAddressStreet2(shippingAddress.getShippingAddressStreet2());
+            billingAddress.setBillingAddressCity(shippingAddress.getShippingAddressCity());
+            billingAddress.setBillingAddressState(shippingAddress.getShippingAddressState());
+            billingAddress.setBillingAddressCountry(shippingAddress.getShippingAddressCountry());
+            billingAddress.setBillingAddressZipcode(shippingAddress.getShippingAddressZipcode());
         }
 
         User user = userService.findByUsername(principal.getName());

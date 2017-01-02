@@ -31,11 +31,11 @@
                             <div class="panel panel-default height">
                                 <div class="panel-heading"><strong>Billing Details</strong></div>
                                 <div class="panel-body">
-                                    <span th:text="${order.billingAddress.name}"></span><br/>
-                                    <span th:text="${order.billingAddress.street1}+' '+${order.billingAddress.street2}"></span><br/>
-                                    <span th:text="${order.billingAddress.city}"></span><br/>
-                                    <span th:text="${order.billingAddress.state}"></span><br/>
-                                    <span th:text="${order.billingAddress.zipcode}"></span><br/>
+                                    <span th:text="${order.billingAddress.shippingAddressName}"></span><br/>
+                                    <span th:text="${order.billingAddress.shippingAddressStreet1}+' '+${order.billingAddress.shippingAddressStreet2}"></span><br/>
+                                    <span th:text="${order.billingAddress.shippingAddressCity}"></span><br/>
+                                    <span th:text="${order.billingAddress.shippingAddressState}"></span><br/>
+                                    <span th:text="${order.billingAddress.shippingAddressZipcode}"></span><br/>
                                 </div>
                             </div>
                         </div>
@@ -54,11 +54,11 @@
                             <div class="panel panel-default height">
                                 <div class="panel-heading"><strong>Shipping Address</strong></div>
                                 <div class="panel-body">
-                                    <span th:text="${order.shippingAddress.name}">David Peere:</span><br/>
-                                    <span th:text="${order.shippingAddress.street1}+' '+${order.shippingAddress.street2}"></span><br/>
-                                    <span th:text="${order.shippingAddress.city}"></span><br/>
-                                    <span th:text="${order.shippingAddress.state}"></span><br/>
-                                    <span th:text="${order.shippingAddress.zipcode}"></span><br/>
+                                    <span th:text="${order.shippingAddress.shippingAddressName}">David Peere:</span><br/>
+                                    <span th:text="${order.shippingAddress.shippingAddressStreet1}+' '+${order.shippingAddress.shippingAddressStreet2}"></span><br/>
+                                    <span th:text="${order.shippingAddress.shippingAddressCity}"></span><br/>
+                                    <span th:text="${order.shippingAddress.shippingAddressState}"></span><br/>
+                                    <span th:text="${order.shippingAddress.shippingAddressZipcode}"></span><br/>
                                 </div>
                             </div>
                         </div>

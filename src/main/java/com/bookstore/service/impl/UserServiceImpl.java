@@ -1,6 +1,5 @@
 package com.bookstore.service.impl;
 
-import com.bookstore.config.SecurityUtility;
 import com.bookstore.domain.*;
 import com.bookstore.domain.security.PasswordResetToken;
 import com.bookstore.domain.security.UserRole;
@@ -9,12 +8,10 @@ import com.bookstore.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -123,7 +120,7 @@ public class UserServiceImpl implements UserService{
 
     public void updateUserShipping(UserShipping userShipping, User user) {
         userShipping.setUser(user);
-        userShipping.setDefaultShipping(true);
+        userShipping.setUserShippingDefault(true);
         user.getUserShippingList().add(userShipping);
         save(user);
     }
@@ -147,10 +144,10 @@ public class UserServiceImpl implements UserService{
 
         for (UserShipping userShipping : userShippingList) {
             if(userShipping.getId() == userShippingId) {
-                userShipping.setDefaultShipping(true);
+                userShipping.setUserShippingDefault(true);
                 userShippingRepository.save(userShipping);
             } else {
-                userShipping.setDefaultShipping(false);
+                userShipping.setUserShippingDefault(false);
                 userShippingRepository.save(userShipping);
             }
         }

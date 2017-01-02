@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>bookstore</name>
+	<shippingAddressName>bookstore</shippingAddressName>
 	<description>This is an online bookstore</description>
 
 	<parent>

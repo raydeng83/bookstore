@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>adminportal</name>
+	<shippingAddressName>adminportal</shippingAddressName>
 	<description>Admin Portal for Bookstore</description>
 
 	<parent>

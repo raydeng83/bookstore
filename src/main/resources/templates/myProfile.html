@@ -11,7 +11,7 @@
                     <h2 class="section-headline"><span th:text="${#strings.toUpperCase(user.username)}"></span></h2>
                 </div>
                 <div class="col-xs-4">
-                    <img src="/image/logo.png" class="img-responsive"/>
+                    <a th:href="@{/}"><img src="/image/logo.png" class="img-responsive"/></a>
                 </div>
             </div>
             <hr style="position: absolute; width:100%; height:6px; background-color: #333; z-index: -1; margin-top: -80px;"/>
@@ -67,7 +67,7 @@
                                 </div>
 
                                 <form th:action="@{/updateUserInfo}" method="post">
-                                    <input type="hidden" shippingAddressName="id" th:value="${user.id}"/>
+                                    <input type="hidden" name="id" th:value="${user.id}"/>
 
                                     <div class="bg-info" th:if="${updateUserInfo}">User info updated.</div>
 
@@ -75,12 +75,12 @@
                                         <div class="row">
                                             <div class="col-xs-6">
                                                 <label for="firstName">First Name</label>
-                                                <input type="text" class="form-control" id="firstName" shippingAddressName="firstName"
+                                                <input type="text" class="form-control" id="firstName" name="firstName"
                                                        th:value="${user.firstName}"/>
                                             </div>
                                             <div class="col-xs-6">
                                                 <label for="lastName">Last Name</label>
-                                                <input type="text" class="form-control" id="lastName" shippingAddressName="lastName"
+                                                <input type="text" class="form-control" id="lastName" name="lastName"
                                                        th:value="${user.lastName}"/>
                                             </div>
                                         </div>
@@ -89,11 +89,11 @@
                                         <label for="username">Username *</label>&nbsp;<span th:if="${usernameExists}"
                                                                                             style="color:red;">Username already exists. Choose a different one.</span>
                                         <input required="required" type="text" class="form-control" id="username"
-                                               shippingAddressName="username" th:value="${user.username}"/>
+                                               name="username" th:value="${user.username}"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="currentPassword">Current password</label>
-                                        <input type="password" class="form-control" id="currentPassword" shippingAddressName="password"
+                                        <input type="password" class="form-control" id="currentPassword" name="password"
                                                th:value="${currentPassword}"/>
                                         <p style="color: #828282;"> Enter your current password to change the E-mail
                                             address or Password.</p>
@@ -102,7 +102,7 @@
                                         <label for="email">E-mail Address *</label>&nbsp;<span th:if="${emailExists}"
                                                                                                style="color:red;">Email already exists. Choose a different one.</span>
                                         <input required="required" type="text" class="form-control" id="email"
-                                               shippingAddressName="email" th:value="${user.email}"/>
+                                               name="email" th:value="${user.email}"/>
                                         <p style="color: #828282;"> A valid e-mail address. All e-mails from the system
                                             will be sent to this address. The e-mail address is not made public and will
                                             only be used if you wish to receive a new password or wish to receive
@@ -112,7 +112,7 @@
                                         <label for="txtNewPassword">Password</label>&nbsp;<span id="checkPasswordMatch"
                                                                                                 style="color:red;"></span>
                                         <input type="password" class="form-control" id="txtNewPassword"
-                                               shippingAddressName="newPassword"/>
+                                               name="newPassword"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="txtConfirmPassword">Confirm Password</label>

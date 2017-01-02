@@ -386,7 +386,7 @@
                                                             an option...
                                                         </option>
                                                         <option th:each="state : ${stateList}"
-                                                                th:text="${state}">...
+                                                                th:text="${state}" th:selected="(${userBilling.userBillingState}== ${state})">...
                                                         </option>
                                                     </select>
                                                 </div>
@@ -604,13 +604,13 @@
                                             <div class="col-xs-4">
                                                 <div class="form-group">
                                                     <label for="shippingState">State</label>
-                                                    <select id="shippingState" class="form-control" name="userShippingState">
+                                                    <select id="shippingState" class="form-control" name="userShippingState" th:value="${userShipping.userShippingState}">
                                                         <option value="" disabled="disabled">Please
                                                             select
                                                             an option...
                                                         </option>
-                                                        <option th:each="userShippingState : ${stateList}"
-                                                                th:text="${userShippingState}">...
+                                                        <option th:each="state : ${stateList}"
+                                                                th:text="${state}" th:selected="(${userShipping.userShippingState}== ${state})">...
                                                         </option>
                                                     </select>
                                                 </div>

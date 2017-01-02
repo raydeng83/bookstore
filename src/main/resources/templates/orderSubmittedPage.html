@@ -40,10 +40,6 @@
                     <a th:href="@{/bookDetail?id=}+${cartItem.book.id}"><h4 th:text="${cartItem.book.title}">
                         ...</h4></a>
                     <p th:if="${cartItem.book.inStockNumber&gt;10}" style="color: green;">In Stock</p>
-                    <p th:if="${cartItem.book.inStockNumber&lt;10 and cartItem.book.inStockNumber&gt;0}"
-                       style="color: green;"> Only <span th:text="${cartItem.book.inStockNumber}"></span> In
-                        Stock</p>
-                    <p style="color: darkred;" th:if="${cartItem.book.inStockNumber}==0">Product Unavailable</p>
                 </div>
                 <div class="col-xs-2">
                     <h5 style="color: #db3208; font-size: large;">$<span th:text="${cartItem.book.ourPrice}"
@@ -55,6 +51,7 @@
     </div>
 
 </div>
+<div th:replace="common/header :: footer"/>
 
 <div th:replace="common/header :: body-bottom-scripts"/>
 

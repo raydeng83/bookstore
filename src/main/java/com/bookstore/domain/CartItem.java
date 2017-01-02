@@ -34,7 +34,6 @@ public class CartItem {
     @JoinColumn(name = "order_id")
     private Order order;
 
-
     public Long getId() {
         return id;
     }
@@ -81,5 +80,13 @@ public class CartItem {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

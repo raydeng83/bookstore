@@ -52,6 +52,10 @@ public class OrderServiceImpl implements OrderService {
 
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
 
+        for (CartItem cartItem : cartItemList) {
+            cartItem.setOrder(order);
+        }
+
         order.setCartItemList(cartItemList);
         order.setOrderDate(Calendar.getInstance().getTime());
         order.setOrderTotal(shoppingCart.getGrandTotal());

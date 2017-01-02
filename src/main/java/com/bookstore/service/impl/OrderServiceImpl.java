@@ -5,6 +5,7 @@ import com.bookstore.repository.BillingAddressRepository;
 import com.bookstore.repository.OrderRepository;
 import com.bookstore.repository.PaymentRepository;
 import com.bookstore.repository.ShippingAddressRepository;
+import com.bookstore.service.BookService;
 import com.bookstore.service.CartItemService;
 import com.bookstore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private CartItemService cartItemService;
 
+    @Autowired
+    private BookService bookService;
+
     public Order createOrder(
             ShoppingCart shoppingCart,
             ShippingAddress shippingAddress,
@@ -54,7 +58,10 @@ public class OrderServiceImpl implements OrderService {
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
 
         for (CartItem cartItem : cartItemList) {
+            Book book = cartItem.getBook();
             cartItem.setOrder(order);
+            book.setInStockNumber(book.getInStockNumber()-cartItem.getQty());
+//            bookService.save(book);
         }
 
         order.setCartItemList(cartItemList);

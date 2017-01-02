@@ -26,4 +26,8 @@ public class BookServiceImpl implements BookService{
         return bookRepository.findOne(id);
     }
 
+    public Book save(Book book) {
+        return bookRepository.save(book);
+    }
+
 }

@@ -33,4 +33,8 @@ public class BookServiceImpl implements BookService{
     public List<Book> findByCategory(String category) {
         return bookRepository.findByCategory(category);
     }
+
+    public List<Book> blurrySearch(String title) {
+        return bookRepository.findByTitleContaining(title);
+    }
 }

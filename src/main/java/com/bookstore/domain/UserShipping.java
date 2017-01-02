@@ -12,6 +12,7 @@ public class UserShipping {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String name;
     private String street1;
     private String street2;
     private String city;
@@ -96,5 +97,11 @@ public class UserShipping {
         this.defaultShipping = defaultShipping;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 }

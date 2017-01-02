@@ -69,4 +69,7 @@ public class OrderServiceImpl implements OrderService {
         return order;
     }
 
+    public Order findOne(Long id) {
+        return orderRepository.findOne(id);
+    }
 }

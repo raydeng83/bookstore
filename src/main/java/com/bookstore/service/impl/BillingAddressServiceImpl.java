@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class BillingAddressServiceImpl implements BillingAddressService {
 
     public BillingAddress setByUserBilling(UserBilling userBilling, BillingAddress billingAddress){
+        billingAddress.setName(userBilling.getName());
         billingAddress.setStreet1(userBilling.getStreet1());
         billingAddress.setStreet2(userBilling.getStreet2());
         billingAddress.setCity(userBilling.getCity());

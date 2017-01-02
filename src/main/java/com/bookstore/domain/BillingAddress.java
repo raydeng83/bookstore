@@ -12,6 +12,7 @@ public class BillingAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String name;
     private String street1;
     private String street2;
     private String city;
@@ -84,5 +85,13 @@ public class BillingAddress {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

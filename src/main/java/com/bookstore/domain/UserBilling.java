@@ -12,6 +12,7 @@ public class UserBilling {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String name;
     private String street1;
     private String street2;
     private String city;
@@ -86,5 +87,11 @@ public class UserBilling {
         this.userPayment = userPayment;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 }

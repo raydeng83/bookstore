@@ -14,4 +14,6 @@ public interface OrderService {
             String shippingMethod,
             User user
     );
+
+    Order findOne(Long id);
 }

@@ -4,20 +4,16 @@ import com.bookstore.domain.*;
 import com.bookstore.service.*;
 import com.bookstore.utility.USConstants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.thymeleaf.expression.Calendars;
 
 import java.security.Principal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -239,10 +235,21 @@ public class CheckoutController {
 
     @RequestMapping("/orderDetail")
     public String orderDetail(
+            @RequestParam("id") Long orderId,
             Principal principal, Model model
     ){
         User user = userService.findByUsername(principal.getName());
-        model.addAttribute("user", user);
-        return "orderDetail";
+        Order order = orderService.findOne(orderId);
+
+        if(order.getUser().getId()!=user.getId()) {
+            return "badRequestPage";
+        } else {
+            List<CartItem> cartItemList = cartItemService.findByOrder(order);
+            model.addAttribute("cartItemList", cartItemList);
+            model.addAttribute("user", user);
+            model.addAttribute("order", order);
+
+            return "orderDetail";
+        }
     }
 }

@@ -2,8 +2,10 @@ package com.bookstore.controller;
 
 import com.bookstore.domain.*;
 import com.bookstore.service.*;
+import com.bookstore.utility.MailConstructor;
 import com.bookstore.utility.USConstants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +17,7 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by z00382545 on 12/27/16.
@@ -27,6 +30,8 @@ public class CheckoutController {
     private BillingAddress billingAddress = new BillingAddress();
     private Payment payment = new Payment();
 
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Autowired
     private UserService userService;
@@ -54,6 +59,9 @@ public class CheckoutController {
 
     @Autowired
     private BillingAddressService billingAddressService;
+
+    @Autowired
+    private MailConstructor mailConstructor;
 
     @RequestMapping("/checkout")
     public String checkout(@RequestParam("id") Long cartId, Model model, Principal principal) {
@@ -140,7 +148,9 @@ public class CheckoutController {
 
         User user = userService.findByUsername(principal.getName());
 
-        orderService.createOrder(shoppingCart,shippingAddress,billingAddress,payment,shippingMethod, user);
+        Order order = orderService.createOrder(shoppingCart,shippingAddress,billingAddress,payment,shippingMethod, user);
+
+        mailSender.send(mailConstructor.constructOrderConfirmationEmail(user,order, Locale.ENGLISH));
 
         shoppingCartService.clearShoppingCart(shoppingCart);
 

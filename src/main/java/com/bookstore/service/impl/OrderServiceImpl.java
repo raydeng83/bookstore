@@ -8,12 +8,11 @@ import com.bookstore.repository.ShippingAddressRepository;
 import com.bookstore.service.BookService;
 import com.bookstore.service.CartItemService;
 import com.bookstore.service.OrderService;
-import com.bookstore.utility.MailContructor;
+import com.bookstore.utility.MailConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,6 +39,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private MailConstructor mailConstructor;
 
     public synchronized Order createOrder(
             ShoppingCart shoppingCart,
@@ -73,7 +75,6 @@ public class OrderServiceImpl implements OrderService {
         order.setUser(user);
         order = orderRepository.save(order);
 
-        MailContructor.constructOrderConfirmationEmail(user,order);
 
         return order;
     }

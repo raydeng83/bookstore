@@ -21,7 +21,10 @@
             </thead>
             <tbody>
             <tr class="box" data-th-each="book : ${bookList}">
-                <td><input type="checkbox"/></td>
+                <td>
+                    <input hidden="hidden" name="id" th:value="${book.id}" />
+                    <input th:id="'selected'+${book.id}" class="checkboxBook" type="checkbox"/>
+                </td>
                 <td><a th:href="@{/book/bookInfo?id=}+${book.id}"><span th:text="${book.title}"></span></a></td>
                 <td data-th-text="${book.author}">...</td>
                 <td data-th-text="${book.category}">...</td>
@@ -30,15 +33,15 @@
                 <td data-th-text="${book.active}">...</td>
                 <td>
                         <input hidden="hidden" name="id" th:value="${book.id}" />
-                        <button th:id="${book.id}" class='btn btn-danger btn-xs delete-book' type="submit" value="delete"><span
+                        <button th:id="'oneBook-'+${book.id}" class='btn btn-danger btn-xs delete-book' type="submit" value="delete"><span
                                 class="fa fa-times"></span> delete
                         </button>
                 </td>
             </tr>
             </tbody>
-            <!--<a th:href="" class="btn btn-danger">Delete Selected</a>-->
         </table>
     </div>
+    <button class="btn btn-danger" id="deleteSelected">Delete Selected</button>
 </div>
 
 <div th:replace="common/header :: body-bottom-scripts"/>

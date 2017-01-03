@@ -17,7 +17,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -126,9 +128,9 @@ public class BookController {
 
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
     public String remove(
-            @ModelAttribute("id") Long id, Model model
+            @ModelAttribute("id") String id, Model model
     ){
-        bookService.removeOne(id);
+        bookService.removeOne(Long.parseLong(id.substring(8)));
 
         List<Book> bookList = bookService.findAll();
 
@@ -136,4 +138,6 @@ public class BookController {
 
         return "redirect:/book/bookList";
     }
+
+
 }

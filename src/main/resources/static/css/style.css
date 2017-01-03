@@ -50,6 +50,10 @@ body {
     padding: 5px 22px;
 }
 
+.question {
+    color: darkred;
+}
+
 .box {
     border: 1px solid red;
 }

@@ -37,12 +37,8 @@
                            role="button"> <span style="font-size: large">BOOKS</span></a>
                         <ul class="dropdown-menu">
                             <li><a th:href="@{/bookshelf}">Browse the bookshelf</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
+                            <li><a th:href="@{/hours}">Store hours &#38; Directions</a></li>
+                            <li><a th:href="@{/faq}">FAQ</a></li>
                         </ul>
                     </li>
                     <form class="navbar-form" th:action="@{/searchBook}" method="post">

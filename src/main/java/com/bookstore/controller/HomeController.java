@@ -8,6 +8,7 @@ import com.bookstore.domain.security.Role;
 import com.bookstore.domain.security.UserRole;
 import com.bookstore.service.*;
 import com.bookstore.service.impl.UserSecurityService;
+import com.bookstore.utility.MailConstructor;
 import com.bookstore.utility.USConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -46,6 +47,9 @@ public class HomeController {
 
     @Autowired
     private Environment env;
+
+    @Autowired
+    private MailConstructor mailConstructor;
 
     @Autowired
     private UserSecurityService userSecurityService;
@@ -148,7 +152,7 @@ public class HomeController {
                         request.getContextPath();
 
         SimpleMailMessage newEmail =
-                constructResetTokenEmail(appUrl, request.getLocale(), token, user, password);
+                mailConstructor.constructResetTokenEmail(appUrl, request.getLocale(), token, user, password);
 
         mailSender.send(newEmail);
 
@@ -555,7 +559,7 @@ public class HomeController {
                         request.getContextPath();
 
         SimpleMailMessage email =
-                constructResetTokenEmail(appUrl, request.getLocale(), token, user, password);
+                mailConstructor.constructResetTokenEmail(appUrl, request.getLocale(), token, user, password);
 
         mailSender.send(email);
 
@@ -603,17 +607,7 @@ public class HomeController {
         return "myProfile";
     }
 
-    private SimpleMailMessage constructResetTokenEmail(
-            String contextPath, Locale locale, String token, User user, String password) {
-        String url = contextPath + "/user/addNewUser?token=" + token;
-        String message = "\nPlease click on this link to verify your email and edit your personal info. Your password is:\n " + password;
-        SimpleMailMessage email = new SimpleMailMessage();
-        email.setTo(user.getEmail());
-        email.setSubject("Le's Bookstore - New User");
-        email.setText(url + message);
-        email.setFrom(env.getProperty("support.email"));
-        return email;
-    }
+
 
     @RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
     public String profileInfo(
@@ -694,4 +688,16 @@ public class HomeController {
         model.addAttribute("updateUserPaymentInfo", true);
         return "myProfile";
     }
+
+//    private SimpleMailMessage constructResetTokenEmail(
+//            String contextPath, Locale locale, String token, User user, String password) {
+//        String url = contextPath + "/user/addNewUser?token=" + token;
+//        String message = "\nPlease click on this link to verify your email and edit your personal info. Your password is:\n " + password;
+//        SimpleMailMessage email = new SimpleMailMessage();
+//        email.setTo(user.getEmail());
+//        email.setSubject("Le's Bookstore - New User");
+//        email.setText(url + message);
+//        email.setFrom(env.getProperty("support.email"));
+//        return email;
+//    }
 }

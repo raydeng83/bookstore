@@ -12,12 +12,13 @@ public class BillingAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String street1;
-    private String street2;
-    private String city;
-    private String state;
-    private String country;
-    private String zipcode;
+    private String billingAddressName;
+    private String billingAddressStreet1;
+    private String billingAddressStreet2;
+    private String billingAddressCity;
+    private String billingAddressState;
+    private String billingAddressCountry;
+    private String billingAddressZipcode;
 
     @OneToOne
     private Order order;
@@ -30,44 +31,44 @@ public class BillingAddress {
         this.id = id;
     }
 
-    public String getStreet1() {
-        return street1;
+    public String getBillingAddressStreet1() {
+        return billingAddressStreet1;
     }
 
-    public void setStreet1(String street1) {
-        this.street1 = street1;
+    public void setBillingAddressStreet1(String billingAddressStreet1) {
+        this.billingAddressStreet1 = billingAddressStreet1;
     }
 
-    public String getStreet2() {
-        return street2;
+    public String getBillingAddressStreet2() {
+        return billingAddressStreet2;
     }
 
-    public void setStreet2(String street2) {
-        this.street2 = street2;
+    public void setBillingAddressStreet2(String billingAddressStreet2) {
+        this.billingAddressStreet2 = billingAddressStreet2;
     }
 
-    public String getState() {
-        return state;
+    public String getBillingAddressState() {
+        return billingAddressState;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setBillingAddressState(String billingAddressState) {
+        this.billingAddressState = billingAddressState;
     }
 
-    public String getCountry() {
-        return country;
+    public String getBillingAddressCountry() {
+        return billingAddressCountry;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setBillingAddressCountry(String billingAddressCountry) {
+        this.billingAddressCountry = billingAddressCountry;
     }
 
-    public String getZipcode() {
-        return zipcode;
+    public String getBillingAddressZipcode() {
+        return billingAddressZipcode;
     }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setBillingAddressZipcode(String billingAddressZipcode) {
+        this.billingAddressZipcode = billingAddressZipcode;
     }
 
     public Order getOrder() {
@@ -78,11 +79,19 @@ public class BillingAddress {
         this.order = order;
     }
 
-    public String getCity() {
-        return city;
+    public String getBillingAddressCity() {
+        return billingAddressCity;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setBillingAddressCity(String billingAddressCity) {
+        this.billingAddressCity = billingAddressCity;
+    }
+
+    public String getBillingAddressName() {
+        return billingAddressName;
+    }
+
+    public void setBillingAddressName(String billingAddressName) {
+        this.billingAddressName = billingAddressName;
     }
 }

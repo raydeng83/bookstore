@@ -52,7 +52,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/bookshelf",
             "/bookDetail",
             "/checkout",
-            "/searchByCategory"
+            "/searchByCategory",
+            "/searchBook",
+            "/hours",
+            "/faq"
     };
 
     @Override

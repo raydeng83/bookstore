@@ -70,6 +70,16 @@ public class HomeController {
         return "index";
     }
 
+    @RequestMapping("/hours")
+    public String hours() {
+        return "hours";
+    }
+
+    @RequestMapping("/faq")
+    public String faq() {
+        return "faq";
+    }
+
     @RequestMapping("/bookshelf")
     public String bookshelf(Model model, Principal principal) {
         if (principal != null) {

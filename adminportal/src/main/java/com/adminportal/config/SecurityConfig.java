@@ -40,13 +40,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/login"
     };
 
+    private static final String[] ADMIN_MATCHERS = {
+            "/book/**",
+            "/home"
+    };
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests().
 //                antMatchers("/**").
                 antMatchers(PUBLIC_MATCHERS).
-                permitAll().anyRequest().authenticated();
+                permitAll().antMatchers(ADMIN_MATCHERS).hasRole("ADMIN").anyRequest().authenticated();
 
         http
                 .csrf().disable().cors().disable()

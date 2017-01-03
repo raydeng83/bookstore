@@ -14,6 +14,10 @@ body {
 /*cursor: pointer;*/
 /*}*/
 
+.banner {
+    background-image: url("/image/bgline.png");
+}
+
 .page-top {
     margin-top: -70px;
 }
@@ -44,6 +48,10 @@ body {
 .section-headline span {
     background-color: #231F20;
     padding: 5px 22px;
+}
+
+.question {
+    color: darkred;
 }
 
 .box {

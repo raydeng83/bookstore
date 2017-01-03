@@ -3,15 +3,17 @@ package com.adminportal.domain;
 import javax.persistence.*;
 
 /**
- * Created by z00382545 on 12/28/16.
+ * Created by z00382545 on 12/31/16.
  */
 
 @Entity
-public class Payment {
+public class UserPayment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String type;
+    private String cardName;
     private String cardNumber;
     private int expiryMonth;
     private int expiryYear;
@@ -19,8 +21,12 @@ public class Payment {
     private String holderName;
     private boolean defaultPayment;
 
-    @OneToOne
-    private Order order;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userPayment")
+    private UserBilling userBilling;
 
     public Long getId() {
         return id;
@@ -78,12 +84,20 @@ public class Payment {
         this.holderName = holderName;
     }
 
-    public Order getOrder() {
-        return order;
+    public User getUser() {
+        return user;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getCardName() {
+        return cardName;
+    }
+
+    public void setCardName(String cardName) {
+        this.cardName = cardName;
     }
 
     public boolean isDefaultPayment() {
@@ -93,4 +107,14 @@ public class Payment {
     public void setDefaultPayment(boolean defaultPayment) {
         this.defaultPayment = defaultPayment;
     }
+
+    public UserBilling getUserBilling() {
+        return userBilling;
+    }
+
+    public void setUserBilling(UserBilling userBilling) {
+        this.userBilling = userBilling;
+    }
+
+
 }

@@ -34,6 +34,9 @@ public class Order {
     @OneToOne(cascade=CascadeType.ALL)
     private Payment payment;
 
+    @ManyToOne
+    private User user;
+
     public Long getId() {
         return id;
     }
@@ -112,5 +115,13 @@ public class Order {
 
     public void setCartItemList(List<CartItem> cartItemList) {
         this.cartItemList = cartItemList;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

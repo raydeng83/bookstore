@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <table width="99%">
+    <tr>
+      <td>
+        <table>
+          <tr>
+            <td>
+              <img src="cid:myLogo" alt="myLogo" width="300" height="64">
+              <br/>
+              #else 
+              <img src="/SpringMailExample/images/myLogo.png"
+              alt="myLogo" width="300" height="64"><br/>
+              123 Street Address<br/>
+              TownName, State 01920-1223<br/><br/>
+              (800) 555-1212<br/>
+              billing@example.com<br/>
+            </td>
+          </tr>
+        </table>
+        
+      </td>
+      <td align="right">
+        <table>
+          <tr>
+            <td align="right">
+              <h1>Invoice</h1>
+              $date.format('MMMM dd, yyyy', ${invoice.invDate})<br/>
+              Invoice #${invoice.invNumber}<br/>
+              PO ${invoice.poNumber}<br/><br/>
+              <strong>ATTN ${customer.firstName} ${customer.lastName}<br/>
+                ${customer.companyName}</strong>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"><hr/></td>
+      </tr>
+      <tr>
+        <td  colspan="2" align="center">
+          <table width="80%">
+            <tr>
+              <td  align="left">
+                Dear ${customer.firstName} ${customer.lastName},<br/><br/>
+                
+                Below please find a detailed cost breakdown for our recently 
+                completed work. Please make payment at your earliest convenience, 
+                and do not hesitate to contact me should you have any questions.<br/>
+                <br/>
+                
+                Many thanks,<br/>
+                Amaury Valdes<br/><br/>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <table width="80%" bgcolor="#9EC5FF" border="1"
+          bordercolor="#888" cellspacing="0" cellpadding="4">
+          <tr>
+            <th align="left">#</th>
+            <th align="left">Item Description</th>
+            <th align="left">Quantity</th>
+            <th align="left">Unit Price ($)</th>
+            <th align="left">Total ($)</th>
+          </tr>
+          #set ( $row = 1 )
+          #set ( $subtotal = 0)
+          #set ( $salestax = 0)
+          #set ( $total = 0)
+          #set ( $taxPercent = $invoice.taxRate * 100.0)
+          #foreach ( $item in $items )
+          #if ( $row % 2 == 0 )
+          #set ($color="#CBDCFF")
+          #else
+          #set ($color="#E3EEFF")
+          #end
+          <tr bgcolor="$color">
+            <td align="left">$row</td>
+            <td align="left">$item.itemDesc</td>
+            <td align="center">$item.itemQty</td>
+            <td align="right">$number.currency($item.itemPrice)</td>
+            #set ( $itemTotal = $item.itemQty * $item.itemPrice )
+            <td align="right">$number.currency($itemTotal)</td>
+          </tr>
+          #set ( $subtotal = $subtotal + $itemTotal )
+          #set ( $row = $row + 1 )
+          #end
+          <tr bgcolor="#E3EEFF">
+            <td colspan="4" align="left"><strong>Subtotal</strong></td>
+            <td align="right">$number.currency($subtotal)</td> 
+          </tr>
+          <tr bgcolor="#E3EEFF">
+            #set ( $salestax = $subtotal * $invoice.taxRate)
+            <td colspan="4" align="left"><strong>
+              Sales Tax ($number.format('##0.##', $taxPercent)%)
+            </strong></td>
+            <td align="right">$number.currency($salestax)</td>
+          </tr>
+          <tr bgcolor="#9EC5FF">
+            #set ( $total = $subtotal + $salestax)
+            <td colspan="4" align="left"><strong>Total</strong></td>
+            <td align="right">$number.currency($total)</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

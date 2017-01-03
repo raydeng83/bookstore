@@ -10,6 +10,10 @@ body {
 	margin-bottom: 50px;
 }
 
+.banner {
+	background-image: url("../image/linebg.png");
+}
+
 .page-top {
 	margin-top: -70px;
 }

@@ -40,7 +40,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private BookService bookService;
 
-    public Order createOrder(
+    public synchronized Order createOrder(
             ShoppingCart shoppingCart,
             ShippingAddress shippingAddress,
             BillingAddress billingAddress,
@@ -61,7 +61,6 @@ public class OrderServiceImpl implements OrderService {
             Book book = cartItem.getBook();
             cartItem.setOrder(order);
             book.setInStockNumber(book.getInStockNumber()-cartItem.getQty());
-//            bookService.save(book);
         }
 
         order.setCartItemList(cartItemList);

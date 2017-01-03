@@ -11,11 +11,11 @@ body {
 }
 
 table {
-    table-layout: fixed;
+    table-layout: auto;
 }
 
 td {
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     overflow: hidden;         /* <- this does seem to be required */
     text-overflow: ellipsis;
 }

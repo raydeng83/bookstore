@@ -28,6 +28,8 @@ import javax.websocket.server.PathParam;
 import java.security.Principal;
 import java.util.*;
 
+import static com.bookstore.utility.MailContructor.constructResetTokenEmail;
+
 /**
  * Created by lede on 12/18/16.
  */
@@ -603,17 +605,7 @@ public class HomeController {
         return "myProfile";
     }
 
-    private SimpleMailMessage constructResetTokenEmail(
-            String contextPath, Locale locale, String token, User user, String password) {
-        String url = contextPath + "/user/addNewUser?token=" + token;
-        String message = "\nPlease click on this link to verify your email and edit your personal info. Your password is:\n " + password;
-        SimpleMailMessage email = new SimpleMailMessage();
-        email.setTo(user.getEmail());
-        email.setSubject("Le's Bookstore - New User");
-        email.setText(url + message);
-        email.setFrom(env.getProperty("support.email"));
-        return email;
-    }
+
 
     @RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
     public String profileInfo(

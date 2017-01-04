@@ -69,6 +69,12 @@
                         <select th:value="${book.category}" id="category" name="category" class="form-control" required="required">
                             <option value="management" th:selected="(${book.category}=='management')">Management</option>
                             <option value="fiction" th:selected="(${book.category}=='fiction')">Fiction</option>
+                            <option value="" selected="selected" disabled="disabled">Please select an option...</option>
+                            <option value="Management" th:selected="(${book.category}=='management')">Management</option>
+                            <option value="Fiction" th:selected="(${book.category}=='Fiction')">Fiction</option>
+                            <option value="Engineering" th:selected="(${book.category}=='Engineering')">Engineering</option>
+                            <option value="Programming" th:selected="(${book.category}=='Programming')">Programming</option>
+                            <option value="Arts &amp; Literature" th:selected="(${book.category}=='Arts &amp; Literature')">Arts &#38; Literature</option>
                         </select>
                     </div>
                 </div>

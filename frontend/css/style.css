@@ -7,7 +7,11 @@ hr {
 }
 
 body {
-	margin-bottom: 50px;
+	/*margin-bottom: 50px;*/
+}
+
+.banner {
+	background-image: url("../image/linebg.png");
 }
 
 .banner {

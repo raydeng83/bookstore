@@ -13,4 +13,6 @@ public interface BookService {
     Book findOne(Long id);
 
     List<Book> findAll();
+
+    void removeOne(Long id);
 }

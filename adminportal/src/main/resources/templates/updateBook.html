@@ -67,6 +67,8 @@
                     <label class="col-md-2 control-label" for="category">Category *</label>
                     <div class="col-md-8">
                         <select th:value="${book.category}" id="category" name="category" class="form-control" required="required">
+                            <option value="management" th:selected="(${book.category}=='management')">Management</option>
+                            <option value="fiction" th:selected="(${book.category}=='fiction')">Fiction</option>
                             <option value="" selected="selected" disabled="disabled">Please select an option...</option>
                             <option value="Management" th:selected="(${book.category}=='management')">Management</option>
                             <option value="Fiction" th:selected="(${book.category}=='Fiction')">Fiction</option>

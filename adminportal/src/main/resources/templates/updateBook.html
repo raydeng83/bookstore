@@ -68,7 +68,10 @@
                     <div class="col-md-8">
                         <select th:value="${book.category}" id="category" name="category" class="form-control" required="required">
                             <option value="management" th:selected="(${book.category}=='management')">Management</option>
-                            <option value="fiction" th:selected="(${book.category}=='fiction')">Fiction</option>
+                            <option value="fiction">Fiction</option>
+                            <option value="engineering">Engineering</option>
+                            <option value="programming">Programming</option>
+                            <option value="artsLiterature">Arts &#38; Literature</option>
                         </select>
                     </div>
                 </div>

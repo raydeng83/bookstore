@@ -6,10 +6,10 @@
 
 <div class="container">
     <div class="table-responsive">
-        <table id="example" class="table table-bordered table-hover table-striped">
+        <table id="bookListTable" class="table table-bordered table-hover table-striped">
             <thead>
             <tr>
-                <th><input type="checkbox"/></th>
+                <th><input th:id="selectAllBooks" type="checkbox"/></th>
                 <th>Title</th>
                 <th>Author</th>
                 <th>Category</th>
@@ -45,5 +45,14 @@
 </div>
 
 <div th:replace="common/header :: body-bottom-scripts"/>
+<script>
+    $(document).ready(function() {
+        $('#bookListTable').DataTable({
+            "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+            "ordering": false,
+            stateSave: true
+        });
+    } );
+</script>
 </body>
 </html>

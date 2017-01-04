@@ -28,11 +28,12 @@ $(document).ready(function() {
     var bookIdList=[];
 
     $('.checkboxBook').click(function () {
+        console.log("change detected.");
         var id = $(this).attr('id');
-        if($(this).prop("checked") == true){
+        if(this.checked){
             bookIdList.push(id);
         }
-        else if($(this).prop("checked") == false){
+        else {
             bookIdList.splice(bookIdList.indexOf(id), 1);
         }
     })
@@ -72,5 +73,17 @@ $(document).ready(function() {
                 }
             }
         });
+    });
+
+    $("#selectAllBooks").click(function(){
+        if($(this).prop("checked") == true){
+            // $('.checkboxBook').prop("checked", true);
+            $('.checkboxBook').click();
+        }
+        else if($(this).prop("checked") == false){
+            // $('.checkboxBook').prop("checked", false);
+            $('.checkboxBook').click();
+        }
+
     });
 });

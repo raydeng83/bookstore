@@ -38,7 +38,10 @@ public class SearchController {
             model.addAttribute("user", user);
         }
 
-        model.addAttribute("active"+category, true);
+        String classActiveCategory = "active"+category;
+        classActiveCategory=classActiveCategory.replaceAll("\\s+","");
+        classActiveCategory=classActiveCategory.replaceAll("&","");
+        model.addAttribute(classActiveCategory, true);
 
         List<Book> bookList = bookService.findByCategory(category);
 

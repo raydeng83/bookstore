@@ -96,10 +96,14 @@ public class CheckoutController {
 
         if (userPaymentList.size() == 0) {
             model.addAttribute("emptyPaymentList", true);
+        } else {
+            model.addAttribute("emptyPaymentList", false);
         }
 
         if (userShippingList.size() == 0) {
             model.addAttribute("emptyShippingList", true);
+        } else {
+            model.addAttribute("emptyShippingList", false);
         }
 
         ShoppingCart shoppingCart = user.getShoppingCart();

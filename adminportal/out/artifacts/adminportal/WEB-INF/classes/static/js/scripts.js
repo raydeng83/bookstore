@@ -28,7 +28,6 @@ $(document).ready(function() {
     var bookIdList=[];
 
     $('.checkboxBook').click(function () {
-        console.log("change detected.");
         var id = $(this).attr('id');
         if(this.checked){
             bookIdList.push(id);

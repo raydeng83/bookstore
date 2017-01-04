@@ -70,7 +70,10 @@ public class HomeController {
     private CartItemService cartItemService;
 
     @RequestMapping("/")
-    public String index() {
+    public String index(Model model) {
+        List<Book> bookList = bookService.findAll();
+        model.addAttribute("bookList", bookList);
+        model.addAttribute("activeAll", true);
         return "index";
     }
 

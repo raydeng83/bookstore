@@ -91,7 +91,7 @@
         <div class="col-xs-4">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <img src="/image/bestseller.png" class="img-responsive"/>
+                    <a th:href="@{/bookshelf}"> <img src="/image/bestseller.png" class="img-responsive"/></a>
                 </div>
             </div>
         </div>
@@ -132,22 +132,22 @@
                         <div class="carousel-caption">
                             <div class="row">
                                 <div class="col-xs-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="/image/book1.png"/></a>
+                                    <a th:href="@{/bookDetail(id=1)}"><img class="img-responsive shelf-book" th:src="#{adminPath}+@{/image/book/}+1+'.png'"/></a>
                                 </div>
                                 <div class="col-xs-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="/image/book1.png"/></a>
+                                    <a th:href="@{/bookDetail(id=2)}"><img class="img-responsive shelf-book" th:src="#{adminPath}+@{/image/book/}+2+'.png'"/></a>
                                 </div>
                                 <div class="col-xs-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="/image/book1.png"/></a>
+                                    <a th:href="@{/bookDetail(id=5)}"><img class="img-responsive shelf-book" th:src="#{adminPath}+@{/image/book/}+5+'.png'"/></a>
                                 </div>
                                 <div class="col-xs-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="/image/book1.png"/></a>
+                                    <a th:href="@{/bookDetail(id=6)}"><img class="img-responsive shelf-book" th:src="#{adminPath}+@{/image/book/}+6+'.png'"/></a>
                                 </div>
                                 <div class="col-xs-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="/image/book1.png"/></a>
+                                    <a th:href="@{/bookDetail(id=7)}"><img class="img-responsive shelf-book" th:src="#{adminPath}+@{/image/book/}+7+'.png'"/></a>
                                 </div>
                                 <div class="col-xs-2">
-                                    <a href="#"><img class="img-responsive shelf-book" src="/image/book1.png"/></a>
+                                    <a th:href="@{/bookDetail(id=8)}"><img class="img-responsive shelf-book" th:src="#{adminPath}+@{/image/book/}+8+'.png'"/></a>
                                 </div>
                             </div>
                         </div>
